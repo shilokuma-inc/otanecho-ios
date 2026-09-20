@@ -80,7 +80,15 @@ private struct SeedDetailContent: View {
             Text("深掘りの記録もまとめて削除されます。この操作は取り消せません。")
         }
         .sheet(isPresented: $isDeepening) {
-            DeepenView(seed: seed)
+            // DeepenView は navigationTitle を持つので NavigationStack で包み、閉じるボタンを付ける
+            NavigationStack {
+                DeepenView(seed: seed)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("閉じる") { isDeepening = false }
+                        }
+                    }
+            }
         }
         .onAppear {
             draft = seed.body
