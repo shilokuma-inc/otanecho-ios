@@ -13,6 +13,10 @@ struct OtanechoApp: App {
             RootView()
                 .environment(router)
                 .environment(\.ideaIntelligence, intelligence)
+                .task {
+                    // 初回応答を速めるため、オンデバイスモデルを事前に温める
+                    (intelligence as? FoundationModelsIntelligence)?.prewarm()
+                }
                 .onOpenURL { url in
                     if let link = DeepLink(url: url) { router.handle(link) }
                 }
