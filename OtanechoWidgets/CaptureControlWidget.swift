@@ -4,7 +4,7 @@ import WidgetKit
 
 /// コントロールセンターの「種をまく」ボタン。タップでアプリが開き、入力画面が表示される。
 struct CaptureControlWidget: ControlWidget {
-    static let kind = "ml.mrs1669.Otanecho.CaptureControl"
+    static let kind = "jp.shilokuma.Otanecho.CaptureControl"
 
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: Self.kind) {

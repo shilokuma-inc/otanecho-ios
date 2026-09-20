@@ -15,7 +15,7 @@ final class SeedEnricher {
 
     private let container: ModelContainer
     private let intelligence: any IdeaIntelligence
-    private let logger = Logger(subsystem: "ml.mrs1669.Otanecho", category: "SeedEnricher")
+    private let logger = Logger(subsystem: "jp.shilokuma.Otanecho", category: "SeedEnricher")
 
     /// 同じ種を同時に処理しないための記録。
     @ObservationIgnored private var inFlight: Set<UUID> = []

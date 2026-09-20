@@ -3,7 +3,7 @@ import WidgetKit
 
 /// ロック画面ウィジェット。円形は leaf アイコンのみ、長方形は「種をまく」と今日の件数。どちらもタップで入力画面へ。
 struct LockScreenWidget: Widget {
-    static let kind = "ml.mrs1669.Otanecho.LockScreenWidget"
+    static let kind = "jp.shilokuma.Otanecho.LockScreenWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: SeedTimelineProvider()) { entry in

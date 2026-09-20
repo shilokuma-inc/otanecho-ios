@@ -1,6 +1,6 @@
 name: Otanecho
 options:
-  bundleIdPrefix: ml.mrs1669
+  bundleIdPrefix: jp.shilokuma
   deploymentTarget:
     iOS: "26.0"
   xcodeVersion: "26.0"
@@ -60,15 +60,15 @@ targets:
         NSMicrophoneUsageDescription: 音声でアイデアを書き留めるためにマイクを使用します。
         NSSpeechRecognitionUsageDescription: 話した内容をその場で文字に起こすために音声認識を使用します。音声はデバイス上で処理されます。
         CFBundleURLTypes:
-          - CFBundleURLName: ml.mrs1669.Otanecho
+          - CFBundleURLName: jp.shilokuma.Otanecho
             CFBundleURLSchemes: [otanecho]
     entitlements:
       path: Otanecho/Resources/Otanecho.entitlements
       properties:
-        com.apple.security.application-groups: [group.ml.mrs1669.Otanecho]
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: ml.mrs1669.Otanecho
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
@@ -90,10 +90,10 @@ targets:
     entitlements:
       path: OtanechoWidgets/OtanechoWidgets.entitlements
       properties:
-        com.apple.security.application-groups: [group.ml.mrs1669.Otanecho]
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: ml.mrs1669.Otanecho.Widgets
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho.Widgets
         SKIP_INSTALL: YES
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
 
@@ -118,10 +118,10 @@ targets:
     entitlements:
       path: OtanechoShare/OtanechoShare.entitlements
       properties:
-        com.apple.security.application-groups: [group.ml.mrs1669.Otanecho]
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: ml.mrs1669.Otanecho.Share
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho.Share
         SKIP_INSTALL: YES
 
   OtanechoTests:
@@ -132,7 +132,7 @@ targets:
       - target: Otanecho
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: ml.mrs1669.OtanechoTests
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.OtanechoTests
         GENERATE_INFOPLIST_FILE: YES
         SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
         TEST_HOST: $(BUILT_PRODUCTS_DIR)/Otanecho.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Otanecho
@@ -146,7 +146,7 @@ targets:
       - target: Otanecho
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: ml.mrs1669.OtanechoUITests
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.OtanechoUITests
         GENERATE_INFOPLIST_FILE: YES
         SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
         TEST_TARGET_NAME: Otanecho

@@ -4,7 +4,7 @@ import WidgetKit
 /// ホーム画面ウィジェット。直近の種と今日の件数を表示し、「+」から入力画面へ。
 /// small は全面タップで入力画面、medium は各種のタップで詳細へ。
 struct HomeScreenWidget: Widget {
-    static let kind = "ml.mrs1669.Otanecho.HomeWidget"
+    static let kind = "jp.shilokuma.Otanecho.HomeWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: Self.kind, provider: SeedTimelineProvider()) { entry in

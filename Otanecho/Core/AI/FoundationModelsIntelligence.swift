@@ -8,7 +8,7 @@ import os
 /// - 入力は `PromptBudget` で必ず切り詰め、約 4,096 トークンのコンテキストに収める。
 /// - 候補の参照には 1 始まりの番号を使い、モデルに UUID を生成させない。
 nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable {
-    private static let logger = Logger(subsystem: "ml.mrs1669.Otanecho", category: "AI")
+    private static let logger = Logger(subsystem: "jp.shilokuma.Otanecho", category: "AI")
 
     /// 決定的な出力が欲しい処理（タイトル・タグ・関連付け）の温度
     private static let preciseOptions = GenerationOptions(temperature: 0.3)

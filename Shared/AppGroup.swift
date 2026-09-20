@@ -3,7 +3,7 @@ import Foundation
 /// アプリ本体・ウィジェット・共有拡張で共通に使う識別子。
 nonisolated enum AppGroup {
     /// App Groups の識別子。project.yml の entitlements と一致させる。
-    static let identifier = "group.ml.mrs1669.Otanecho"
+    static let identifier = "group.jp.shilokuma.Otanecho"
 
     /// App Group 共有コンテナ。取得できない環境（未署名など）では Application Support にフォールバックする。
     static var containerURL: URL {
