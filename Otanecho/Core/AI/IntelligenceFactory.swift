@@ -1,9 +1,9 @@
 import Foundation
 
 /// 実行環境に応じて IdeaIntelligence の実装を選ぶ。
-/// Foundation Models 実装（FoundationModelsIntelligence）が追加されたら、ここで生成する。
+/// 端末の対応可否は FoundationModelsIntelligence が `availability` で毎回動的に判定するため、ここでは分岐しない。
 enum IntelligenceFactory {
     static func make() -> any IdeaIntelligence {
-        UnavailableIdeaIntelligence(availability: .unknown)
+        FoundationModelsIntelligence()
     }
 }
