@@ -1,0 +1,20 @@
+included:
+  - Otanecho
+  - Shared
+  - OtanechoWidgets
+  - OtanechoShare
+  - OtanechoTests
+  - OtanechoUITests
+disabled_rules:
+  - trailing_comma
+  - todo
+  - line_length
+  - identifier_name
+  - type_body_length
+  - file_length
+  - function_body_length
+  - cyclomatic_complexity
+  - nesting
+opt_in_rules:
+  - empty_count
+  - sorted_first_last
