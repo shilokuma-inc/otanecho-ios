@@ -37,6 +37,12 @@ jobs:
           echo $default | cat >default
           echo Using default scheme: $default
 
+      - name: Set Build Number
+        run: |
+          # CFBundleVersion は同じバージョン内で単調増加している必要があるため、UTC の日時から採番する。
+          # 例: 20260920.2114（ワークフローをまたいでも重複せず、常に増加する）
+          echo "BUILD_NUMBER=$(date -u +%Y%m%d).$(date -u +%H%M)" >> $GITHUB_ENV
+
       - name: Archive Project
         run: |
           if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
@@ -47,6 +53,7 @@ jobs:
                              -sdk iphoneos \
                              -configuration Release \
                              -archivePath build.xcarchive \
+                             CURRENT_PROJECT_VERSION=$BUILD_NUMBER \
                              CODE_SIGNING_ALLOWED=NO
 
       - name: Create ExportOptions.plist
