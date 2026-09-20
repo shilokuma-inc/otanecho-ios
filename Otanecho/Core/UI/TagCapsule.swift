@@ -11,6 +11,7 @@ struct TagCapsule: View {
             .padding(.horizontal, 8)
             .padding(.vertical, 3)
             .background(.fill.tertiary, in: Capsule())
+            .accessibilityIdentifier("tag")
     }
 }
 

@@ -38,7 +38,7 @@ final class CaptureFlowUITests: XCTestCase {
         snapshot(app, "04_timeline_saved")
 
         // 4. AI のタグ付けを待つ（オンデバイスモデル。最大 90 秒）
-        let tagged = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "#")).firstMatch
+        let tagged = app.staticTexts.matching(identifier: "tag").firstMatch
         let taggedAppeared = tagged.waitForExistence(timeout: 90)
         snapshot(app, taggedAppeared ? "05_timeline_enriched" : "05_timeline_not_enriched")
 
@@ -56,7 +56,7 @@ final class CaptureFlowUITests: XCTestCase {
 
         if questionsLoaded {
             // 最初の問いに答えてみる
-            let firstQuestion = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "?")).firstMatch
+            let firstQuestion = app.staticTexts.containing(NSPredicate(format: "label CONTAINS %@", "？")).firstMatch
             if firstQuestion.exists {
                 firstQuestion.tap()
                 let answerField = app.textFields.firstMatch.exists ? app.textFields.firstMatch : app.textViews.firstMatch
