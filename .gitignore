@@ -88,3 +88,9 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
+# XcodeGen 生成物（project.yml から生成）
+/Otanecho.xcodeproj
+
+# Claude Code の worktree
+/.claude/worktrees/

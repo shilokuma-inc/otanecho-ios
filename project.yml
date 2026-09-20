@@ -1,0 +1,168 @@
+name: Otanecho
+options:
+  bundleIdPrefix: jp.shilokuma
+  deploymentTarget:
+    iOS: "26.0"
+  xcodeVersion: "26.0"
+  developmentLanguage: ja
+  createIntermediateGroups: true
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY: YES
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: XU74X3434S
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    IPHONEOS_DEPLOYMENT_TARGET: "26.0"
+    TARGETED_DEVICE_FAMILY: "1,2"
+    STRING_CATALOG_GENERATE_SYMBOLS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    SWIFT_EMIT_LOC_STRINGS: YES
+
+packages:
+  SwiftLint:
+    url: https://github.com/realm/SwiftLint
+    from: "0.61.0"
+
+targets:
+  Otanecho:
+    type: application
+    platform: iOS
+    sources:
+      - path: Otanecho
+      - path: Shared
+    dependencies:
+      - target: OtanechoWidgets
+        embed: true
+      - target: OtanechoShare
+        embed: true
+    buildToolPlugins:
+      - plugin: SwiftLintBuildToolPlugin
+        package: SwiftLint
+    info:
+      path: Otanecho/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: お種帳
+        CFBundleName: Otanecho
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        NSMicrophoneUsageDescription: 音声でアイデアを書き留めるためにマイクを使用します。
+        NSSpeechRecognitionUsageDescription: 話した内容をその場で文字に起こすために音声認識を使用します。音声はデバイス上で処理されます。
+        CFBundleURLTypes:
+          - CFBundleURLName: jp.shilokuma.Otanecho
+            CFBundleURLSchemes: [otanecho]
+    entitlements:
+      path: Otanecho/Resources/Otanecho.entitlements
+      properties:
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        ENABLE_PREVIEWS: YES
+        DEVELOPMENT_ASSET_PATHS: ""
+
+  OtanechoWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: OtanechoWidgets
+      - path: Shared
+    info:
+      path: OtanechoWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: お種帳
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: OtanechoWidgets/OtanechoWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho.Widgets
+        SKIP_INSTALL: YES
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+
+  OtanechoShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: OtanechoShare
+      - path: Shared
+    info:
+      path: OtanechoShare/Info.plist
+      properties:
+        CFBundleDisplayName: お種帳
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsWebPageWithMaxCount: 1
+    entitlements:
+      path: OtanechoShare/OtanechoShare.entitlements
+      properties:
+        com.apple.security.application-groups: [group.jp.shilokuma.Otanecho]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.Otanecho.Share
+        SKIP_INSTALL: YES
+
+  OtanechoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [OtanechoTests]
+    dependencies:
+      - target: Otanecho
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.OtanechoTests
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Otanecho.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Otanecho
+        BUNDLE_LOADER: $(TEST_HOST)
+
+  OtanechoUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [OtanechoUITests]
+    dependencies:
+      - target: Otanecho
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: jp.shilokuma.OtanechoUITests
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+        TEST_TARGET_NAME: Otanecho
+
+schemes:
+  Otanecho:
+    build:
+      targets:
+        Otanecho: all
+        OtanechoWidgets: all
+        OtanechoShare: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - OtanechoTests
+        - OtanechoUITests
+    archive:
+      config: Release
