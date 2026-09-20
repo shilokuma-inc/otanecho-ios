@@ -30,12 +30,14 @@ nonisolated enum PersistenceController {
     @MainActor static func makePreviewContainer() -> ModelContainer {
         let container = makeContainer(inMemory: true)
         let context = container.mainContext
-        let samples: [(String, [String], Int)] = [
-            ("通勤中に聴くポッドキャストを、聴きながらメモできるアプリ", ["アプリ", "音声"], 0),
-            ("週に一度、冷蔵庫の残り物だけで作るレシピを提案してくれるサービス", ["食", "生活"], 1),
-            ("子どもの『なんで？』を記録して、成長とともに答えを更新していく日記", ["育児", "記録"], 3),
+        struct Sample { let body: String; let tags: [String]; let answered: Int }
+        let samples: [Sample] = [
+            Sample(body: "通勤中に聴くポッドキャストを、聴きながらメモできるアプリ", tags: ["アプリ", "音声"], answered: 0),
+            Sample(body: "週に一度、冷蔵庫の残り物だけで作るレシピを提案してくれるサービス", tags: ["食", "生活"], answered: 1),
+            Sample(body: "子どもの『なんで？』を記録して、成長とともに答えを更新していく日記", tags: ["育児", "記録"], answered: 3),
         ]
-        for (body, tags, answered) in samples {
+        for sample in samples {
+            let (body, tags, answered) = (sample.body, sample.tags, sample.answered)
             let seed = Seed(body: body, tags: tags)
             seed.title = String(body.prefix(18))
             seed.enrichedAt = .now
