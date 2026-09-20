@@ -91,3 +91,6 @@ iOSInjectionProject/
 
 # XcodeGen 生成物（project.yml から生成）
 /Otanecho.xcodeproj
+
+# Claude Code の worktree
+/.claude/worktrees/
