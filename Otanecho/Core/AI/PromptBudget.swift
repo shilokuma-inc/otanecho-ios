@@ -14,6 +14,29 @@ nonisolated enum PromptBudget {
     /// 問い・答え 1 件あたりのプレビュー最大文字数
     static let sproutPreviewLimit = 120
 
+    // MARK: - 生成テキストの表示上限
+
+    /// AI が付けるタイトルの上限
+    static func titleLimit(for locale: Locale = .current) -> Int { scaled(30, for: locale) }
+    /// 深掘りの問いの上限
+    static func questionLimit(for locale: Locale = .current) -> Int { scaled(60, for: locale) }
+    /// 掛け合わせの提案の上限
+    static func proposalLimit(for locale: Locale = .current) -> Int { scaled(80, for: locale) }
+
+    /// 表記体系に合わせて上限を伸ばす。
+    ///
+    /// 同じ内容を書いても、表意文字を使う言語は英語やロシア語よりずっと少ない文字数で収まる。
+    /// 日本語向けに決めた文字数をそのまま当てると英語のタイトルが途中で切れるため、倍率を変える。
+    static func scaled(_ base: Int, for locale: Locale) -> Int {
+        usesCompactScript(locale) ? base : base * 2
+    }
+
+    /// 1 文字あたりの情報量が大きい表記体系か。
+    static func usesCompactScript(_ locale: Locale) -> Bool {
+        guard let code = locale.language.languageCode?.identifier else { return false }
+        return ["ja", "zh", "yue", "ko"].contains(code)
+    }
+
     /// 末尾を「…」で切り詰める。結果は必ず `limit` 文字以内。
     static func truncate(_ text: String, limit: Int) -> String {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
