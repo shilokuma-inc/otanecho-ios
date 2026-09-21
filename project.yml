@@ -50,6 +50,8 @@ targets:
       properties:
         CFBundleDisplayName: お種帳
         CFBundleName: Otanecho
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         ITSAppUsesNonExemptEncryption: false
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
@@ -84,6 +86,8 @@ targets:
       path: OtanechoWidgets/Info.plist
       properties:
         CFBundleDisplayName: お種帳
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -106,6 +110,8 @@ targets:
       path: OtanechoShare/Info.plist
       properties:
         CFBundleDisplayName: お種帳
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
