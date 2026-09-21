@@ -40,6 +40,43 @@
 `Bundle` を明示せずに `Text("…")` / `LocalizedStringResource("…")` を使えば正しい Bundle が選ばれるので、
 `Shared/` の中で `Bundle.main` を明示的に渡したり、独自の Bundle 解決を書いたりしないこと。
 
+## 検証
+
+```bash
+python3 Tools/verify_localizations.py
+```
+
+PR と `develop` / `main` への push で CI が同じものを回す（`.github/workflows/verify-localizations.yml`）。
+JSON を読むだけなので macOS ランナーもビルドもいらない。
+
+見ているのは次の 8 つ。
+
+| 検査 | 内容 |
+|---|---|
+| 訳の欠損 | `enforced` の言語のエントリが無い |
+| 未翻訳 | `state` が `new` |
+| レビュー待ち | `state` が `needs_review` |
+| プレースホルダ不整合 | `%@` / `%lld` / `%1$@` / `${applicationName}` の数・型・位置引数がソースと食い違う |
+| stale なキー | `extractionState` が `stale`（コードから消えたキーの残骸） |
+| 複数形の欠損 | その言語に必要な複数形カテゴリが揃っていない |
+| カタログ間の不一致 | 同じキーの訳が複数の `.xcstrings` で食い違う |
+| 設定のずれ | `sourceLanguage` / `project.yml` の `developmentLanguage` / `enforced` の整合 |
+
+**プレースホルダ不整合を最優先で落としている。** 訳の欠損は英語が出るだけだが、
+指定子の数や型が食い違うと実行時にクラッシュしたり無関係な値が表示されたりする。
+
+複数形の必須カテゴリは `Tools/verify_localizations.py` の `REQUIRED_PLURAL_CATEGORIES` に持っている。
+言語を追加したらここにも足す（足していないと検証スクリプト自身が落ちて気づける）。
+
+### 日本語のハードコードを防ぐ
+
+`.swiftlint.yml` のカスタムルール `hardcoded_japanese_string` が、
+`Text(...)` や `String(localized:)` のように**文言を受け取る API に日本語を直接渡している箇所**を警告する。
+
+「文字列リテラルに日本語があれば違反」にすると、翻訳対象ではないもの（`#Preview` の名前、
+プレビュー用のサンプルデータ、開発者向けのログ、`String(localized:)` の `comment`）まで拾ってノイズになるため、
+対象を絞っている。`Text(verbatim:)` は意図的に翻訳しない書き方なので検知しない。
+
 ## 翻訳を追加・修正するとき
 
 1. ソース文言（英語）はコード側の文字列リテラルがそのままキーになる

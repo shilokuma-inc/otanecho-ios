@@ -15,9 +15,13 @@
           }
         },
         "ja" : {
-          "stringUnit" : {
+          "stringSet" : {
             "state" : "translated",
-            "value" : "${applicationName}にメモ"
+            "values" : [
+              "${applicationName}にメモ",
+              "${applicationName}に書き留める",
+              "${applicationName}にメモして"
+            ]
           }
         }
       }
@@ -36,9 +40,13 @@
           }
         },
         "ja" : {
-          "stringUnit" : {
+          "stringSet" : {
             "state" : "translated",
-            "value" : "${applicationName}で種をまく"
+            "values" : [
+              "${applicationName}で種をまく",
+              "${applicationName}で書き留める",
+              "${applicationName}を開いてメモ"
+            ]
           }
         }
       }
