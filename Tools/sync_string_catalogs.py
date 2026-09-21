@@ -31,19 +31,16 @@ DESTINATION = "generic/platform=iOS Simulator"
 CATALOGS = {
     "Otanecho": [
         "Otanecho/Resources/Localizable.xcstrings",
-        "Otanecho/Resources/InfoPlist.xcstrings",
         # App Shortcuts の起動フレーズ（phrases）はこのテーブルに入る
         "Otanecho/Resources/AppShortcuts.xcstrings",
     ],
-    "OtanechoWidgets": [
-        "OtanechoWidgets/Localizable.xcstrings",
-        "OtanechoWidgets/InfoPlist.xcstrings",
-    ],
-    "OtanechoShare": [
-        "OtanechoShare/Localizable.xcstrings",
-        "OtanechoShare/InfoPlist.xcstrings",
-    ],
+    "OtanechoWidgets": ["OtanechoWidgets/Localizable.xcstrings"],
+    "OtanechoShare": ["OtanechoShare/Localizable.xcstrings"],
 }
+
+# InfoPlist.xcstrings は sync に渡さない。
+# キーが Info.plist 側にしかなく、ソースコードから抽出されないため、
+# 渡すと毎回 extractionState を "stale" にされてしまう。訳は手で管理する。
 
 
 def xcodebuild(*args: str, capture: bool = False) -> subprocess.CompletedProcess[str]:
@@ -112,6 +109,10 @@ def main() -> int:
         print(f"==> {target} を同期（.stringsdata {len(files)} 件）: {', '.join(catalogs)}")
         if result.stderr.strip():
             print(result.stderr.strip())
+
+    # sync は Xcode と同じ整形で書き出すが、スクリプトで編集した直後は崩れていることがある
+    if subprocess.run([sys.executable, "Tools/format_string_catalogs.py"], cwd=ROOT, check=False).returncode != 0:
+        failed = True
 
     if failed:
         return 1

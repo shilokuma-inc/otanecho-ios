@@ -1,48 +1,48 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "Note to ${applicationName}": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringSet": {
-            "state": "new",
-            "values": [
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Note to ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
               "Note to ${applicationName}",
               "Jot it down in ${applicationName}",
               "Take a note in ${applicationName}"
             ]
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "${applicationName}にメモ"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName}にメモ"
           }
         }
       }
     },
-    "Plant a seed in ${applicationName}": {
-      "extractionState": "extracted_with_value",
-      "localizations": {
-        "en": {
-          "stringSet": {
-            "state": "new",
-            "values": [
+    "Plant a seed in ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
               "Plant a seed in ${applicationName}",
               "Jot something down in ${applicationName}",
               "Open ${applicationName} and take a note"
             ]
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "${applicationName}で種をまく"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${applicationName}で種をまく"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }
