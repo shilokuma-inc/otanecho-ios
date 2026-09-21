@@ -1,0 +1,27 @@
+name: Verify/localizations
+
+# String Catalog は訳が欠けていても黙ってソース言語（英語）にフォールバックするため、
+# 翻訳の欠損は実行するまで気づけない。ここで機械的に落とす。
+# JSON を読むだけなので macOS ランナーもビルドも必要ない。
+
+on:
+  pull_request:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  verify:
+    name: localizations
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check formatting
+        run: python3 Tools/format_string_catalogs.py --check
+
+      - name: Verify translations
+        run: python3 Tools/verify_localizations.py
