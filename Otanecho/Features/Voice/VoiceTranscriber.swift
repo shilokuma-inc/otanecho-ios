@@ -3,7 +3,8 @@ import Foundation
 import Observation
 import Speech
 
-/// iOS 26 の `SpeechAnalyzer` + `SpeechTranscriber` でマイク入力を日本語に文字起こしする。
+/// iOS 26 の `SpeechAnalyzer` + `SpeechTranscriber` でマイク入力を文字起こしする。
+/// 文字起こしの言語は端末の設定言語に合わせ、対応するモデルが無ければ英語にフォールバックする。
 /// 確定した結果は `onFinalText` で通知し、途中結果は `volatileText` に流す。
 @MainActor
 @Observable
@@ -31,6 +32,10 @@ final class VoiceTranscriber {
         }
     }
 
+    init(locale: Locale = .current) {
+        self.locale = locale
+    }
+
     private(set) var permission: Permission = .unknown
     private(set) var isRecording = false
     /// モデル確保・エンジン起動中
@@ -42,7 +47,8 @@ final class VoiceTranscriber {
     /// 確定した文字列が届いたときに呼ばれる。binding にはこの確定分だけを書く。
     var onFinalText: ((String) -> Void)?
 
-    private let locale = Locale(identifier: "ja-JP")
+    /// 文字起こしに使う言語。既定は端末の設定言語。
+    private let locale: Locale
     private var analyzer: SpeechAnalyzer?
     private var transcriber: SpeechTranscriber?
     private var audioEngine: AVAudioEngine?
@@ -118,7 +124,7 @@ final class VoiceTranscriber {
 
     private func startAnalysis() async throws {
         guard SpeechTranscriber.isAvailable else { throw VoiceError.transcriberUnavailable }
-        guard let supportedLocale = await SpeechTranscriber.supportedLocale(equivalentTo: locale) else {
+        guard let supportedLocale = await Self.resolveSupportedLocale(preferring: locale) else {
             throw VoiceError.localeUnsupported
         }
 
@@ -177,7 +183,17 @@ final class VoiceTranscriber {
         }
     }
 
-    /// 日本語モデルが端末にあることを保証する。なければダウンロードして待つ。
+    /// 端末の設定言語に対応するモデルを探す。無ければ英語にフォールバックする。
+    ///
+    /// 端末の言語が音声認識に対応していないことは珍しくないので、そこで打ち切らず英語で書き取れるようにしている。
+    private static func resolveSupportedLocale(preferring preferred: Locale) async -> Locale? {
+        if let supported = await SpeechTranscriber.supportedLocale(equivalentTo: preferred) {
+            return supported
+        }
+        return await SpeechTranscriber.supportedLocale(equivalentTo: Locale(identifier: "en-US"))
+    }
+
+    /// 選ばれた言語のモデルが端末にあることを保証する。なければダウンロードして待つ。
     private func ensureModel(for transcriber: SpeechTranscriber, locale: Locale) async throws {
         let installed = await SpeechTranscriber.installedLocales
         let isInstalled = installed.contains { $0.identifier(.bcp47) == locale.identifier(.bcp47) }
