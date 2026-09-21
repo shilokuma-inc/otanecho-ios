@@ -4,7 +4,10 @@ options:
   deploymentTarget:
     iOS: "26.0"
   xcodeVersion: "26.0"
-  developmentLanguage: ja
+  # ソース言語。String Catalog の sourceLanguage と揃える。
+  # 対応言語は Localization/supported-languages.json が単一定義で、
+  # knownRegions は XcodeGen が *.xcstrings の中身から自動検出するため明示しない。
+  developmentLanguage: en
   createIntermediateGroups: true
   generateEmptyDirectories: true
 

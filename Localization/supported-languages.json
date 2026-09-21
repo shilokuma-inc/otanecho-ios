@@ -1,0 +1,29 @@
+{
+  "_comment": [
+    "お種帳がローカライズ対応する言語の単一定義。",
+    "sourceLanguage: String Catalog のソース言語。ここを変える場合は project.yml の developmentLanguage も合わせる。",
+    "languages:     プロジェクトが対応を宣言する言語。project.yml の options.knownRegions と一致していること。",
+    "enforced:      翻訳の完全性を CI で強制する言語。languages の部分集合。",
+    "               訳を投入した言語をここに追加していく（最終的に languages と一致する）。",
+    "検証は Tools/verify_localizations.py で行う。"
+  ],
+  "sourceLanguage": "en",
+  "languages": [
+    "en",
+    "ja",
+    "zh-Hans",
+    "zh-Hant",
+    "ko",
+    "es",
+    "fr",
+    "de",
+    "it",
+    "pt-BR",
+    "ru",
+    "id"
+  ],
+  "enforced": [
+    "en",
+    "ja"
+  ]
+}
