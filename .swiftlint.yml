@@ -18,3 +18,16 @@ disabled_rules:
 opt_in_rules:
   - empty_count
   - sorted_first_last
+custom_rules:
+  hardcoded_japanese_string:
+    name: "日本語のハードコード文言"
+    # ソース言語は英語なので、UI に出る文言に日本語が直接書かれていれば誤り。
+    # 日本語は Localization の String Catalog に訳として入れる。
+    #
+    # 「文字列リテラルに日本語があれば違反」にすると、翻訳対象ではないもの
+    # （#Preview の名前、プレビュー用のサンプルデータ、開発者向けのログ、
+    # String(localized:) の comment、QuestionIntent の旧保存値）まで拾ってノイズになる。
+    # そのため **文言を受け取る API に直接渡している日本語** に絞っている。
+    regex: '(?:(?:Text|Button|Label|TextField|Picker|Section|Summary|IntentDescription|ContentUnavailableView|navigationTitle|accessibilityLabel|configurationDisplayName|displayName|description|prompt)\(|localized:)\s*"[^"\n]*[ぁ-んァ-ヶ一-龥]'
+    message: "UI に出る文言は String Catalog 経由にしてください（Text / LocalizedStringResource / String(localized:) にソースの英語を書き、日本語は訳として入れる）。"
+    severity: warning
