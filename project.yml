@@ -51,7 +51,7 @@ targets:
     info:
       path: Otanecho/Resources/Info.plist
       properties:
-        CFBundleDisplayName: お種帳
+        CFBundleDisplayName: Otanecho
         CFBundleName: Otanecho
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
@@ -61,8 +61,8 @@ targets:
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         UIApplicationSceneManifest:
           UIApplicationSupportsMultipleScenes: false
-        NSMicrophoneUsageDescription: 音声でアイデアを書き留めるためにマイクを使用します。
-        NSSpeechRecognitionUsageDescription: 話した内容をその場で文字に起こすために音声認識を使用します。音声はデバイス上で処理されます。
+        NSMicrophoneUsageDescription: Otanecho uses the microphone so you can jot down ideas by speaking.
+        NSSpeechRecognitionUsageDescription: Otanecho uses speech recognition to turn what you say into text on the spot. Audio is processed on your device.
         CFBundleURLTypes:
           - CFBundleURLName: jp.shilokuma.Otanecho
             CFBundleURLSchemes: [otanecho]
@@ -88,7 +88,7 @@ targets:
     info:
       path: OtanechoWidgets/Info.plist
       properties:
-        CFBundleDisplayName: お種帳
+        CFBundleDisplayName: Otanecho
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
@@ -112,7 +112,7 @@ targets:
     info:
       path: OtanechoShare/Info.plist
       properties:
-        CFBundleDisplayName: お種帳
+        CFBundleDisplayName: Otanecho
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
