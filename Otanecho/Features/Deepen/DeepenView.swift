@@ -15,7 +15,7 @@ struct DeepenView: View {
     @State private var isBodyExpanded = false
     /// 開いている回答欄。AI の問いは DeepeningQuestion.id、既存の Sprout は Sprout.id
     @State private var expandedID: UUID?
-    @State private var celebration: String?
+    @State private var celebration: LocalizedStringResource?
     @State private var celebrationTrigger = 0
     @State private var celebrationTask: Task<Void, Never>?
 
@@ -59,7 +59,7 @@ struct DeepenView: View {
             .padding()
         }
         .scrollDismissesKeyboard(.interactively)
-        .navigationTitle("芽を出す")
+        .navigationTitle("Grow")
         .navigationBarTitleDisplayMode(.inline)
         .task(id: generation) { await loadQuestions() }
         .sensoryFeedback(.success, trigger: celebrationTrigger)
@@ -86,9 +86,9 @@ struct DeepenView: View {
                 .font(.title2.weight(.semibold))
                 .fixedSize(horizontal: false, vertical: true)
             HStack(spacing: 12) {
-                Label(seed.stage.label, systemImage: seed.stage.systemImage)
+                Label { Text(seed.stage.label) } icon: { Image(systemName: seed.stage.systemImage) }
                 if seed.answeredSproutCount > 0 {
-                    Text("答えた問い \(seed.answeredSproutCount)")
+                    Text("\(seed.answeredSproutCount) questions answered")
                 }
             }
             .font(.caption)
@@ -102,7 +102,7 @@ struct DeepenView: View {
                         .lineLimit(isBodyExpanded ? nil : 3)
                         .fixedSize(horizontal: false, vertical: true)
                     if isBodyLong {
-                        Button(isBodyExpanded ? "閉じる" : "続きを読む") {
+                        Button(isBodyExpanded ? "Show less" : "Read more") {
                             withAnimation(.snappy) { isBodyExpanded.toggle() }
                         }
                         .font(.caption.weight(.medium))
@@ -123,7 +123,7 @@ struct DeepenView: View {
             loadingView
         case .loaded(let questions):
             VStack(alignment: .leading, spacing: 12) {
-                sectionTitle("問い")
+                sectionTitle("Questions")
                 ForEach(questions) { question in
                     QuestionCard(
                         question: question.question,
@@ -134,7 +134,7 @@ struct DeepenView: View {
                     )
                 }
                 if questions.isEmpty {
-                    Text("この問いにはすべて答えました。")
+                    Text("You've answered all of these questions.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
@@ -142,10 +142,10 @@ struct DeepenView: View {
             }
         case .failed:
             VStack(alignment: .leading, spacing: 12) {
-                Label("うまく問いを作れませんでした", systemImage: "leaf")
+                Label("Couldn't come up with questions", systemImage: "leaf")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
-                Button("再試行", systemImage: "arrow.clockwise") { generation += 1 }
+                Button("Try again", systemImage: "arrow.clockwise") { generation += 1 }
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.capsule)
             }
@@ -163,7 +163,7 @@ struct DeepenView: View {
                 .font(.title2)
                 .foregroundStyle(.green)
                 .symbolEffect(.breathe, options: .repeat(.continuous))
-            Text("問いを考えています…")
+            Text("Thinking of questions…")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -173,7 +173,7 @@ struct DeepenView: View {
     }
 
     private var regenerateButton: some View {
-        Button("別の問いをもらう", systemImage: "arrow.clockwise") {
+        Button("Get different questions", systemImage: "arrow.clockwise") {
             expandedID = nil
             generation += 1
         }
@@ -185,7 +185,7 @@ struct DeepenView: View {
 
     private var pendingSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionTitle("前の問い")
+            sectionTitle("Earlier questions")
             ForEach(pendingSprouts) { sprout in
                 QuestionCard(
                     question: sprout.question,
@@ -200,7 +200,7 @@ struct DeepenView: View {
 
     private var answeredSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            sectionTitle("これまでの答え")
+            sectionTitle("Your answers")
             ForEach(answeredSprouts) { sprout in
                 VStack(alignment: .leading, spacing: 6) {
                     Text(sprout.question)
@@ -217,7 +217,7 @@ struct DeepenView: View {
         }
     }
 
-    private func sectionTitle(_ title: String) -> some View {
+    private func sectionTitle(_ title: LocalizedStringKey) -> some View {
         Text(title)
             .font(.footnote.weight(.semibold))
             .foregroundStyle(.secondary)
@@ -289,11 +289,11 @@ struct DeepenView: View {
     }
 
     private func celebrate(_ stage: GrowthStage) {
-        let message: String
+        let message: LocalizedStringResource
         switch stage {
         case .seed: return
-        case .sprout: message = "芽が出ました 🌱"
-        case .tree: message = "木になりました 🌳"
+        case .sprout: message = "It sprouted 🌱"
+        case .tree: message = "It's a tree now 🌳"
         }
         celebrationTrigger += 1
         celebration = message

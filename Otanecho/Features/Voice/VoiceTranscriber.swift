@@ -23,10 +23,10 @@ final class VoiceTranscriber {
 
         var errorDescription: String? {
             switch self {
-            case .permissionDenied: "マイクと音声認識の許可が必要です"
-            case .transcriberUnavailable: "この端末では音声認識を利用できません"
-            case .localeUnsupported: "日本語の音声認識モデルを利用できません"
-            case .audioFormatUnavailable: "音声認識に使えるオーディオ形式が見つかりません"
+            case .permissionDenied: String(localized: "Microphone and speech recognition access are required")
+            case .transcriberUnavailable: String(localized: "Speech recognition isn't available on this device")
+            case .localeUnsupported: String(localized: "The speech recognition model for this language isn't available")
+            case .audioFormatUnavailable: String(localized: "No audio format usable for speech recognition was found")
             }
         }
     }
@@ -172,7 +172,7 @@ final class VoiceTranscriber {
                     }
                 }
             } catch {
-                self?.errorMessage = "音声認識でエラー: \(error.localizedDescription)"
+                self?.errorMessage = String(localized: "Speech recognition error: \(error.localizedDescription)")
             }
         }
     }
@@ -206,7 +206,7 @@ final class VoiceTranscriber {
                 do {
                     try await analyzer.finalizeAndFinishThroughEndOfInput()
                 } catch {
-                    errorMessage = "音声認識の終了に失敗: \(error.localizedDescription)"
+                    errorMessage = String(localized: "Couldn't finish speech recognition: \(error.localizedDescription)")
                 }
             }
         }

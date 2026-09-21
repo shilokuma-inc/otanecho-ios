@@ -42,9 +42,9 @@ struct WeeklyReviewView: View {
                 if let data {
                     if data.totalCount == 0 {
                         ContentUnavailableView(
-                            "種がたまると、ここでふりかえりができます",
+                            "Your review appears once you've planted some seeds",
                             systemImage: "leaf",
-                            description: Text("思いついたことを書き留めておくと、週に一度まとめて見直せます。")
+                            description: Text("Jot down what comes to mind, and look back on it all once a week.")
                         )
                     } else {
                         content(data)
@@ -53,11 +53,11 @@ struct WeeklyReviewView: View {
                     ProgressView()
                 }
             }
-            .navigationTitle("今週のふりかえり")
+            .navigationTitle("This Week's Review")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("閉じる", systemImage: "xmark") { dismiss() }
+                    Button("Close", systemImage: "xmark") { dismiss() }
                 }
             }
         }
@@ -84,22 +84,26 @@ struct WeeklyReviewView: View {
     private func recentSection(_ data: ReviewData) -> some View {
         Section {
             if data.recent.isEmpty {
-                Text("今週はまだ新しい種がありません。")
+                Text("No new seeds this week yet.")
                     .foregroundStyle(.secondary)
             } else {
                 ForEach(data.recent.prefix(Self.recentVisibleLimit)) { seed in
-                    ReviewSeedRow(seed: seed, caption: seed.updatedAt.formatted(.relative(presentation: .named))) {
+                    ReviewSeedRow(seed: seed, caption: Text(verbatim: seed.updatedAt.formatted(.relative(presentation: .named)))) {
                         open(seed)
                     }
                 }
             }
         } header: {
-            Text("今週")
+            Text("This week")
         } footer: {
-            if data.recent.count > Self.recentVisibleLimit {
-                Text("今週は \(data.recent.count) 件の種に触れました。ほか \(data.recent.count - Self.recentVisibleLimit) 件はタイムラインで見られます。")
-            } else if !data.recent.isEmpty {
-                Text("今週は \(data.recent.count) 件の種に触れました。")
+            // 件数が 2 つ出る文は 1 つのキーに押し込めず、複数形を言語ごとに正しく扱えるよう 2 文に分ける
+            if !data.recent.isEmpty {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("You touched \(data.recent.count) seeds this week.")
+                    if data.recent.count > Self.recentVisibleLimit {
+                        Text("\(data.recent.count - Self.recentVisibleLimit) more are in your timeline.")
+                    }
+                }
             }
         }
     }
@@ -113,21 +117,21 @@ struct WeeklyReviewView: View {
                     Image(systemName: "leaf")
                         .foregroundStyle(.green)
                         .symbolEffect(.breathe, options: .repeat(.continuous))
-                    Text("ふりかえりを書いています…")
+                    Text("Writing your review…")
                         .foregroundStyle(.secondary)
                 }
             }
         case .ready(let result):
             let seeds = data.seedsByID
             if !result.summary.isEmpty {
-                Section("今週の傾向") {
+                Section("What you focused on") {
                     Text(result.summary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
             let resurfaced = result.resurfacedSeedIDs.compactMap { seeds[$0] }
             if !resurfaced.isEmpty {
-                Section("もう一度見てほしい種") {
+                Section("Worth another look") {
                     ForEach(resurfaced) { seed in
                         ReviewSeedRow(seed: seed) { open(seed) }
                     }
@@ -135,7 +139,7 @@ struct WeeklyReviewView: View {
             }
             let combinations = result.combinations.filter { $0.seedIDs.allSatisfy { seeds[$0] != nil } }
             if !combinations.isEmpty {
-                Section("掛け合わせの提案") {
+                Section("Ideas worth combining") {
                     ForEach(combinations) { combination in
                         combinationRow(combination, seeds: seeds)
                     }
@@ -174,14 +178,14 @@ struct WeeklyReviewView: View {
     private func dormantSection(_ dormant: [Seed]) -> some View {
         Section {
             ForEach(dormant) { seed in
-                ReviewSeedRow(seed: seed, caption: "\(daysSince(seed.createdAt)) 日前に書き留めた種") {
+                ReviewSeedRow(seed: seed, caption: Text("Planted \(daysSince(seed.createdAt)) days ago")) {
                     open(seed)
                 }
             }
         } header: {
-            Text("眠っている種")
+            Text("Dormant seeds")
         } footer: {
-            Text("しばらく触れていない種です。いま読み返すと、別の見え方がするかもしれません。")
+            Text("You haven't touched these in a while. Reading them again might show you something new.")
         }
     }
 

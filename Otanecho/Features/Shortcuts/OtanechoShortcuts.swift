@@ -11,7 +11,7 @@ nonisolated struct OtanechoShortcuts: AppShortcutsProvider {
                 "\(.applicationName)で書き留める",
                 "\(.applicationName)を開いてメモ",
             ],
-            shortTitle: "種をまく",
+            shortTitle: "Plant a Seed",
             systemImageName: "leaf"
         )
         AppShortcut(
@@ -21,7 +21,7 @@ nonisolated struct OtanechoShortcuts: AppShortcutsProvider {
                 "\(.applicationName)に書き留める",
                 "\(.applicationName)にメモして",
             ],
-            shortTitle: "お種帳にメモ",
+            shortTitle: "Note to Otanecho",
             systemImageName: "square.and.pencil"
         )
     }

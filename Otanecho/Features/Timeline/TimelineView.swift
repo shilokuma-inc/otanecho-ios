@@ -14,11 +14,11 @@ struct TimelineView: View {
     var body: some View {
         SeedListView(searchText: searchText, stageFilter: $stageFilter)
             .id(refreshToken)
-            .navigationTitle("お種帳")
-            .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: "種を探す")
+            .navigationTitle("Otanecho")
+            .searchable(text: $searchText, placement: .navigationBarDrawer, prompt: Text("Search seeds"))
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("週次レビュー", systemImage: "leaf.circle") {
+                    Button("Weekly Review", systemImage: "leaf.circle") {
                         router.showWeeklyReview()
                     }
                 }
@@ -38,7 +38,7 @@ struct TimelineView: View {
         }
         .buttonStyle(.glassProminent)
         .buttonBorderShape(.circle)
-        .accessibilityLabel("新しい種をまく")
+        .accessibilityLabel("Plant a new seed")
         .padding(.trailing, 20)
         .padding(.bottom, 20)
     }
@@ -61,9 +61,9 @@ private struct SeedListView: View {
     var body: some View {
         if seeds.isEmpty {
             ContentUnavailableView {
-                Label("最初の種をまきましょう", systemImage: "leaf")
+                Label("Plant your first seed", systemImage: "leaf")
             } description: {
-                Text("右下の「+」から、思いついたことをそのまま書き留められます。")
+                Text("Tap + at the bottom right to jot down whatever comes to mind.")
             }
         } else {
             list
@@ -73,8 +73,8 @@ private struct SeedListView: View {
     private var list: some View {
         List {
             Section {
-                Picker("段階", selection: $stageFilter) {
-                    Text("すべて").tag(GrowthStage?.none)
+                Picker("Stage", selection: $stageFilter) {
+                    Text("All").tag(GrowthStage?.none)
                     ForEach(GrowthStage.allCases, id: \.self) { stage in
                         Text(stage.label).tag(Optional(stage))
                     }
@@ -89,7 +89,7 @@ private struct SeedListView: View {
             if filteredSeeds.isEmpty {
                 Section {
                     if searchText.isEmpty {
-                        ContentUnavailableView("該当する種はありません", systemImage: "magnifyingglass")
+                        ContentUnavailableView("No matching seeds", systemImage: "magnifyingglass")
                     } else {
                         ContentUnavailableView.search(text: searchText)
                     }
@@ -98,10 +98,12 @@ private struct SeedListView: View {
                 .listRowSeparator(.hidden)
             } else {
                 ForEach(sections) { section in
-                    Section(section.title) {
+                    Section {
                         ForEach(section.seeds) { seed in
                             row(for: seed)
                         }
+                    } header: {
+                        section.title
                     }
                 }
             }
@@ -116,7 +118,7 @@ private struct SeedListView: View {
         }
         .swipeActions(edge: .leading, allowsFullSwipe: true) {
             Button(
-                seed.isPinned ? "ピン留めを解除" : "ピン留め",
+                seed.isPinned ? "Unpin" : "Pin",
                 systemImage: seed.isPinned ? "pin.slash" : "pin"
             ) {
                 togglePin(seed)
@@ -124,23 +126,23 @@ private struct SeedListView: View {
             .tint(.orange)
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button("アーカイブ", systemImage: "archivebox") {
+            Button("Archive", systemImage: "archivebox") {
                 archive(seed)
             }
             .tint(.indigo)
         }
         .contextMenu {
             Button(
-                seed.isPinned ? "ピン留めを解除" : "ピン留め",
+                seed.isPinned ? "Unpin" : "Pin",
                 systemImage: seed.isPinned ? "pin.slash" : "pin"
             ) {
                 togglePin(seed)
             }
-            Button("アーカイブ", systemImage: "archivebox") {
+            Button("Archive", systemImage: "archivebox") {
                 archive(seed)
             }
             Divider()
-            Button("削除", systemImage: "trash", role: .destructive) {
+            Button("Delete", systemImage: "trash", role: .destructive) {
                 delete(seed)
             }
         }
@@ -166,7 +168,7 @@ private struct SeedListView: View {
 
         let pinned = visible.filter(\.isPinned)
         if !pinned.isEmpty {
-            result.append(TimelineSection(id: "pinned", title: "ピン留め", seeds: pinned))
+            result.append(TimelineSection(id: "pinned", title: Text("Pinned"), seeds: pinned))
         }
 
         // createdAt 降順で並んでいるので、隣同士を日付でまとめる
@@ -182,13 +184,14 @@ private struct SeedListView: View {
         return result
     }
 
-    private static func sectionTitle(for day: Date, calendar: Calendar) -> String {
-        if calendar.isDateInToday(day) { return "今日" }
-        if calendar.isDateInYesterday(day) { return "昨日" }
+    /// 日付見出し。日付そのものは `Date.formatted` がロケールに合わせて整えるため、翻訳キーにしない。
+    private static func sectionTitle(for day: Date, calendar: Calendar) -> Text {
+        if calendar.isDateInToday(day) { return Text("Today") }
+        if calendar.isDateInYesterday(day) { return Text("Yesterday") }
         if calendar.isDate(day, equalTo: .now, toGranularity: .year) {
-            return day.formatted(.dateTime.month().day())
+            return Text(verbatim: day.formatted(.dateTime.month().day()))
         }
-        return day.formatted(.dateTime.year().month().day())
+        return Text(verbatim: day.formatted(.dateTime.year().month().day()))
     }
 
     // MARK: - 操作
@@ -225,7 +228,7 @@ private struct SeedListView: View {
 
 private struct TimelineSection: Identifiable {
     let id: String
-    let title: String
+    let title: Text
     var seeds: [Seed]
 }
 

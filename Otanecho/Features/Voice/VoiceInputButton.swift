@@ -27,13 +27,13 @@ struct VoiceInputButton: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(isDisabled)
-                .accessibilityLabel(transcriber.isRecording ? "音声入力を停止" : "音声入力を開始")
+                .accessibilityLabel(transcriber.isRecording ? "Stop voice input" : "Start voice input")
 
                 statusText
             }
 
             if transcriber.permission == .denied {
-                Text("設定アプリでマイクと音声認識を許可すると、話して書き留められます。")
+                Text("Allow microphone and speech recognition in Settings to write by speaking.")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -65,12 +65,12 @@ struct VoiceInputButton: View {
         if transcriber.isPreparing {
             HStack(spacing: 6) {
                 ProgressView().controlSize(.small)
-                Text("準備中…")
+                Text("Getting ready…")
             }
             .font(.footnote)
             .foregroundStyle(.secondary)
         } else if transcriber.isRecording {
-            Text(transcriber.volatileText.isEmpty ? "聞き取っています…" : transcriber.volatileText)
+            Text(transcriber.volatileText.isEmpty ? String(localized: "Listening…") : transcriber.volatileText)
                 .font(.footnote)
                 .foregroundStyle(.tertiary)
                 .lineLimit(2)

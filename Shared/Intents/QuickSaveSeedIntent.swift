@@ -4,11 +4,11 @@ import Foundation
 /// 「お種帳にメモ」: アプリを開かずに、渡された内容をそのまま種として保存する。
 /// Siri に話しかけて音声で保存する用途が中心。
 struct QuickSaveSeedIntent: AppIntent {
-    nonisolated static let title: LocalizedStringResource = "お種帳にメモ"
-    nonisolated static let description = IntentDescription("アプリを開かずに、話した内容や渡されたテキストを種として保存します。")
+    nonisolated static let title: LocalizedStringResource = "Note to Otanecho"
+    nonisolated static let description = IntentDescription("Saves what you say, or the text you pass in, as a seed without opening the app.")
     nonisolated static let openAppWhenRun = false
 
-    @Parameter(title: "内容", requestValueDialog: "何を書き留めますか？")
+    @Parameter(title: "Content", requestValueDialog: "What would you like to jot down?")
     var text: String
 
     nonisolated init() {}
@@ -18,7 +18,7 @@ struct QuickSaveSeedIntent: AppIntent {
     }
 
     nonisolated static var parameterSummary: some ParameterSummary {
-        Summary("\(\.$text) をお種帳にメモ")
+        Summary("Note \(\.$text) to Otanecho")
     }
 
     @MainActor
@@ -26,8 +26,8 @@ struct QuickSaveSeedIntent: AppIntent {
         do {
             try SeedWriter.save(body: text, source: .siri, container: PersistenceController.makeContainer())
         } catch SeedWriter.SaveError.emptyBody {
-            throw $text.needsValueError("何を書き留めますか？")
+            throw $text.needsValueError("What would you like to jot down?")
         }
-        return .result(dialog: "書き留めました")
+        return .result(dialog: "Jotted it down")
     }
 }

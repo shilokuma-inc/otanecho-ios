@@ -19,7 +19,7 @@ struct IntelligenceUnavailableView: View {
             }
             if availability == .appleIntelligenceNotEnabled,
                let url = URL(string: UIApplication.openSettingsURLString) {
-                Button("設定を開く") { openURL(url) }
+                Button("Open Settings") { openURL(url) }
                     .font(.subheadline)
                     .buttonStyle(.bordered)
                     .buttonBorderShape(.capsule)
@@ -30,18 +30,18 @@ struct IntelligenceUnavailableView: View {
         .background(.fill.tertiary, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
     }
 
-    private var message: String {
+    private var message: LocalizedStringResource {
         switch availability {
         case .available:
-            "いまは問いを作れません。しばらくしてからお試しください。"
+            "Questions aren't available right now. Please try again later."
         case .deviceNotEligible:
-            "この機能は Apple Intelligence 対応の iPhone で利用できます。"
+            "This feature is available on iPhone models that support Apple Intelligence."
         case .appleIntelligenceNotEnabled:
-            "設定 > Apple Intelligence と Siri でオンにすると、この種への問いを受け取れます。"
+            "Turn on Apple Intelligence & Siri in Settings to receive questions for this seed."
         case .modelNotReady:
-            "モデルの準備中です。しばらくしてからお試しください。"
+            "The model is still getting ready. Please try again later."
         case .unknown:
-            "いまは問いを作れません。しばらくしてからお試しください。"
+            "Questions aren't available right now. Please try again later."
         }
     }
 }

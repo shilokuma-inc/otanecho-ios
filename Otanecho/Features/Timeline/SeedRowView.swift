@@ -13,7 +13,7 @@ struct SeedRowView: View {
                 .foregroundStyle(seed.stage.tint)
                 .frame(width: 24)
                 .padding(.top, 2)
-                .accessibilityLabel(seed.stage.label)
+                .accessibilityLabel(Text(seed.stage.label))
 
             VStack(alignment: .leading, spacing: 4) {
                 HStack(alignment: .firstTextBaseline) {
@@ -25,7 +25,7 @@ struct SeedRowView: View {
                         Image(systemName: "pin.fill")
                             .font(.caption)
                             .foregroundStyle(.secondary)
-                            .accessibilityLabel("ピン留め")
+                            .accessibilityLabel("Pinned")
                     }
                 }
 

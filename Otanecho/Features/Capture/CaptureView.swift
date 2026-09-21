@@ -35,7 +35,7 @@ struct CaptureView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
-                        Button("閉じる", systemImage: "xmark", role: .close) {
+                        Button("Close", systemImage: "xmark", role: .close) {
                             finish()
                             dismiss()
                         }
@@ -44,7 +44,7 @@ struct CaptureView: View {
                         VoiceInputButton(text: $text)
                         Spacer()
                         if let seed, !isBlank {
-                            Button("芽を出す", systemImage: "leaf") {
+                            Button("Grow", systemImage: "leaf") {
                                 deepen(seed)
                             }
                         }
@@ -79,7 +79,7 @@ struct CaptureView: View {
             .padding(.horizontal, 12)
             .overlay(alignment: .topLeading) {
                 if text.isEmpty {
-                    Text("いま思いついたことを、そのまま")
+                    Text("Whatever just came to mind")
                         .foregroundStyle(.tertiary)
                         .padding(.horizontal, 17)
                         .padding(.vertical, 8)

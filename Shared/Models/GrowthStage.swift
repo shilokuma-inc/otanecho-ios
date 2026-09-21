@@ -11,11 +11,11 @@ nonisolated enum GrowthStage: Int, Codable, CaseIterable, Sendable, Comparable {
 
     static func < (lhs: GrowthStage, rhs: GrowthStage) -> Bool { lhs.rawValue < rhs.rawValue }
 
-    var label: String {
+    var label: LocalizedStringResource {
         switch self {
-        case .seed: "種"
-        case .sprout: "芽"
-        case .tree: "木"
+        case .seed: "Seed"
+        case .sprout: "Sprout"
+        case .tree: "Tree"
         }
     }
 

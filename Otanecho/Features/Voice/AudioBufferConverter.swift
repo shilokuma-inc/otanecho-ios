@@ -11,9 +11,9 @@ nonisolated final class AudioBufferConverter: @unchecked Sendable {
 
         var errorDescription: String? {
             switch self {
-            case .converterUnavailable: "音声フォーマットの変換器を用意できませんでした"
-            case .bufferAllocationFailed: "音声バッファを確保できませんでした"
-            case .conversionFailed: "音声フォーマットの変換に失敗しました"
+            case .converterUnavailable: String(localized: "Couldn't set up the audio format converter")
+            case .bufferAllocationFailed: String(localized: "Couldn't allocate the audio buffer")
+            case .conversionFailed: String(localized: "Audio format conversion failed")
             }
         }
     }
