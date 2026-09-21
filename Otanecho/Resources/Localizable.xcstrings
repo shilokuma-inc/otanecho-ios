@@ -1229,6 +1229,76 @@
         }
       }
     },
+    "Apple Intelligence also has to be turned on in Settings, and it's offered in a limited set of languages and regions." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence は設定でオンにする必要があり、対応する言語と地域も限られています。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence muss außerdem in den Einstellungen aktiviert sein und wird nur in bestimmten Sprachen und Regionen angeboten."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Además, Apple Intelligence debe estar activado en Ajustes y solo se ofrece en algunos idiomas y regiones."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence doit également être activé dans Réglages et n’est proposé que dans certaines langues et régions."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence juga harus diaktifkan di Pengaturan, dan hanya tersedia dalam sejumlah bahasa dan wilayah."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence deve inoltre essere attivato in Impostazioni ed è disponibile solo in alcune lingue e regioni."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "또한 설정에서 Apple Intelligence를 켜야 하며, 지원하는 언어와 지역도 제한되어 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Apple Intelligence também precisa estar ativada nos Ajustes e é oferecida em um número limitado de idiomas e regiões."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Кроме того, Apple Intelligence нужно включить в Настройках; функция доступна не на всех языках и не во всех регионах."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此外，还需要在“设置”中开启 Apple Intelligence，且支持的语言和地区有限。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此外，還需要在「設定」中開啟 Apple Intelligence，且支援的語言和地區有限。"
+          }
+        }
+      }
+    },
     "Archive" : {
       "localizations" : {
         "ja" : {
@@ -2275,6 +2345,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要刪除這顆種子嗎？"
+          }
+        }
+      }
+    },
+    "Devices that support AI" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI に対応する端末"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geräte, die KI unterstützen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dispositivos compatibles con la IA"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appareils compatibles avec l’IA"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Perangkat yang mendukung AI"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dispositivi compatibili con l’IA"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI를 지원하는 기기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dispositivos compatíveis com a IA"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Устройства с поддержкой ИИ"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支持 AI 的设备"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "支援 AI 的裝置"
           }
         }
       }
@@ -5211,6 +5351,146 @@
         }
       }
     },
+    "See supported devices" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "対応端末を見る"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Unterstützte Geräte ansehen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dispositivos compatibles"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir les appareils compatibles"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat perangkat yang didukung"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vedi i dispositivi compatibili"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지원 기기 보기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver dispositivos compatíveis"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать поддерживаемые устройства"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看支持的设备"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "查看支援的裝置"
+          }
+        }
+      }
+    },
+    "See the full list on apple.com" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "apple.com で最新の一覧を見る"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vollständige Liste auf apple.com ansehen"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver la lista completa en apple.com"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir la liste complète sur apple.com"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat daftar lengkap di apple.com"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vedi l’elenco completo su apple.com"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "apple.com에서 전체 목록 보기"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ver a lista completa em apple.com"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полный список на apple.com"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 apple.com 查看完整列表"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 apple.com 查看完整列表"
+          }
+        }
+      }
+    },
     "Seed" : {
       "localizations" : {
         "ja" : {
@@ -6191,6 +6471,76 @@
         }
       }
     },
+    "The AI runs entirely on your device, so the AI features need a device that supports Apple Intelligence." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI はすべて端末内で動くため、AI 機能には Apple Intelligence 対応の端末が必要です。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die KI läuft vollständig auf deinem Gerät. Deshalb benötigen die KI-Funktionen ein Gerät, das Apple Intelligence unterstützt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La IA se ejecuta por completo en tu dispositivo, por lo que las funciones de IA requieren un dispositivo compatible con Apple Intelligence."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’IA s’exécute entièrement sur votre appareil : les fonctionnalités d’IA nécessitent donc un appareil compatible avec Apple Intelligence."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI berjalan sepenuhnya di perangkat Anda, sehingga fitur AI memerlukan perangkat yang mendukung Apple Intelligence."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L’IA funziona interamente sul tuo dispositivo, quindi le funzioni di IA richiedono un dispositivo che supporta Apple Intelligence."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI는 모두 기기 안에서 동작하므로, AI 기능에는 Apple Intelligence를 지원하는 기기가 필요합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A IA é executada inteiramente no seu dispositivo, então os recursos de IA exigem um dispositivo compatível com a Apple Intelligence."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ИИ работает полностью на устройстве, поэтому для функций ИИ нужно устройство с поддержкой Apple Intelligence."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 完全在设备上运行，因此 AI 功能需要支持 Apple Intelligence 的设备。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AI 完全在裝置上執行，因此 AI 功能需要支援 Apple Intelligence 的裝置。"
+          }
+        }
+      }
+    },
     "The model is still getting ready. Please try again later." : {
       "localizations" : {
         "ja" : {
@@ -6542,72 +6892,72 @@
         }
       }
     },
-    "This feature is available on iPhone models that support Apple Intelligence." : {
+    "This feature needs a device that supports Apple Intelligence." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "この機能は Apple Intelligence 対応の iPhone で利用できます。"
+            "value" : "この機能には Apple Intelligence 対応の端末が必要です。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Diese Funktion ist auf iPhone-Modellen verfügbar, die Apple Intelligence unterstützen."
+            "value" : "Diese Funktion benötigt ein Gerät, das Apple Intelligence unterstützt."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Esta función está disponible en los modelos de iPhone compatibles con Apple Intelligence."
+            "value" : "Esta función requiere un dispositivo compatible con Apple Intelligence."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cette fonctionnalité est disponible sur les modèles d’iPhone compatibles avec Apple Intelligence."
+            "value" : "Cette fonctionnalité nécessite un appareil compatible avec Apple Intelligence."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fitur ini tersedia di model iPhone yang mendukung Apple Intelligence."
+            "value" : "Fitur ini memerlukan perangkat yang mendukung Apple Intelligence."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Questa funzione è disponibile sui modelli di iPhone che supportano Apple Intelligence."
+            "value" : "Questa funzione richiede un dispositivo che supporta Apple Intelligence."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "이 기능은 Apple Intelligence를 지원하는 iPhone에서 사용할 수 있습니다."
+            "value" : "이 기능을 사용하려면 Apple Intelligence를 지원하는 기기가 필요합니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este recurso está disponível nos modelos de iPhone compatíveis com a Apple Intelligence."
+            "value" : "Este recurso requer um dispositivo compatível com a Apple Intelligence."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Эта функция доступна на моделях iPhone с поддержкой Apple Intelligence."
+            "value" : "Для этой функции нужно устройство с поддержкой Apple Intelligence."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此功能可在支持 Apple Intelligence 的 iPhone 上使用。"
+            "value" : "此功能需要支持 Apple Intelligence 的设备。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此功能可在支援 Apple Intelligence 的 iPhone 上使用。"
+            "value" : "此功能需要支援 Apple Intelligence 的裝置。"
           }
         }
       }
@@ -7943,6 +8293,76 @@
         }
       }
     },
+    "You can jot down, search, and look back on your seeds on any device." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "種をまく・探す・見返すことは、どの端末でもできます。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samen festhalten, suchen und zurückblicken kannst du auf jedem Gerät."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puedes anotar, buscar y repasar tus semillas en cualquier dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez noter, rechercher et revoir vos graines sur n’importe quel appareil."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kamu bisa mencatat, mencari, dan meninjau benihmu di perangkat apa pun."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puoi annotare, cercare e rivedere i tuoi semi su qualsiasi dispositivo."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "씨앗을 적고, 찾고, 돌아보는 것은 어떤 기기에서도 할 수 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você pode anotar, buscar e revisar suas sementes em qualquer dispositivo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Записывать, искать и просматривать семена можно на любом устройстве."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "记录、搜索和回顾种子，在任何设备上都可以。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記錄、搜尋和回顧種子，在任何裝置上都可以。"
+          }
+        }
+      }
+    },
     "You haven't touched these in a while. Reading them again might show you something new." : {
       "localizations" : {
         "ja" : {
@@ -8421,6 +8841,356 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "種子累積起來後，就能在這裡回顧"
+          }
+        }
+      }
+    },
+    "iPad Air (M1 and later)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air（M1 以降）"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 und neuer)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 y posteriores)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 et ultérieurs)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 dan yang lebih baru)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 e successivi)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air(M1 이후)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 e posteriores)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air (M1 и новее)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air（M1 及更新芯片）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Air（M1 及更新晶片）"
+          }
+        }
+      }
+    },
+    "iPad Pro (M1 and later)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro（M1 以降）"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 und neuer)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 y posteriores)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 et ultérieurs)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 dan yang lebih baru)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 e successivi)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro(M1 이후)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 e posteriores)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro (M1 и новее)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro（M1 及更新芯片）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad Pro（M1 及更新晶片）"
+          }
+        }
+      }
+    },
+    "iPad mini (A17 Pro and later)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini（A17 Pro 以降）"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro und neuer)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro y posteriores)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro et ultérieurs)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro dan yang lebih baru)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro e successivi)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini(A17 Pro 이후)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro e posteriores)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini (A17 Pro и новее)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini（A17 Pro 及更新芯片）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPad mini（A17 Pro 及更新晶片）"
+          }
+        }
+      }
+    },
+    "iPhone 15 Pro and iPhone 15 Pro Max" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro、iPhone 15 Pro Max"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro und iPhone 15 Pro Max"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro y iPhone 15 Pro Max"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro et iPhone 15 Pro Max"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro dan iPhone 15 Pro Max"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro e iPhone 15 Pro Max"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro 및 iPhone 15 Pro Max"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro e iPhone 15 Pro Max"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro и iPhone 15 Pro Max"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro 和 iPhone 15 Pro Max"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 15 Pro 和 iPhone 15 Pro Max"
+          }
+        }
+      }
+    },
+    "iPhone 16 and later (all models)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 以降（全モデル）"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 und neuer (alle Modelle)"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 y posteriores (todos los modelos)"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 et ultérieurs (tous les modèles)"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 dan yang lebih baru (semua model)"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 e successivi (tutti i modelli)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 이후(모든 모델)"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 e posteriores (todos os modelos)"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 и новее (все модели)"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 及更新机型（所有型号）"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iPhone 16 及更新機型（所有型號）"
           }
         }
       }
