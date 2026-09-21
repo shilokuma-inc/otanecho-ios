@@ -69,7 +69,7 @@ final class Seed {
         if let title, !title.isEmpty { return title }
         let firstLine = body.split(whereSeparator: \.isNewline).first.map(String.init) ?? ""
         let trimmed = firstLine.trimmingCharacters(in: .whitespaces)
-        return trimmed.isEmpty ? "（無題）" : String(trimmed.prefix(40))
+        return trimmed.isEmpty ? String(localized: "Untitled", comment: "本文が空の種を一覧やタイトルに出すときの代替表示") : String(trimmed.prefix(40))
     }
 
     var answeredSproutCount: Int {

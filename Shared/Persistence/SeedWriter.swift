@@ -10,7 +10,7 @@ nonisolated enum SeedWriter {
 
         var errorDescription: String? {
             switch self {
-            case .emptyBody: "内容が空のため保存できません"
+            case .emptyBody: String(localized: "There's nothing to save.", comment: "本文が空白のみで保存できないときのエラー")
             }
         }
     }

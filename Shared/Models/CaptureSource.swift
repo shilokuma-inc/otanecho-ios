@@ -12,17 +12,17 @@ nonisolated enum CaptureSource: String, Codable, CaseIterable, Sendable {
     case voice
     case deepLink
 
-    var label: String {
+    var label: LocalizedStringResource {
         switch self {
-        case .app: "アプリ"
-        case .actionButton: "アクションボタン"
-        case .controlCenter: "コントロールセンター"
-        case .lockScreenWidget: "ロック画面"
-        case .homeWidget: "ウィジェット"
-        case .shareExtension: "共有"
+        case .app: "App"
+        case .actionButton: "Action Button"
+        case .controlCenter: "Control Center"
+        case .lockScreenWidget: "Lock Screen"
+        case .homeWidget: "Widget"
+        case .shareExtension: "Share"
         case .siri: "Siri"
-        case .voice: "音声"
-        case .deepLink: "リンク"
+        case .voice: "Voice"
+        case .deepLink: "Link"
         }
     }
 }
