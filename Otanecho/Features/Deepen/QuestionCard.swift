@@ -3,7 +3,8 @@ import SwiftUI
 /// 深掘りの問いを 1 枚のカードで表示する。タップで回答欄が開く。
 struct QuestionCard: View {
     let question: String
-    let intent: String?
+    /// 問いの狙い。既定の 5 種類はローカライズ済みの `Text`、モデルが独自の値を返した場合はその文字列。
+    let intent: Text?
     let isExpanded: Bool
     /// カードがタップされたとき（開閉の切り替え）
     let onToggle: () -> Void
@@ -21,8 +22,8 @@ struct QuestionCard: View {
         VStack(alignment: .leading, spacing: 12) {
             Button(action: onToggle) {
                 VStack(alignment: .leading, spacing: 6) {
-                    if let intent, !intent.isEmpty {
-                        Text(intent)
+                    if let intent {
+                        intent
                             .font(.caption2.weight(.medium))
                             .foregroundStyle(.secondary)
                             .padding(.horizontal, 8)
@@ -82,14 +83,14 @@ struct QuestionCard: View {
     VStack(spacing: 12) {
         QuestionCard(
             question: "この案で一番助かるのは誰ですか？",
-            intent: "対象を具体化する",
+            intent: Text(QuestionIntent.narrowTheTarget.label),
             isExpanded: expanded,
             onToggle: { expanded.toggle() },
             onSubmit: { _ in }
         )
         QuestionCard(
             question: "最初の 1 日で試せることは何ですか？",
-            intent: "最小の一歩を決める",
+            intent: Text(QuestionIntent.decideSmallestStep.label),
             isExpanded: false,
             onToggle: {},
             onSubmit: { _ in }

@@ -1,22 +1,22 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "CFBundleDisplayName": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Otanecho"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
           }
         },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "お種帳"
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お種帳"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

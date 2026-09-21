@@ -48,6 +48,19 @@
    - コマンドラインで作業しているときは `python3 Tools/sync_string_catalogs.py`
      （`xcodebuild` は `.xcstrings` を更新しないため、`xcrun xcstringstool sync` を代わりに回している）
 3. Xcode の String Catalog エディタか `.xcstrings` の直接編集で訳を入れる
+4. スクリプトで `.xcstrings` を書き換えたら `python3 Tools/format_string_catalogs.py` で整形を揃える
+
+### `InfoPlist.xcstrings` は手で管理する
+
+`InfoPlist.xcstrings` のキーは Info.plist のキー名で、ソースコードから抽出されない。
+`xcstringstool sync` に渡すと「コードに無いキー」と判断されて毎回 `extractionState: "stale"` を付けられるため、
+同期スクリプトの対象から外している。Info.plist にキーを足したときは `.xcstrings` にも手で足すこと。
+
+### 整形は Xcode に合わせる
+
+`.xcstrings` は JSON だが、Xcode はキーと値の区切りを `" : "`（コロンの前にも空白）で書き、キーを辞書順に並べる。
+スクリプトで編集したまま放置すると、Xcode で開いて保存した瞬間にファイル全体が差分になる。
+`Tools/format_string_catalogs.py` で揃えられる（`--check` で確認のみ）。
 
 ### 同じ英語・違う訳になるケースに注意
 

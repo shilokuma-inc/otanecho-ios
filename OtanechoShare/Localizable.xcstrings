@@ -1,298 +1,298 @@
 {
-  "sourceLanguage": "en",
-  "strings": {
-    "A note (optional)": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ひとこと（任意）"
+  "sourceLanguage" : "en",
+  "strings" : {
+    "A note (optional)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ひとこと（任意）"
           }
         }
       }
     },
-    "Action Button": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アクションボタン"
+    "Action Button" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アクションボタン"
           }
         }
       }
     },
-    "App": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アプリ"
+    "App" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ"
           }
         }
       }
     },
-    "Cancel": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "キャンセル"
+    "Cancel" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャンセル"
           }
         }
       }
     },
-    "Content": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "内容"
+    "Content" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容"
           }
         }
       }
     },
-    "Control Center": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "コントロールセンター"
+    "Control Center" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "コントロールセンター"
           }
         }
       }
     },
-    "Couldn't save: %@": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "保存できませんでした: %@"
+    "Couldn't save: %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存できませんでした: %@"
           }
         }
       }
     },
-    "Jotted it down": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "書き留めました"
+    "Jotted it down" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "書き留めました"
           }
         }
       }
     },
-    "Link": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "リンク"
+    "Link" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "リンク"
           }
         }
       }
     },
-    "Loading shared content…": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "共有内容を読み込み中…"
+    "Loading shared content…" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有内容を読み込み中…"
           }
         }
       }
     },
-    "Lock Screen": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ロック画面"
+    "Lock Screen" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ロック画面"
           }
         }
       }
     },
-    "Note ${text} to Otanecho": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "${text} をお種帳にメモ"
+    "Note ${text} to Otanecho" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "${text} をお種帳にメモ"
           }
         }
       }
     },
-    "Note to Otanecho": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "お種帳にメモ"
+    "Note to Otanecho" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お種帳にメモ"
           }
         }
       }
     },
-    "Nothing was shared. You can save just a note.": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "共有された内容がありません。ひとことだけでも保存できます。"
+    "Nothing was shared. You can save just a note." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有された内容がありません。ひとことだけでも保存できます。"
           }
         }
       }
     },
-    "Opens Otanecho so you can jot down what just came to mind.": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "お種帳を開いて、思いついたことをすぐ書き留めます。"
+    "Opens Otanecho so you can jot down what just came to mind." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お種帳を開いて、思いついたことをすぐ書き留めます。"
           }
         }
       }
     },
-    "Plant a Seed": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "種をまく"
+    "Plant a Seed" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "種をまく"
           }
         }
       }
     },
-    "Save": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "保存"
+    "Save" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存"
           }
         }
       }
     },
-    "Save to Otanecho": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "お種帳に保存"
+    "Save to Otanecho" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "お種帳に保存"
           }
         }
       }
     },
-    "Saves what you say, or the text you pass in, as a seed without opening the app.": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "アプリを開かずに、話した内容や渡されたテキストを種として保存します。"
+    "Saves what you say, or the text you pass in, as a seed without opening the app." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリを開かずに、話した内容や渡されたテキストを種として保存します。"
           }
         }
       }
     },
-    "Seed": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "種"
+    "Seed" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "種"
           }
         }
       }
     },
-    "Share": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "共有"
+    "Share" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "共有"
           }
         }
       }
     },
-    "Siri": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Siri"
+    "Siri" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri"
           }
         }
       }
     },
-    "Sprout": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "芽"
+    "Sprout" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "芽"
           }
         }
       }
     },
-    "There's nothing to save.": {
-      "comment": "本文が空白のみで保存できないときのエラー",
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "内容が空のため保存できません"
+    "There's nothing to save." : {
+      "comment" : "本文が空白のみで保存できないときのエラー",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容が空のため保存できません"
           }
         }
       }
     },
-    "Tree": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "木"
+    "Tree" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "木"
           }
         }
       }
     },
-    "Untitled": {
-      "comment": "本文が空の種を一覧やタイトルに出すときの代替表示",
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "（無題）"
+    "Untitled" : {
+      "comment" : "本文が空の種を一覧やタイトルに出すときの代替表示",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "（無題）"
           }
         }
       }
     },
-    "Voice": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "音声"
+    "Voice" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "音声"
           }
         }
       }
     },
-    "What would you like to jot down?": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "何を書き留めますか？"
+    "What would you like to jot down?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "何を書き留めますか？"
           }
         }
       }
     },
-    "Widget": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ウィジェット"
+    "Widget" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ウィジェット"
           }
         }
       }
     }
   },
-  "version": "1.0"
+  "version" : "1.0"
 }

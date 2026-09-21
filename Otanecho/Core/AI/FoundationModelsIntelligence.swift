@@ -7,6 +7,7 @@ import os
 /// - 各メソッドは呼び出しごとに新しい `LanguageModelSession` を作り、会話履歴を持ち越さない。
 /// - 入力は `PromptBudget` で必ず切り詰め、約 4,096 トークンのコンテキストに収める。
 /// - 候補の参照には 1 始まりの番号を使い、モデルに UUID を生成させない。
+/// - プロンプトと instructions は英語で固定し、**出力言語だけ**を端末の設定言語に合わせる（`OutputLanguage`）。
 nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable {
     private static let logger = Logger(subsystem: "jp.shilokuma.Otanecho", category: "AI")
 
@@ -16,9 +17,12 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
     private static let creativeOptions = GenerationOptions(temperature: 0.7)
 
     private let model: SystemLanguageModel
+    /// 出力させる言語。テストや検証で差し替えられるように保持する。
+    private let locale: Locale
 
-    init(model: SystemLanguageModel = .default) {
+    init(model: SystemLanguageModel = .default, locale: Locale = .current) {
         self.model = model
+        self.locale = locale
     }
 
     // MARK: - Availability
@@ -40,7 +44,12 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
     /// モデルの読み込みを先に始めておく。画面表示の直前などに呼ぶと初回応答が速くなる。
     func prewarm() {
         guard availability.isAvailable else { return }
-        LanguageModelSession(model: model, instructions: Self.commonInstructions).prewarm()
+        LanguageModelSession(model: model, instructions: Self.commonInstructions(language: outputLanguage)).prewarm()
+    }
+
+    /// モデルに出力させる言語の名前（英語表記）。
+    private var outputLanguage: String {
+        OutputLanguage.name(for: locale)
     }
 
     // MARK: - IdeaIntelligence
@@ -52,24 +61,27 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
 
         let tags = PromptBudget.candidates(existingTags.map(TagNormalizer.clean).filter { !$0.isEmpty })
         var prompt = """
-        次のメモにタイトルとタグを付けてください。
+        Give the following note a title and tags.
 
-        【メモ】
+        [Note]
         \(trimmedBody)
         """
         if !tags.isEmpty {
-            prompt += "\n\n【既存のタグ】\n" + tags.joined(separator: "、")
-            prompt += "\n既存のタグに近い意味のものがあれば、同じ表記を使ってください。"
+            prompt += "\n\n[Existing tags]\n" + tags.joined(separator: ", ")
+            prompt += "\nIf any existing tag means close to the same thing, reuse it exactly as written."
         }
 
         let output: EnrichmentOutput = try await generate(
             prompt,
-            instructions: Self.enrichInstructions,
+            instructions: Self.enrichInstructions(language: outputLanguage),
             options: Self.preciseOptions,
             label: "enrich"
         )
 
-        let title = PromptBudget.truncate(output.title.trimmingCharacters(in: .whitespacesAndNewlines), limit: 30)
+        let title = PromptBudget.truncate(
+            output.title.trimmingCharacters(in: .whitespacesAndNewlines),
+            limit: PromptBudget.titleLimit(for: locale)
+        )
         let mergedTags = TagNormalizer.merge(generated: output.tags, existing: existingTags)
         return SeedEnrichment(title: title, tags: mergedTags)
     }
@@ -80,9 +92,9 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
         guard !body.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
         var prompt = """
-        次のアイデアを深めるための問いを 3 つ作ってください。
+        Write 3 questions that help the user develop the following idea.
 
-        【アイデア】
+        [Idea]
         \(body)
         """
         let history = Array(seed.sprouts.suffix(PromptBudget.sproutLimit))
@@ -90,31 +102,35 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
             let lines = history.map { sprout -> String in
                 let question = PromptBudget.preview(sprout.question, limit: PromptBudget.sproutPreviewLimit)
                 if let answer = sprout.answer, !answer.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                    return "- 問い: \(question)\n  答え: \(PromptBudget.preview(answer, limit: PromptBudget.sproutPreviewLimit))"
+                    return "- Q: \(question)\n  A: \(PromptBudget.preview(answer, limit: PromptBudget.sproutPreviewLimit))"
                 }
-                return "- 問い: \(question)（未回答）"
+                return "- Q: \(question) (unanswered)"
             }
-            prompt += "\n\n【これまでの問答】\n" + lines.joined(separator: "\n")
-            prompt += "\nこれまでの問いと重ならない、別の角度の問いにしてください。答えがある場合は、その答えを踏まえて一歩先へ進める問いにしてください。"
+            prompt += "\n\n[Questions asked so far]\n" + lines.joined(separator: "\n")
+            prompt += "\nAsk from angles that do not overlap these. Where an answer is given, ask something that builds one step further on it."
         }
 
         let output: QuestionsOutput = try await generate(
             prompt,
-            instructions: Self.questionInstructions,
+            instructions: Self.questionInstructions(language: outputLanguage),
             options: Self.creativeOptions,
             label: "deepeningQuestions"
         )
 
+        let questionLimit = PromptBudget.questionLimit(for: locale)
         let questions = output.questions
             .map { item in
                 DeepeningQuestion(
-                    question: PromptBudget.truncate(item.question.trimmingCharacters(in: .whitespacesAndNewlines), limit: 60),
-                    intent: QuestionIntent.normalize(item.intent)
+                    question: PromptBudget.truncate(
+                        item.question.trimmingCharacters(in: .whitespacesAndNewlines),
+                        limit: questionLimit
+                    ),
+                    intent: QuestionIntent.storedValue(for: item.intent)
                 )
             }
             .filter { !$0.question.isEmpty }
         guard !questions.isEmpty else {
-            throw IdeaIntelligenceError.generationFailed("問いが生成されませんでした")
+            throw IdeaIntelligenceError.generationFailed("no questions were generated")
         }
         return Array(questions.prefix(3))
     }
@@ -128,19 +144,20 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
         guard !pool.isEmpty else { return [] }
 
         let prompt = """
-        【基準のアイデア】
+        [Reference idea]
         \(body)
 
-        【候補】
+        [Candidates]
         \(PromptBudget.numberedList(pool))
 
-        候補の中から、基準のアイデアと関連が強いものの番号を、関連が強い順に最大 5 つ挙げてください。
-        テーマ・対象・解決したい課題が重なるものを関連が強いとみなします。関連するものがなければ空にしてください。
+        From the candidates, list up to 5 numbers that relate strongly to the reference idea, strongest first.
+        Treat candidates as strongly related when they share a theme, an audience, or the problem they try to solve.
+        If nothing is related, return an empty list.
         """
 
         let output: RelatedOutput = try await generate(
             prompt,
-            instructions: Self.relatedInstructions,
+            instructions: Self.relatedInstructions(language: outputLanguage),
             options: Self.preciseOptions,
             label: "relatedSeeds"
         )
@@ -154,29 +171,29 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
         let combined = recentPool + dormantPool
         guard !combined.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
-        var prompt = "ユーザーが書き留めたアイデアの一覧です。番号はこのまま使ってください。\n"
+        var prompt = "Here are the ideas the user jotted down. Use the numbers exactly as given.\n"
         if recentPool.isEmpty {
-            prompt += "\n【今週の種】\n（今週は新しい種がありませんでした）\n"
+            prompt += "\n[Seeds from this week]\n(no new seeds this week)\n"
         } else {
-            prompt += "\n【今週の種】\n" + PromptBudget.numberedList(recentPool) + "\n"
+            prompt += "\n[Seeds from this week]\n" + PromptBudget.numberedList(recentPool) + "\n"
         }
         if dormantPool.isEmpty {
-            prompt += "\n【眠っている種】\n（なし）\n"
+            prompt += "\n[Dormant seeds]\n(none)\n"
         } else {
-            prompt += "\n【眠っている種】（\(recentPool.count + 1) 〜 \(combined.count) 番）\n"
+            prompt += "\n[Dormant seeds] (numbers \(recentPool.count + 1)-\(combined.count))\n"
             prompt += PromptBudget.numberedList(dormantPool, startingAt: recentPool.count + 1) + "\n"
         }
         prompt += """
 
-        次の 3 点をまとめてください。
-        1. summary: 今週の種から読み取れる関心の傾向を 2〜3 文で。
-        2. resurfacedIndices: 眠っている種のうち、いま見直すと動き出しそうなものの番号を最大 3 つ（眠っている種がなければ空）。
-        3. combinations: 一覧の中の 2 つを掛け合わせると面白くなりそうな組み合わせを最大 2 件。番号 2 つと、60 文字以内の提案。
+        Put together these 3 things.
+        1. summary: what the user seems drawn to this week, in 2-3 sentences.
+        2. resurfacedIndices: up to 3 numbers from the dormant seeds that look ready to move if revisited now (empty if there are no dormant seeds).
+        3. combinations: up to 2 pairs from the list that would get interesting when combined. Give 2 numbers and a suggestion of at most 20 words.
         """
 
         let output: DigestOutput = try await generate(
             prompt,
-            instructions: Self.digestInstructions,
+            instructions: Self.digestInstructions(language: outputLanguage),
             options: Self.creativeOptions,
             label: "weeklyDigest"
         )
@@ -186,10 +203,14 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
             ? []
             : IndexMapper.ids(from: output.resurfacedIndices, in: combined, allowing: dormantRange, limit: 3)
 
+        let proposalLimit = PromptBudget.proposalLimit(for: locale)
         let combinations = output.combinations
             .compactMap { item -> WeeklyDigest.Combination? in
                 let ids = IndexMapper.ids(from: item.indices, in: combined, limit: 2)
-                let proposal = PromptBudget.truncate(item.proposal.trimmingCharacters(in: .whitespacesAndNewlines), limit: 80)
+                let proposal = PromptBudget.truncate(
+                    item.proposal.trimmingCharacters(in: .whitespacesAndNewlines),
+                    limit: proposalLimit
+                )
                 guard ids.count == 2, !proposal.isEmpty else { return nil }
                 return WeeklyDigest.Combination(seedIDs: ids, proposal: proposal)
             }
@@ -238,126 +259,125 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
         }
     }
 
+    /// 失敗の理由。ログにだけ出すので翻訳しない。
     private static func describe(_ error: LanguageModelSession.GenerationError) -> String {
         switch error {
-        case .guardrailViolation: "内容が安全ガイドラインに触れたため生成できませんでした"
-        case .exceededContextWindowSize: "入力が長すぎます"
-        case .unsupportedLanguageOrLocale: "この言語には対応していません"
-        case .assetsUnavailable: "モデルの準備ができていません"
-        case .decodingFailure: "応答の解釈に失敗しました"
-        case .unsupportedGuide: "出力形式の指定に対応していません"
-        case .rateLimited: "リクエストが多すぎます。しばらくしてからお試しください"
-        case .concurrentRequests: "別の処理が進行中です"
-        case .refusal: "モデルが応答を拒否しました"
+        case .guardrailViolation: "the content tripped the safety guardrail"
+        case .exceededContextWindowSize: "the input was too long"
+        case .unsupportedLanguageOrLocale: "the language is not supported by the model"
+        case .assetsUnavailable: "the model is not ready"
+        case .decodingFailure: "the response could not be decoded"
+        case .unsupportedGuide: "the output format is not supported"
+        case .rateLimited: "too many requests"
+        case .concurrentRequests: "another request is in flight"
+        case .refusal: "the model refused to respond"
         @unknown default: error.localizedDescription
         }
     }
 
     // MARK: - Instructions
 
-    private static let commonInstructions = """
-    あなたは、ユーザーが書き留めたアイデアのメモを静かに支える編集アシスタントです。
-    出力はすべて日本語で書きます。
-    ユーザーの本文を改変したり、書かれていない内容を創作したりしません。
-    ユーザーの意見や発想を否定・評価しません。
-    """
+    /// すべての処理で共通の前提。`language` に端末の設定言語（英語表記の言語名）を入れる。
+    static func commonInstructions(language: String) -> String {
+        """
+        You are a quiet editorial assistant for the notes a user jots down about their ideas.
+        Write every part of your output in \(language), regardless of the language these instructions are written in.
+        Never rewrite the user's text, and never invent anything that is not in it.
+        Never judge or dismiss the user's opinions or ideas.
+        """
+    }
 
-    private static let enrichInstructions = commonInstructions + """
+    private static func enrichInstructions(language: String) -> String {
+        commonInstructions(language: language) + """
 
-    メモに短いタイトルとタグを付けるのが役割です。
-    タイトルは 20 文字以内の日本語で、本文の言い換えにとどめ、装飾語や感想を付けません。
-    タグは本文の主題を表す名詞を 1 語ずつ、1〜4 個。記号や「#」は付けません。
-    """
+        Your job is to give a note a short title and tags.
+        The title restates the note in at most 8 words. No embellishment, no commentary.
+        Tags are 1 to 4 nouns that name what the note is about, one noun each. No symbols, no "#".
+        """
+    }
 
-    private static let questionInstructions = commonInstructions + """
+    private static func questionInstructions(language: String) -> String {
+        commonInstructions(language: language) + """
 
-    アイデアを深めるための「開いた問い」を作るのが役割です。
-    問いは 40 文字以内で、ユーザーが一言で答え始められる具体的なものにします。
-    はい／いいえで終わる問い、抽象的すぎる問い、批判的な問いは避けます。
-    各問いには狙いを 1 つ添えます。狙いは次の 5 つから選びます:
-    「前提を疑う」「対象を具体化する」「最小の一歩を決める」「似た事例と比べる」「障害を洗い出す」。
-    3 つの問いは、それぞれ異なる狙いにします。
-    """
+        Your job is to write open questions that help the user develop an idea.
+        Each question is at most 20 words and concrete enough that the user can start answering in a sentence.
+        Avoid yes/no questions, questions that stay abstract, and questions that criticize.
+        Give each question one intent, chosen from these 5:
+        \(QuestionIntent.modelValues.map { "\"\($0)\"" }.joined(separator: ", ")).
+        The 3 questions must each have a different intent.
+        Report the intent in English, exactly as listed above, even though the question itself is in \(language).
+        """
+    }
 
-    private static let relatedInstructions = commonInstructions + """
+    private static func relatedInstructions(language: String) -> String {
+        commonInstructions(language: language) + """
 
-    アイデア同士の関連を見つけるのが役割です。
-    候補は番号付きで渡されます。必ずその番号だけで答え、候補にない番号は使いません。
-    関連が弱いものを無理に挙げず、無関係なら空のリストを返します。
-    """
+        Your job is to find ideas that relate to each other.
+        The candidates come numbered. Answer only with those numbers, and never use a number that is not in the list.
+        Do not stretch to include weak matches. Return an empty list when nothing is related.
+        """
+    }
 
-    private static let digestInstructions = commonInstructions + """
+    private static func digestInstructions(language: String) -> String {
+        commonInstructions(language: language) + """
 
-    1 週間分のアイデアをふりかえる短いダイジェストを書くのが役割です。
-    文体は穏やかで、断定を避け、ユーザーが自分の関心に気づく手助けをします。
-    種は番号付きで渡されます。番号を参照するときは、必ず渡された番号だけを使います。
-    提案は 60 文字以内で、2 つの種を結びつける具体的な一言にします。
-    """
+        Your job is to write a short digest looking back on a week of ideas.
+        Keep the tone calm, avoid asserting conclusions, and help the user notice what they are drawn to.
+        The seeds come numbered. When you refer to one, use only the numbers you were given.
+        A suggestion is at most 20 words and names one concrete way two seeds connect.
+        """
+    }
 }
 
 // MARK: - Generable 出力型
 
-/// 問いの狙い。モデルの出力が揺れても既定の 5 種類に寄せる。
-nonisolated enum QuestionIntent {
-    static let all = ["前提を疑う", "対象を具体化する", "最小の一歩を決める", "似た事例と比べる", "障害を洗い出す"]
-
-    static func normalize(_ raw: String) -> String {
-        let trimmed = raw.trimmingCharacters(in: .whitespacesAndNewlines)
-        if all.contains(trimmed) { return trimmed }
-        if let match = all.first(where: { trimmed.contains($0) || $0.contains(trimmed) }), !trimmed.isEmpty {
-            return match
-        }
-        return trimmed.isEmpty ? all[1] : trimmed
-    }
-}
-
-@Generable(description: "メモに付けるタイトルとタグ")
+@Generable(description: "A title and tags for a note")
 nonisolated struct EnrichmentOutput {
-    @Guide(description: "20 文字以内の日本語タイトル。本文の言い換えで、装飾語を付けない")
+    @Guide(description: "A title of at most 8 words in the requested output language. Restates the note, with no embellishment")
     var title: String
 
-    @Guide(description: "本文の主題を表す名詞 1 語ずつ。記号を付けない。既存タグに近いものがあれば同じ表記を使う", .count(1...4))
+    @Guide(description: "Nouns naming what the note is about, one per entry, in the requested output language. No symbols. Reuse an existing tag's exact wording when one means close to the same thing", .count(1...4))
     var tags: [String]
 }
 
-@Generable(description: "アイデアを深める問い")
+@Generable(description: "A question that helps develop an idea")
 nonisolated struct QuestionOutput {
-    @Guide(description: "40 文字以内の、答えやすい開いた問い（日本語）")
+    @Guide(description: "An open, easy-to-start question of at most 20 words, in the requested output language")
     var question: String
 
-    @Guide(description: "問いの狙い", .anyOf(QuestionIntent.all))
+    @Guide(description: "What the question is for. Always in English, exactly as listed", .anyOf(QuestionIntent.modelValues))
     var intent: String
 }
 
-@Generable(description: "深掘りの問いのセット")
+@Generable(description: "A set of questions for developing an idea")
 nonisolated struct QuestionsOutput {
-    @Guide(description: "それぞれ狙いの異なる問い。ちょうど 3 問", .count(3))
+    @Guide(description: "Questions that each have a different intent. Exactly 3", .count(3))
     var questions: [QuestionOutput]
 }
 
-@Generable(description: "関連の強い候補の番号")
+@Generable(description: "The numbers of the most closely related candidates")
 nonisolated struct RelatedOutput {
-    @Guide(description: "関連が強い候補の番号（1 始まり）。関連が強い順。無関係なら空", .maximumCount(5))
+    @Guide(description: "Numbers of strongly related candidates (1-based), strongest first. Empty when nothing is related", .maximumCount(5))
     var relatedIndices: [Int]
 }
 
-@Generable(description: "2 つの種の掛け合わせ")
+@Generable(description: "A combination of two seeds")
 nonisolated struct CombinationOutput {
-    @Guide(description: "掛け合わせる 2 つの種の番号（1 始まり・異なる番号）", .count(2))
+    @Guide(description: "The numbers of the 2 seeds to combine (1-based, and different from each other)", .count(2))
     var indices: [Int]
 
-    @Guide(description: "60 文字以内の掛け合わせの提案")
+    @Guide(description: "A suggestion of at most 20 words for combining them, in the requested output language")
     var proposal: String
 }
 
-@Generable(description: "今週のふりかえり")
+@Generable(description: "A look back on this week")
 nonisolated struct DigestOutput {
-    @Guide(description: "今週の関心の傾向を 2〜3 文で")
+    @Guide(description: "What the user seems drawn to this week, in 2-3 sentences, in the requested output language")
     var summary: String
 
-    @Guide(description: "眠っている種のうち、もう一度見てほしいものの番号（1 始まり）。最大 3 つ", .maximumCount(3))
+    @Guide(description: "Numbers of dormant seeds worth another look (1-based). At most 3", .maximumCount(3))
     var resurfacedIndices: [Int]
 
-    @Guide(description: "掛け合わせの提案。最大 2 件", .maximumCount(2))
+    @Guide(description: "Suggestions for combining seeds. At most 2", .maximumCount(2))
     var combinations: [CombinationOutput]
 }
