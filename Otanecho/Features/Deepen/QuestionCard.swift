@@ -47,7 +47,7 @@ struct QuestionCard: View {
 
             if isExpanded {
                 VStack(alignment: .leading, spacing: 10) {
-                    TextField("思いついたことを、そのまま", text: $draft, axis: .vertical)
+                    TextField("Whatever comes to mind", text: $draft, axis: .vertical)
                         .lineLimit(3...8)
                         .textFieldStyle(.plain)
                         .padding(10)
@@ -55,7 +55,7 @@ struct QuestionCard: View {
                         .focused($isFocused)
                     HStack {
                         Spacer()
-                        Button("答える") {
+                        Button("Answer") {
                             let text = trimmedDraft
                             guard !text.isEmpty else { return }
                             draft = ""

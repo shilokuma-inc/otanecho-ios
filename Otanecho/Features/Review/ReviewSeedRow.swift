@@ -3,7 +3,9 @@ import SwiftUI
 /// ふりかえり画面で種を 1 行で示す。タップで詳細へ。
 struct ReviewSeedRow: View {
     let seed: Seed
-    var caption: String?
+    /// 補足行。渡さなければ作成日時の相対表示になる。
+    /// 日付などロケール依存の整形済み文字列も渡せるように `Text` で受け取る。
+    var caption: Text?
     let onTap: () -> Void
 
     var body: some View {
@@ -19,7 +21,7 @@ struct ReviewSeedRow: View {
                         .foregroundStyle(.primary)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                    Text(caption ?? seed.createdAt.formatted(.relative(presentation: .named)))
+                    (caption ?? Text(verbatim: seed.createdAt.formatted(.relative(presentation: .named))))
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

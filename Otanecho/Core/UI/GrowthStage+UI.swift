@@ -11,14 +11,16 @@ extension GrowthStage {
     }
 
     /// 次の段階に進むまでの案内文。
-    func progressHint(answeredCount: Int) -> String {
+    func progressHint(answeredCount: Int) -> LocalizedStringResource {
         switch self {
         case .seed:
-            "あと \(max(1 - answeredCount, 1)) 回答えると芽になります"
+            let remaining = max(1 - answeredCount, 1)
+            return "Answer \(remaining) more questions to sprout"
         case .sprout:
-            "あと \(max(3 - answeredCount, 1)) 回答えると木になります"
+            let remaining = max(3 - answeredCount, 1)
+            return "Answer \(remaining) more questions to become a tree"
         case .tree:
-            "しっかり育ちました"
+            return "Fully grown"
         }
     }
 }

@@ -15,9 +15,9 @@ struct SeedDetailView: View {
             SeedDetailContent(seed: seed)
         } else {
             ContentUnavailableView(
-                "見つかりません",
+                "Not found",
                 systemImage: "questionmark.circle",
-                description: Text("この種は削除されたか、アーカイブから移動した可能性があります。")
+                description: Text("This seed may have been deleted or moved out of the archive.")
             )
         }
     }
@@ -72,12 +72,12 @@ private struct SeedDetailContent: View {
                 menu
             }
         }
-        .confirmationDialog("この種を削除しますか？", isPresented: $isConfirmingDelete, titleVisibility: .visible) {
-            Button("削除", role: .destructive) {
+        .confirmationDialog("Delete this seed?", isPresented: $isConfirmingDelete, titleVisibility: .visible) {
+            Button("Delete", role: .destructive) {
                 delete()
             }
         } message: {
-            Text("深掘りの記録もまとめて削除されます。この操作は取り消せません。")
+            Text("Its sprouts will be deleted along with it. This can't be undone.")
         }
         .sheet(isPresented: $isDeepening) {
             // DeepenView は navigationTitle を持つので NavigationStack で包み、閉じるボタンを付ける
@@ -85,7 +85,7 @@ private struct SeedDetailContent: View {
                 DeepenView(seed: seed)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("閉じる") { isDeepening = false }
+                            Button("Close") { isDeepening = false }
                         }
                     }
             }
@@ -133,7 +133,7 @@ private struct SeedDetailContent: View {
             .frame(minHeight: 120, alignment: .top)
             .padding(4)
             .background(.fill.quaternary, in: RoundedRectangle(cornerRadius: 12))
-            .accessibilityLabel("本文")
+            .accessibilityLabel("Body")
     }
 
     // MARK: タグ
@@ -144,13 +144,13 @@ private struct SeedDetailContent: View {
                 ForEach(seed.tags, id: \.self) { tag in
                     TagCapsule(text: tag)
                         .contextMenu {
-                            Button("タグを削除", systemImage: "trash", role: .destructive) {
+                            Button("Remove tag", systemImage: "trash", role: .destructive) {
                                 removeTag(tag)
                             }
                         }
                 }
                 if isAddingTag {
-                    TextField("タグ", text: $newTag)
+                    TextField("Tag", text: $newTag)
                         .textFieldStyle(.roundedBorder)
                         .font(.caption)
                         .frame(width: 120)
@@ -161,7 +161,7 @@ private struct SeedDetailContent: View {
                             if !focused { commitNewTag() }
                         }
                 } else {
-                    Button("タグを追加", systemImage: "plus") {
+                    Button("Add tag", systemImage: "plus") {
                         isAddingTag = true
                         isTagFieldFocused = true
                     }
@@ -183,7 +183,7 @@ private struct SeedDetailContent: View {
             flush()
             isDeepening = true
         } label: {
-            Label("芽を出す", systemImage: "leaf")
+            Label("Grow", systemImage: "leaf")
                 .frame(maxWidth: .infinity)
         }
         .buttonStyle(.glassProminent)
@@ -192,7 +192,7 @@ private struct SeedDetailContent: View {
 
     private var sproutsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("深掘り")
+            Text("Sprouts")
                 .font(.headline)
             ForEach(seed.sprouts.sorted { $0.createdAt < $1.createdAt }) { sprout in
                 VStack(alignment: .leading, spacing: 4) {
@@ -202,7 +202,7 @@ private struct SeedDetailContent: View {
                         Text(answer)
                             .font(.body)
                     } else {
-                        Text("未回答")
+                        Text("Unanswered")
                             .font(.body)
                             .foregroundStyle(.tertiary)
                     }
@@ -220,7 +220,7 @@ private struct SeedDetailContent: View {
     private var relatedSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text("関連する種")
+                Text("Related seeds")
                     .font(.headline)
                 if isLoadingRelated {
                     ProgressView()
@@ -245,24 +245,24 @@ private struct SeedDetailContent: View {
     private var menu: some View {
         Menu {
             Button(
-                seed.isPinned ? "ピン留めを解除" : "ピン留め",
+                seed.isPinned ? "Unpin" : "Pin",
                 systemImage: seed.isPinned ? "pin.slash" : "pin"
             ) {
                 seed.isPinned.toggle()
                 save()
             }
-            Button("アーカイブ", systemImage: "archivebox") {
+            Button("Archive", systemImage: "archivebox") {
                 archive()
             }
             ShareLink(item: seed.body) {
-                Label("共有", systemImage: "square.and.arrow.up")
+                Label("Share", systemImage: "square.and.arrow.up")
             }
             Divider()
-            Button("削除", systemImage: "trash", role: .destructive) {
+            Button("Delete", systemImage: "trash", role: .destructive) {
                 isConfirmingDelete = true
             }
         } label: {
-            Label("その他", systemImage: "ellipsis.circle")
+            Label("More", systemImage: "ellipsis.circle")
         }
     }
 
