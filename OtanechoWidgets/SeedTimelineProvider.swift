@@ -19,13 +19,16 @@ nonisolated struct SeedWidgetEntry: TimelineEntry {
             date: now,
             recentSeeds: [
                 SeedSnapshot(
-                    id: UUID(), body: "通勤中に聴くポッドキャストを、聴きながらメモできるアプリ",
-                    title: "聴きながらメモできるアプリ", tags: ["アプリ"], createdAt: now, updatedAt: now,
+                    id: UUID(),
+                    body: String(localized: "An app for taking notes while listening to a podcast on the commute"),
+                    title: String(localized: "Notes while listening"),
+                    tags: [String(localized: "Apps")], createdAt: now, updatedAt: now,
                     stage: .seed, sprouts: []
                 ),
                 SeedSnapshot(
-                    id: UUID(), body: "冷蔵庫の残り物だけで作るレシピを提案してくれるサービス",
-                    title: nil, tags: ["食"], createdAt: now, updatedAt: now,
+                    id: UUID(),
+                    body: String(localized: "A service that suggests recipes from only what's left in the fridge"),
+                    title: nil, tags: [String(localized: "Food")], createdAt: now, updatedAt: now,
                     stage: .sprout, sprouts: []
                 ),
             ],

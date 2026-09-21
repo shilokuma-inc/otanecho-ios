@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>お種帳</string>
+	<string>Otanecho</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -34,9 +34,9 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>音声でアイデアを書き留めるためにマイクを使用します。</string>
+	<string>Otanecho uses the microphone so you can jot down ideas by speaking.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>話した内容をその場で文字に起こすために音声認識を使用します。音声はデバイス上で処理されます。</string>
+	<string>Otanecho uses speech recognition to turn what you say into text on the spot. Audio is processed on your device.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

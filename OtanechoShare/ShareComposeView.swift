@@ -42,18 +42,18 @@ struct ShareComposeView: View {
                 }
             }
             .padding()
-            .navigationTitle("お種帳に保存")
+            .navigationTitle("Save to Otanecho")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("キャンセル", role: .cancel, action: onCancel)
+                    Button("Cancel", role: .cancel, action: onCancel)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button(action: onSave) {
                         if model.isSaving {
                             ProgressView()
                         } else {
-                            Text("保存").bold()
+                            Text("Save").bold()
                         }
                     }
                     .disabled(!model.canSave)
@@ -68,12 +68,12 @@ struct ShareComposeView: View {
         if model.isLoading {
             HStack(spacing: 8) {
                 ProgressView()
-                Text("共有内容を読み込み中…")
+                Text("Loading shared content…")
                     .foregroundStyle(.secondary)
             }
             .font(.footnote)
         } else if model.content.isEmpty {
-            Text("共有された内容がありません。ひとことだけでも保存できます。")
+            Text("Nothing was shared. You can save just a note.")
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         } else {
@@ -112,7 +112,7 @@ struct ShareComposeView: View {
             .background(.fill.quaternary, in: .rect(cornerRadius: 12))
             .overlay(alignment: .topLeading) {
                 if model.note.isEmpty {
-                    Text("ひとこと（任意）")
+                    Text("A note (optional)")
                         .foregroundStyle(.tertiary)
                         .padding(.horizontal, 13)
                         .padding(.vertical, 16)

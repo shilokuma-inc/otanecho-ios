@@ -7,9 +7,9 @@ nonisolated struct OtanechoShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: CaptureSeedIntent(),
             phrases: [
-                "\(.applicationName)で種をまく",
-                "\(.applicationName)で書き留める",
-                "\(.applicationName)を開いてメモ",
+                "Plant a seed in \(.applicationName)",
+                "Jot something down in \(.applicationName)",
+                "Open \(.applicationName) and take a note",
             ],
             shortTitle: "Plant a Seed",
             systemImageName: "leaf"
@@ -17,9 +17,9 @@ nonisolated struct OtanechoShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: QuickSaveSeedIntent(),
             phrases: [
-                "\(.applicationName)にメモ",
-                "\(.applicationName)に書き留める",
-                "\(.applicationName)にメモして",
+                "Note to \(.applicationName)",
+                "Jot it down in \(.applicationName)",
+                "Take a note in \(.applicationName)",
             ],
             shortTitle: "Note to Otanecho",
             systemImageName: "square.and.pencil"

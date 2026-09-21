@@ -25,11 +25,24 @@ PROJECT = "Otanecho.xcodeproj"
 SCHEME = "Otanecho"
 DESTINATION = "generic/platform=iOS Simulator"
 
-# ターゲット名 -> そのターゲットの Localizable.xcstrings の位置
+# ターゲット名 -> そのターゲットが持つ String Catalog。
+# `xcstringstool sync` は渡した .xcstrings のテーブル名（ファイル名）で振り分けるため、
+# 1 ターゲット分をまとめて渡す。
 CATALOGS = {
-    "Otanecho": "Otanecho/Resources/Localizable.xcstrings",
-    "OtanechoWidgets": "OtanechoWidgets/Localizable.xcstrings",
-    "OtanechoShare": "OtanechoShare/Localizable.xcstrings",
+    "Otanecho": [
+        "Otanecho/Resources/Localizable.xcstrings",
+        "Otanecho/Resources/InfoPlist.xcstrings",
+        # App Shortcuts の起動フレーズ（phrases）はこのテーブルに入る
+        "Otanecho/Resources/AppShortcuts.xcstrings",
+    ],
+    "OtanechoWidgets": [
+        "OtanechoWidgets/Localizable.xcstrings",
+        "OtanechoWidgets/InfoPlist.xcstrings",
+    ],
+    "OtanechoShare": [
+        "OtanechoShare/Localizable.xcstrings",
+        "OtanechoShare/InfoPlist.xcstrings",
+    ],
 }
 
 
@@ -84,19 +97,19 @@ def main() -> int:
     config_dir = settings["CONFIGURATION"] + settings.get("EFFECTIVE_PLATFORM_NAME", "")
 
     failed = False
-    for target, catalog in CATALOGS.items():
+    for target, catalogs in CATALOGS.items():
         files = stringsdata_files(objroot, config_dir, target)
         if not files:
             print(f"!! {target}: .stringsdata が見つかりません（ビルドが必要かもしれません）")
             failed = True
             continue
-        command = ["xcrun", "xcstringstool", "sync", catalog, "--stringsdata", *map(str, files)]
+        command = ["xcrun", "xcstringstool", "sync", *catalogs, "--stringsdata", *map(str, files)]
         result = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, check=False)
         if result.returncode != 0:
             print(f"!! {target}: sync に失敗\n{result.stderr}")
             failed = True
             continue
-        print(f"==> {catalog} を同期（.stringsdata {len(files)} 件）")
+        print(f"==> {target} を同期（.stringsdata {len(files)} 件）: {', '.join(catalogs)}")
         if result.stderr.strip():
             print(result.stderr.strip())
 

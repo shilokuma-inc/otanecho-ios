@@ -1,7 +1,352 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld seeds today": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld seed today"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld seeds today"
+                }
+              }
+            }
+          }
+        },
+        "ja": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "今日 %lld 件"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "A service that suggests recipes from only what's left in the fridge": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "冷蔵庫の残り物だけで作るレシピを提案してくれるサービス"
+          }
+        }
+      }
+    },
+    "Action Button": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクションボタン"
+          }
+        }
+      }
+    },
+    "An app for taking notes while listening to a podcast on the commute": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通勤中に聴くポッドキャストを、聴きながらメモできるアプリ"
+          }
+        }
+      }
+    },
+    "App": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリ"
+          }
+        }
+      }
+    },
+    "Apps": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリ"
+          }
+        }
+      }
+    },
+    "Content": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内容"
+          }
+        }
+      }
+    },
+    "Control Center": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コントロールセンター"
+          }
+        }
+      }
+    },
+    "Food": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "食"
+          }
+        }
+      }
+    },
+    "Glance at your latest seeds, and plant a new one with a tap.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "直近の種を眺めつつ、1 タップで新しい種をまきます。"
+          }
+        }
+      }
+    },
+    "Jot down an idea from the Lock Screen with a single tap.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ロック画面から 1 タップでアイデアを書き留めます。"
+          }
+        }
+      }
+    },
+    "Jotted it down": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "書き留めました"
+          }
+        }
+      }
+    },
+    "Link": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "リンク"
+          }
+        }
+      }
+    },
+    "Lock Screen": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ロック画面"
+          }
+        }
+      }
+    },
+    "Note ${text} to Otanecho": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "${text} をお種帳にメモ"
+          }
+        }
+      }
+    },
+    "Note to Otanecho": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "お種帳にメモ"
+          }
+        }
+      }
+    },
+    "Notes while listening": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "聴きながらメモできるアプリ"
+          }
+        }
+      }
+    },
+    "Opens Otanecho so you can jot down what just came to mind.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "お種帳を開いて、思いついたことをすぐ書き留めます。"
+          }
+        }
+      }
+    },
+    "Otanecho": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "お種帳"
+          }
+        }
+      }
+    },
+    "Plant a Seed": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "種をまく"
+          }
+        }
+      }
+    },
+    "Plant your first seed": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最初の種をまきましょう"
+          }
+        }
+      }
+    },
+    "Saves what you say, or the text you pass in, as a seed without opening the app.": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アプリを開かずに、話した内容や渡されたテキストを種として保存します。"
+          }
+        }
+      }
+    },
+    "Seed": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "種"
+          }
+        }
+      }
+    },
+    "Share": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "共有"
+          }
+        }
+      }
+    },
+    "Siri": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri"
+          }
+        }
+      }
+    },
+    "Sprout": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "芽"
+          }
+        }
+      }
+    },
+    "There's nothing to save.": {
+      "comment": "本文が空白のみで保存できないときのエラー",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内容が空のため保存できません"
+          }
+        }
+      }
+    },
+    "Tree": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "木"
+          }
+        }
+      }
+    },
+    "Untitled": {
+      "comment": "本文が空の種を一覧やタイトルに出すときの代替表示",
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "（無題）"
+          }
+        }
+      }
+    },
+    "Voice": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音声"
+          }
+        }
+      }
+    },
+    "What would you like to jot down?": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "何を書き留めますか？"
+          }
+        }
+      }
+    },
+    "Widget": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ウィジェット"
+          }
+        }
+      }
+    }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
