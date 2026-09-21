@@ -43,5 +43,20 @@
 ## 翻訳を追加・修正するとき
 
 1. ソース文言（英語）はコード側の文字列リテラルがそのままキーになる
-2. `xcodegen generate` してビルドすると Xcode が String Catalog にキーを抽出する
+2. String Catalog にキーを同期する
+   - Xcode.app でビルドすれば自動で同期される
+   - コマンドラインで作業しているときは `python3 Tools/sync_string_catalogs.py`
+     （`xcodebuild` は `.xcstrings` を更新しないため、`xcrun xcstringstool sync` を代わりに回している）
 3. Xcode の String Catalog エディタか `.xcstrings` の直接編集で訳を入れる
+
+### 同じ英語・違う訳になるケースに注意
+
+String Catalog のキーはソース文言そのものなので、**英語が同じなら 1 つのエントリに統合される**。
+「芽」（成長段階の名前）と「芽を出す」（深掘りを始める操作）はどちらも英語にすると `Sprout` になり、
+訳を 1 つしか持てなくなった。段階名を `Sprout`、操作を `Grow` と書き分けて解消している。
+同じ英単語で別の訳を当てたくなったら、まず英語側の文言を見直すこと。
+
+### 複数形
+
+件数を含む文言は `variations.plural` で定義する。英語は `one` / `other` を分け、日本語は `other` だけでよい。
+`\(count)` をそのまま埋め込んだだけの文言は、英語で "1 questions" のような表示になるため避ける。
