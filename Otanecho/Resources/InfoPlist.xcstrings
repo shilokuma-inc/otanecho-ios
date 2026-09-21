@@ -14,6 +14,66 @@
             "state" : "translated",
             "value" : "お種帳"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho"
+          }
         }
       }
     },
@@ -30,6 +90,66 @@
             "state" : "translated",
             "value" : "音声でアイデアを書き留めるためにマイクを使用します。"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho nutzt das Mikrofon, damit du Ideen im Sprechen festhalten kannst."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho usa el micrófono para que puedas apuntar ideas hablando."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho utilise le micro pour vous permettre de noter vos idées en parlant."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho memakai mikrofon agar kamu bisa mencatat ide dengan berbicara."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho usa il microfono per permetterti di annotare le idee parlando."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho는 말로 아이디어를 적을 수 있도록 마이크를 사용합니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Otanecho usa o microfone para você anotar ideias falando."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho использует микрофон, чтобы вы могли записывать идеи голосом."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho 使用麦克风，让你能用说话的方式记下想法。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho 使用麥克風，讓你能用說話的方式記下想法。"
+          }
         }
       }
     },
@@ -45,6 +165,66 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "話した内容をその場で文字に起こすために音声認識を使用します。音声はデバイス上で処理されます。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho nutzt die Spracherkennung, um Gesprochenes sofort in Text umzuwandeln. Die Audiodaten werden auf dem Gerät verarbeitet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho usa el reconocimiento de voz para convertir al momento en texto lo que dices. El audio se procesa en tu dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho utilise la reconnaissance vocale pour transcrire aussitôt ce que vous dites. L’audio est traité sur votre appareil."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho memakai pengenalan suara untuk langsung mengubah ucapanmu jadi teks. Audio diproses di perangkatmu."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho usa il riconoscimento vocale per trascrivere subito quello che dici. L’audio viene elaborato sul dispositivo."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho는 말한 내용을 바로 글로 옮기기 위해 음성 인식을 사용합니다. 음성은 기기에서 처리됩니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Otanecho usa o reconhecimento de fala para transcrever na hora o que você diz. O áudio é processado no seu dispositivo."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho использует распознавание речи, чтобы сразу переводить сказанное в текст. Звук обрабатывается на устройстве."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho 使用语音识别，将你说的话即时转写为文字。音频在设备上处理。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otanecho 使用語音辨識，將你說的話即時轉寫成文字。音訊在裝置上處理。"
           }
         }
       }

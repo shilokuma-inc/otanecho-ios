@@ -23,6 +23,106 @@
               "${applicationName}にメモして"
             ]
           }
+        },
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "In ${applicationName} notieren",
+              "Notier das in ${applicationName}",
+              "Mach eine Notiz in ${applicationName}"
+            ]
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Apuntar en ${applicationName}",
+              "Apúntalo en ${applicationName}",
+              "Toma nota en ${applicationName}"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Noter dans ${applicationName}",
+              "Note-le dans ${applicationName}",
+              "Prendre une note dans ${applicationName}"
+            ]
+          }
+        },
+        "id" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Catat ke ${applicationName}",
+              "Catat ini di ${applicationName}",
+              "Buat catatan di ${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Annota su ${applicationName}",
+              "Annotalo su ${applicationName}",
+              "Prendi una nota su ${applicationName}"
+            ]
+          }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}에 메모",
+              "${applicationName}에 적어 줘",
+              "${applicationName}에 메모해 줘"
+            ]
+          }
+        },
+        "pt-BR" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Anotar no ${applicationName}",
+              "Anota isso no ${applicationName}",
+              "Fazer uma anotação no ${applicationName}"
+            ]
+          }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Записать в ${applicationName}",
+              "Запиши это в ${applicationName}",
+              "Сделать заметку в ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "记到${applicationName}",
+              "在${applicationName}里记一下",
+              "用${applicationName}记下来"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "記到${applicationName}",
+              "在${applicationName}裡記一下",
+              "用${applicationName}記下來"
+            ]
+          }
         }
       }
     },
@@ -46,6 +146,106 @@
               "${applicationName}で種をまく",
               "${applicationName}で書き留める",
               "${applicationName}を開いてメモ"
+            ]
+          }
+        },
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Einen Samen in ${applicationName} pflanzen",
+              "Etwas in ${applicationName} festhalten",
+              "${applicationName} öffnen und notieren"
+            ]
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Plantar una semilla en ${applicationName}",
+              "Apuntar algo en ${applicationName}",
+              "Abrir ${applicationName} y tomar nota"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Planter une graine dans ${applicationName}",
+              "Noter quelque chose dans ${applicationName}",
+              "Ouvrir ${applicationName} et prendre une note"
+            ]
+          }
+        },
+        "id" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Tanam benih di ${applicationName}",
+              "Catat sesuatu di ${applicationName}",
+              "Buka ${applicationName} dan buat catatan"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Pianta un seme su ${applicationName}",
+              "Annota qualcosa su ${applicationName}",
+              "Apri ${applicationName} e prendi una nota"
+            ]
+          }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}에 씨앗 심기",
+              "${applicationName}에 적기",
+              "${applicationName} 열어서 메모"
+            ]
+          }
+        },
+        "pt-BR" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Plantar uma semente no ${applicationName}",
+              "Anotar algo no ${applicationName}",
+              "Abrir o ${applicationName} e anotar"
+            ]
+          }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Посадить семя в ${applicationName}",
+              "Записать что-нибудь в ${applicationName}",
+              "Открыть ${applicationName} и сделать заметку"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "在${applicationName}里播下种子",
+              "在${applicationName}里记下来",
+              "打开${applicationName}记笔记"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "在${applicationName}裡播下種子",
+              "在${applicationName}裡記下來",
+              "打開${applicationName}記筆記"
             ]
           }
         }
