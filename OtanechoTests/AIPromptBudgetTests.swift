@@ -146,13 +146,72 @@ struct AIPromptBudgetTests {
 
     // MARK: - QuestionIntent
 
-    @Test func questionIntentNormalizesToKnownValues() {
-        #expect(QuestionIntent.normalize("前提を疑う") == "前提を疑う")
-        #expect(QuestionIntent.normalize(" 対象を具体化する ") == "対象を具体化する")
-        #expect(QuestionIntent.normalize("狙い: 最小の一歩を決める") == "最小の一歩を決める")
-        #expect(QuestionIntent.normalize("") == "対象を具体化する")
-        // 既知の値に寄せられないものはそのまま返す（表示は壊さない）
-        #expect(QuestionIntent.normalize("独自の狙い") == "独自の狙い")
+    @Test func questionIntentResolvesModelOutput() {
+        #expect(QuestionIntent.resolve("Challenge the assumptions") == .challengeAssumptions)
+        #expect(QuestionIntent.resolve(" make the target concrete ") == .narrowTheTarget)
+        // モデルが前置きを付けて返すことがある
+        #expect(QuestionIntent.resolve("Intent: Decide the smallest first step") == .decideSmallestStep)
+    }
+
+    @Test func questionIntentResolvesStoredAndLegacyValues() {
+        // 保存値（rawValue）から戻せる
+        #expect(QuestionIntent.resolve("compareSimilarCases") == .compareSimilarCases)
+        // 英語ソース化する前に保存された日本語表記も表示できる
+        #expect(QuestionIntent.resolve("前提を疑う") == .challengeAssumptions)
+        #expect(QuestionIntent.resolve("狙い: 最小の一歩を決める") == .decideSmallestStep)
+    }
+
+    @Test func questionIntentReturnsNilForUnknownValues() {
+        #expect(QuestionIntent.resolve("") == nil)
+        #expect(QuestionIntent.resolve("   ") == nil)
+        #expect(QuestionIntent.resolve("独自の狙い") == nil)
+        // 短すぎる文字列で部分一致に寄せない
+        #expect(QuestionIntent.resolve("the") == nil)
+    }
+
+    @Test func questionIntentStoresStableIdentifier() {
+        #expect(QuestionIntent.storedValue(for: "Surface the obstacles") == "listObstacles")
+        #expect(QuestionIntent.storedValue(for: "障害を洗い出す") == "listObstacles")
+        // 寄せられない値は表示を壊さないようそのまま残す
+        #expect(QuestionIntent.storedValue(for: " 独自の狙い ") == "独自の狙い")
+    }
+
+    @Test func questionIntentModelValuesCoverEveryCase() {
+        #expect(QuestionIntent.modelValues.count == QuestionIntent.allCases.count)
+        #expect(Set(QuestionIntent.modelValues).count == QuestionIntent.allCases.count)
+    }
+
+    // MARK: - OutputLanguage
+
+    @Test func outputLanguageUsesEnglishLanguageNames() {
+        #expect(OutputLanguage.name(for: Locale(identifier: "ja_JP")) == "Japanese")
+        #expect(OutputLanguage.name(for: Locale(identifier: "en_US")) == "English")
+        #expect(OutputLanguage.name(for: Locale(identifier: "ru_RU")) == "Russian")
+    }
+
+    @Test func outputLanguageKeepsScriptForChinese() {
+        // 言語コードだけ渡すと簡体字の端末に繁体字が返ることがあるため、表記体系まで伝える
+        #expect(OutputLanguage.name(for: Locale(identifier: "zh_Hans_CN")).contains("Simplified"))
+        #expect(OutputLanguage.name(for: Locale(identifier: "zh_Hant_TW")).contains("Traditional"))
+    }
+
+    // MARK: - 生成テキストの表示上限
+
+    @Test func generatedTextLimitsDependOnScript() {
+        let japanese = Locale(identifier: "ja_JP")
+        let english = Locale(identifier: "en_US")
+
+        #expect(PromptBudget.usesCompactScript(japanese))
+        #expect(PromptBudget.usesCompactScript(Locale(identifier: "zh_Hans_CN")))
+        #expect(PromptBudget.usesCompactScript(Locale(identifier: "ko_KR")))
+        #expect(!PromptBudget.usesCompactScript(english))
+        #expect(!PromptBudget.usesCompactScript(Locale(identifier: "de_DE")))
+
+        // 表意文字の言語は従来どおり、それ以外は同じ情報量を入れられるよう伸ばす
+        #expect(PromptBudget.titleLimit(for: japanese) == 30)
+        #expect(PromptBudget.titleLimit(for: english) == 60)
+        #expect(PromptBudget.questionLimit(for: english) > PromptBudget.questionLimit(for: japanese))
+        #expect(PromptBudget.proposalLimit(for: english) > PromptBudget.proposalLimit(for: japanese))
     }
 
     // MARK: - Helpers
