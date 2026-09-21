@@ -49,7 +49,7 @@ final class ShareViewController: UIViewController {
             extensionContext?.completeRequest(returningItems: nil)
         } catch {
             model.isSaving = false
-            model.errorMessage = "保存できませんでした: \(error.localizedDescription)"
+            model.errorMessage = String(localized: "Couldn't save: \(error.localizedDescription)")
         }
     }
 

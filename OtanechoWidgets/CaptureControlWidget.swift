@@ -9,10 +9,10 @@ struct CaptureControlWidget: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(kind: Self.kind) {
             ControlWidgetButton(action: CaptureSeedIntent()) {
-                Label("種をまく", systemImage: "leaf")
+                Label("Plant a Seed", systemImage: "leaf")
             }
         }
-        .displayName("種をまく")
-        .description("お種帳を開いて、思いついたことをすぐ書き留めます。")
+        .displayName("Plant a Seed")
+        .description("Opens Otanecho so you can jot down what just came to mind.")
     }
 }

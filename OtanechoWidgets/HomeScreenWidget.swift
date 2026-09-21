@@ -10,8 +10,8 @@ struct HomeScreenWidget: Widget {
         StaticConfiguration(kind: Self.kind, provider: SeedTimelineProvider()) { entry in
             HomeScreenWidgetView(entry: entry)
         }
-        .configurationDisplayName("お種帳")
-        .description("直近の種を眺めつつ、1 タップで新しい種をまきます。")
+        .configurationDisplayName("Otanecho")
+        .description("Glance at your latest seeds, and plant a new one with a tap.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -34,7 +34,7 @@ struct HomeScreenWidgetView: View {
         VStack(alignment: .leading, spacing: 6) {
             header
             if visibleSeeds.isEmpty {
-                Text("最初の種をまきましょう")
+                Text("Plant your first seed")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .padding(.top, 2)
@@ -53,11 +53,11 @@ struct HomeScreenWidgetView: View {
 
     private var header: some View {
         HStack(alignment: .firstTextBaseline) {
-            Label("お種帳", systemImage: "leaf")
+            Label("Otanecho", systemImage: "leaf")
                 .font(.caption.weight(.semibold))
                 .foregroundStyle(.secondary)
             Spacer()
-            Text("今日 \(entry.todayCount) 件")
+            Text("\(entry.todayCount) seeds today")
                 .font(.caption2)
                 .foregroundStyle(.secondary)
         }
@@ -88,7 +88,7 @@ struct HomeScreenWidgetView: View {
             .font(.title2)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(Color.accentColor)
-            .accessibilityLabel("種をまく")
+            .accessibilityLabel("Plant a Seed")
         if isSmall {
             icon
         } else {

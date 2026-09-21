@@ -9,8 +9,8 @@ struct LockScreenWidget: Widget {
         StaticConfiguration(kind: Self.kind, provider: SeedTimelineProvider()) { entry in
             LockScreenWidgetView(entry: entry)
         }
-        .configurationDisplayName("種をまく")
-        .description("ロック画面から 1 タップでアイデアを書き留めます。")
+        .configurationDisplayName("Plant a Seed")
+        .description("Jot down an idea from the Lock Screen with a single tap.")
         .supportedFamilies([.accessoryCircular, .accessoryRectangular])
     }
 }
@@ -38,7 +38,7 @@ struct LockScreenWidgetView: View {
             Image(systemName: "leaf")
                 .font(.title2.weight(.medium))
         }
-        .accessibilityLabel("種をまく")
+        .accessibilityLabel("Plant a Seed")
     }
 
     private var rectangular: some View {
@@ -46,9 +46,9 @@ struct LockScreenWidgetView: View {
             Image(systemName: "leaf")
                 .font(.title2.weight(.medium))
             VStack(alignment: .leading, spacing: 2) {
-                Text("種をまく")
+                Text("Plant a Seed")
                     .font(.headline)
-                Text("今日 \(entry.todayCount) 件")
+                Text("\(entry.todayCount) seeds today")
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
