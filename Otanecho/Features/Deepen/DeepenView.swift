@@ -127,7 +127,7 @@ struct DeepenView: View {
                 ForEach(questions) { question in
                     QuestionCard(
                         question: question.question,
-                        intent: question.intent,
+                        intent: Self.intentText(question.intent),
                         isExpanded: expandedID == question.id,
                         onToggle: { toggle(question.id) },
                         onSubmit: { answer in answerNewQuestion(question, with: answer) }
@@ -189,7 +189,7 @@ struct DeepenView: View {
             ForEach(pendingSprouts) { sprout in
                 QuestionCard(
                     question: sprout.question,
-                    intent: sprout.intent,
+                    intent: Self.intentText(sprout.intent),
                     isExpanded: expandedID == sprout.id,
                     onToggle: { toggle(sprout.id) },
                     onSubmit: { answer in answerExisting(sprout, with: answer) }
@@ -215,6 +215,13 @@ struct DeepenView: View {
                 .background(.fill.quaternary, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
             }
         }
+    }
+
+    /// 問いの狙いの表示。既定の 5 種類はローカライズし、モデルが独自の値を返した場合はそのまま出す。
+    private static func intentText(_ raw: String?) -> Text? {
+        guard let raw, !raw.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return nil }
+        if let intent = QuestionIntent.resolve(raw) { return Text(intent.label) }
+        return Text(verbatim: raw)
     }
 
     private func sectionTitle(_ title: LocalizedStringKey) -> some View {
