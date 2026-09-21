@@ -10,6 +10,7 @@ struct RootView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     @State private var enricher: SeedEnricher?
+    private let onboarding = OnboardingTracker()
     /// 前面復帰時にタイムラインを再フェッチさせるためのトークン。
     @State private var timelineRefreshToken = 0
     @State private var wasInBackground = false
@@ -30,8 +31,17 @@ struct RootView: View {
                 WeeklyReviewView()
             }
         }
+        .fullScreenCover(isPresented: $router.isShowingTutorial) {
+            OnboardingView {
+                onboarding.markCompleted()
+                router.isShowingTutorial = false
+            }
+        }
         .environment(enricher)
         .task {
+            if onboarding.shouldPresentOnLaunch {
+                router.showTutorial()
+            }
             if enricher == nil {
                 enricher = SeedEnricher(container: modelContext.container, intelligence: intelligence)
             }
