@@ -24,6 +24,16 @@
   ],
   "enforced": [
     "en",
-    "ja"
+    "ja",
+    "zh-Hans",
+    "zh-Hant",
+    "ko",
+    "es",
+    "fr",
+    "de",
+    "it",
+    "pt-BR",
+    "ru",
+    "id"
   ]
 }
