@@ -39,6 +39,7 @@ struct TimelineView: View {
         .buttonStyle(.glassProminent)
         .buttonBorderShape(.circle)
         .accessibilityLabel("Plant a new seed")
+        .accessibilityIdentifier("timeline.captureButton")
         .padding(.trailing, 20)
         .padding(.bottom, 20)
     }

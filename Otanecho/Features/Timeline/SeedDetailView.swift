@@ -188,6 +188,7 @@ private struct SeedDetailContent: View {
         }
         .buttonStyle(.glassProminent)
         .controlSize(.large)
+        .accessibilityIdentifier("seedDetail.growButton")
     }
 
     private var sproutsSection: some View {

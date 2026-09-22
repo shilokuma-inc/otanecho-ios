@@ -73,6 +73,7 @@ struct CaptureView: View {
 
     private var editor: some View {
         TextEditor(text: $text)
+            .accessibilityIdentifier("capture.editor")
             .focused($isEditorFocused)
             .font(.body)
             .scrollContentBackground(.hidden)
