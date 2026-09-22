@@ -71,6 +71,9 @@ jobs:
           brew install xcodegen
           xcodegen generate
 
+      - name: Resolve package dependencies
+        run: .github/scripts/resolve_package_dependencies.sh
+
       - name: Resolve languages
         env:
           LANGUAGES: ${{ inputs.languages }}

@@ -32,6 +32,9 @@ jobs:
           brew install xcodegen
           xcodegen generate
 
+      - name: Resolve package dependencies
+        run: .github/scripts/resolve_package_dependencies.sh
+
       - name: Set Build Number
         run: |
           set -euo pipefail
