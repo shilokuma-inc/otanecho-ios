@@ -157,6 +157,31 @@ class AppStoreConnect:
         entries = self.get_all(f"/v1/appStoreVersions/{version_id}/appStoreVersionLocalizations")
         return {entry["attributes"]["locale"]: entry["id"] for entry in entries}
 
+    def create_localization(self, version_id: str, locale: str) -> str:
+        """そのバージョンに言語を追加する。
+
+        スクリーンショットの置き場所は言語ごとにしかないため、App Store Connect 側に
+        その言語が無いと反映できない。説明文やキーワードは空のまま作られるので、
+        審査に出す前に App Store Connect で埋める必要がある。
+        """
+        if self.dry_run:
+            return "dry-run"
+        response = self.post(
+            "/v1/appStoreVersionLocalizations",
+            {
+                "data": {
+                    "type": "appStoreVersionLocalizations",
+                    "attributes": {"locale": locale},
+                    "relationships": {
+                        "appStoreVersion": {
+                            "data": {"type": "appStoreVersions", "id": version_id}
+                        }
+                    },
+                }
+            },
+        )
+        return response["data"]["id"]
+
     # MARK: スクリーンショット
 
     def existing_set(self, localization_id: str, display_type: str) -> str | None:
@@ -301,9 +326,11 @@ def main() -> int:
         help="App Store Connect API Key の .p8",
     )
     parser.add_argument(
-        "--skip-missing-locales",
-        action="store_true",
-        help="App Store Connect にその言語が無ければ飛ばす（既定は止める）",
+        "--missing-locales",
+        choices=("fail", "skip", "create"),
+        default="fail",
+        help="App Store Connect にその言語が無いときの扱い。"
+             "fail: 止める（既定） / skip: 飛ばす / create: その言語を追加してから反映する",
     )
     parser.add_argument("--dry-run", action="store_true", help="何も書き換えず、やることだけ出す")
     args = parser.parse_args()
@@ -356,7 +383,10 @@ def main() -> int:
 
         localization_id = available.get(target.store_locale)
         if localization_id is None:
-            if args.skip_missing_locales:
+            if args.missing_locales == "create":
+                # ここでは作らず、前提の確認が全部通ってからまとめて作る
+                plan.append((target, images, None))
+            elif args.missing_locales == "skip":
                 print(f"  飛ばす — {target.language}: {target.store_locale} が {version_string} にありません")
                 skipped.append(target.language)
             else:
@@ -369,10 +399,17 @@ def main() -> int:
         problems.append(
             f"App Store Connect の {version_string} に無い言語: {', '.join(missing_locales)}\n"
             "App Store Connect でこれらの言語を追加してから実行するか、"
-            "--skip-missing-locales を付けてください。"
+            "--missing-locales create（追加してから反映）か "
+            "--missing-locales skip（飛ばす）を付けてください。"
         )
     if problems:
         raise SystemExit("\n".join(problems))
+
+    for index, (target, images, localization_id) in enumerate(plan):
+        if localization_id is None:
+            localization_id = client.create_localization(version["id"], target.store_locale)
+            print(f"  {target.store_locale} を {version_string} に追加しました")
+            plan[index] = (target, images, localization_id)
 
     uploaded_total = 0
     for target, images, localization_id in plan:
