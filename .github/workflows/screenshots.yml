@@ -202,7 +202,8 @@ jobs:
           fi
 
           # 空配列の展開は set -u だと未定義扱いになるので、空のときは何も渡さない書き方にする
-          .venv/bin/python Tools/upload_screenshots.py \
+          # tee に繋ぐと標準出力がまとめ書きになり、失敗したときのログが前後するので -u で止める
+          .venv/bin/python -u Tools/upload_screenshots.py \
             --screenshots-dir "$SCREENSHOTS_DIR" \
             --bundle-id "$bundle_id" \
             --display-type "$DISPLAY_TYPE" \
