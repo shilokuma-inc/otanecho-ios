@@ -334,34 +334,48 @@ def main() -> int:
 
     available = client.localizations(version["id"])
 
+    # 書き込みを始める前に、全言語ぶんの前提をまとめて確かめる。
+    # 途中で止めると一部の言語だけ差し替わった状態になるうえ、
+    # 撮り直しに小一時間かかるので「直すべき点」は 1 回で出し切る。
+    plan = []
     skipped: list[str] = []
-    uploaded_total = 0
+    missing_locales: list[str] = []
+    problems: list[str] = []
     for target in targets:
         directory = args.screenshots_dir / target.language
         images = screenshots_for(directory) if directory.is_dir() else []
         if not images:
-            raise SystemExit(f"{directory} にスクリーンショットがありません")
+            problems.append(f"{directory} にスクリーンショットがありません")
+            continue
         if len(images) > MAX_SCREENSHOTS:
-            raise SystemExit(
+            problems.append(
                 f"{directory} に {len(images)} 枚あります。"
                 f"App Store Connect は 1 つの表示サイズにつき {MAX_SCREENSHOTS} 枚までです。"
             )
+            continue
 
         localization_id = available.get(target.store_locale)
         if localization_id is None:
-            message = (
-                f"{target.language}: App Store Connect の {version_string} に "
-                f"{target.store_locale} がありません"
-            )
             if args.skip_missing_locales:
-                print(f"  飛ばす — {message}")
+                print(f"  飛ばす — {target.language}: {target.store_locale} が {version_string} にありません")
                 skipped.append(target.language)
-                continue
-            raise SystemExit(
-                message + "\nApp Store Connect でこの言語を追加してから実行するか、"
-                "--skip-missing-locales を付けてください。"
-            )
+            else:
+                missing_locales.append(f"{target.language} → {target.store_locale}")
+            continue
 
+        plan.append((target, images, localization_id))
+
+    if missing_locales:
+        problems.append(
+            f"App Store Connect の {version_string} に無い言語: {', '.join(missing_locales)}\n"
+            "App Store Connect でこれらの言語を追加してから実行するか、"
+            "--skip-missing-locales を付けてください。"
+        )
+    if problems:
+        raise SystemExit("\n".join(problems))
+
+    uploaded_total = 0
+    for target, images, localization_id in plan:
         existing = client.existing_set(localization_id, args.display_type)
         if existing and not args.dry_run:
             client.delete(f"/v1/appScreenshotSets/{existing}")
@@ -373,7 +387,7 @@ def main() -> int:
         uploaded_total += len(images)
         print(f"  {target.language} → {target.store_locale}: {len(images)} 枚")
 
-    print(f"完了: {len(targets) - len(skipped)} 言語 / {uploaded_total} 枚")
+    print(f"完了: {len(plan)} 言語 / {uploaded_total} 枚")
     if skipped:
         print(f"飛ばした言語: {', '.join(skipped)}")
     return 0

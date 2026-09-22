@@ -202,7 +202,8 @@ jobs:
           fi
 
           # 空配列の展開は set -u だと未定義扱いになるので、空のときは何も渡さない書き方にする
-          .venv/bin/python Tools/upload_screenshots.py \
+          # tee に繋ぐと標準出力がまとめ書きになり、失敗したときのログが前後するので -u で止める
+          .venv/bin/python -u Tools/upload_screenshots.py \
             --screenshots-dir "$SCREENSHOTS_DIR" \
             --bundle-id "$bundle_id" \
             --display-type "$DISPLAY_TYPE" \
@@ -221,7 +222,8 @@ jobs:
           {
             echo "## スクリーンショット"
             echo
-            echo "- 機種: $DEVICE（$DISPLAY_TYPE）"
+            # 全角の括弧が続くと bash 3.2 は変数名の一部と見なすので、必ず波括弧で閉じる
+            echo "- 機種: ${DEVICE}（${DISPLAY_TYPE}）"
             echo "- 反映: $([ "$UPLOAD" = "true" ] && echo "する" || echo "しない（撮るだけ）")"
             echo
             if [ -d "$SCREENSHOTS_DIR" ]; then
