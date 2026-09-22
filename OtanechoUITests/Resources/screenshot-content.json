@@ -3,8 +3,8 @@
     "App Store 用スクリーンショットに写すデモ文言。言語ごとに 3 件の種と、入力画面に入れる本文を持つ。",
     "対応言語は Localization/supported-languages.json の languages と一致させること。",
     "種の順番・ID・書かれた時刻は言語に依らないので OtanechoUITests/ScreenshotContent.swift の layout が持つ。",
-    "1 件目: 深掘りに 3 回答えた「木」。詳細画面のスクリーンショットもこの種を開く。",
-    "2 件目: 1 回答えた「芽」。未回答の問い（answer が null）も 1 つ入れて、その見え方も写す。",
+    "1 件目: 深掘りに 3 回答えた「木」。詳細画面のスクリーンショットはこの種を開く。末尾の未回答の問い（answer が null）は、そこで「Unanswered」の見え方として写る。",
+    "2 件目: 1 回答えた「芽」。",
     "3 件目: まだ深掘りしていない「種」。",
     "これはアプリに翻訳として組み込まれるものではなく、スクリーンショットに写る作例。",
     "String Catalog の検証対象にはならないので、文言を変えても verify_localizations.py は通る。"
@@ -29,6 +29,10 @@
             {
               "question": "What would make someone open it a second time?",
               "answer": "A weekly recap of the lines they kept."
+            },
+            {
+              "question": "What would you give up to keep it simple?",
+              "answer": null
             }
           ]
         },
@@ -40,10 +44,6 @@
             {
               "question": "What are you taking for granted here?",
               "answer": "That people remember what is in their fridge. Most of the time they don't."
-            },
-            {
-              "question": "What would you give up to keep it simple?",
-              "answer": null
             }
           ]
         },
@@ -74,6 +74,10 @@
             {
               "question": "二度目に開いてもらえるとしたら、理由は何ですか？",
               "answer": "その週に書き留めた一行を、まとめて振り返れること。"
+            },
+            {
+              "question": "簡単さを保つために諦めるとしたら何ですか？",
+              "answer": null
             }
           ]
         },
@@ -85,10 +89,6 @@
             {
               "question": "ここで前提にしていることは何ですか？",
               "answer": "冷蔵庫の中身を覚えている前提。たいてい覚えていない。"
-            },
-            {
-              "question": "簡単さを保つために諦めるとしたら何ですか？",
-              "answer": null
             }
           ]
         },
@@ -119,6 +119,10 @@
             {
               "question": "什么会让人第二次打开它？",
               "answer": "把这一周记下的句子汇成一份周报。"
+            },
+            {
+              "question": "为了保持简单，你愿意放弃什么？",
+              "answer": null
             }
           ]
         },
@@ -130,10 +134,6 @@
             {
               "question": "你在这里默认了什么？",
               "answer": "默认大家记得冰箱里有什么。其实多半记不得。"
-            },
-            {
-              "question": "为了保持简单，你愿意放弃什么？",
-              "answer": null
             }
           ]
         },
@@ -164,6 +164,10 @@
             {
               "question": "什麼會讓人第二次打開它？",
               "answer": "把這一週記下的句子整理成一份週報。"
+            },
+            {
+              "question": "為了保持簡單，你願意放棄什麼？",
+              "answer": null
             }
           ]
         },
@@ -175,10 +179,6 @@
             {
               "question": "你在這裡預設了什麼？",
               "answer": "預設大家記得冰箱裡有什麼。其實多半記不得。"
-            },
-            {
-              "question": "為了保持簡單，你願意放棄什麼？",
-              "answer": null
             }
           ]
         },
@@ -209,6 +209,10 @@
             {
               "question": "두 번째로 열게 만드는 건 무엇일까요?",
               "answer": "그 주에 적어 둔 문장을 한 번에 돌아보는 주간 정리."
+            },
+            {
+              "question": "단순함을 지키려면 무엇을 포기해야 할까요?",
+              "answer": null
             }
           ]
         },
@@ -220,10 +224,6 @@
             {
               "question": "여기서 당연하게 여기고 있는 건 무엇인가요?",
               "answer": "냉장고에 뭐가 있는지 기억한다는 전제. 대개는 기억하지 못한다."
-            },
-            {
-              "question": "단순함을 지키려면 무엇을 포기해야 할까요?",
-              "answer": null
             }
           ]
         },
@@ -254,6 +254,10 @@
             {
               "question": "¿Qué haría que alguien la abriera una segunda vez?",
               "answer": "Un resumen semanal con las frases que guardó."
+            },
+            {
+              "question": "¿A qué renunciarías para que siga siendo simple?",
+              "answer": null
             }
           ]
         },
@@ -265,10 +269,6 @@
             {
               "question": "¿Qué estás dando por supuesto aquí?",
               "answer": "Que la gente recuerda lo que tiene en la nevera. Casi nunca es así."
-            },
-            {
-              "question": "¿A qué renunciarías para que siga siendo simple?",
-              "answer": null
             }
           ]
         },
@@ -299,6 +299,10 @@
             {
               "question": "Qu'est-ce qui donnerait envie de l'ouvrir une deuxième fois ?",
               "answer": "Un récapitulatif hebdomadaire des phrases gardées."
+            },
+            {
+              "question": "À quoi renoncerais-tu pour que ça reste simple ?",
+              "answer": null
             }
           ]
         },
@@ -310,10 +314,6 @@
             {
               "question": "Qu'est-ce que tu tiens pour acquis ici ?",
               "answer": "Que les gens savent ce qu'il y a dans leur frigo. C'est rarement le cas."
-            },
-            {
-              "question": "À quoi renoncerais-tu pour que ça reste simple ?",
-              "answer": null
             }
           ]
         },
@@ -344,6 +344,10 @@
             {
               "question": "Was würde jemanden dazu bringen, sie ein zweites Mal zu öffnen?",
               "answer": "Ein Wochenrückblick mit den Sätzen, die man behalten wollte."
+            },
+            {
+              "question": "Worauf würdest du verzichten, damit es einfach bleibt?",
+              "answer": null
             }
           ]
         },
@@ -355,10 +359,6 @@
             {
               "question": "Was setzt du hier stillschweigend voraus?",
               "answer": "Dass Leute wissen, was im Kühlschrank ist. Meistens wissen sie es nicht."
-            },
-            {
-              "question": "Worauf würdest du verzichten, damit es einfach bleibt?",
-              "answer": null
             }
           ]
         },
@@ -389,6 +389,10 @@
             {
               "question": "Cosa spingerebbe qualcuno ad aprirla una seconda volta?",
               "answer": "Un riepilogo settimanale delle frasi salvate."
+            },
+            {
+              "question": "A cosa rinunceresti per tenerla semplice?",
+              "answer": null
             }
           ]
         },
@@ -400,10 +404,6 @@
             {
               "question": "Cosa stai dando per scontato qui?",
               "answer": "Che la gente ricordi cosa ha in frigo. Quasi mai è così."
-            },
-            {
-              "question": "A cosa rinunceresti per tenerla semplice?",
-              "answer": null
             }
           ]
         },
@@ -434,6 +434,10 @@
             {
               "question": "O que faria alguém abrir de novo?",
               "answer": "Um resumo semanal com as frases que a pessoa guardou."
+            },
+            {
+              "question": "Do que você abriria mão para manter simples?",
+              "answer": null
             }
           ]
         },
@@ -445,10 +449,6 @@
             {
               "question": "O que você está supondo aqui?",
               "answer": "Que as pessoas lembram o que têm na geladeira. Quase nunca lembram."
-            },
-            {
-              "question": "Do que você abriria mão para manter simples?",
-              "answer": null
             }
           ]
         },
@@ -479,6 +479,10 @@
             {
               "question": "Что заставит открыть приложение во второй раз?",
               "answer": "Недельная сводка из сохранённых фраз."
+            },
+            {
+              "question": "Чем пришлось бы пожертвовать, чтобы осталось просто?",
+              "answer": null
             }
           ]
         },
@@ -490,10 +494,6 @@
             {
               "question": "Что вы здесь принимаете как должное?",
               "answer": "Что люди помнят, что лежит в холодильнике. Обычно не помнят."
-            },
-            {
-              "question": "Чем пришлось бы пожертвовать, чтобы осталось просто?",
-              "answer": null
             }
           ]
         },
@@ -524,6 +524,10 @@
             {
               "question": "Apa yang membuat orang membukanya untuk kedua kali?",
               "answer": "Ringkasan mingguan dari kalimat yang sudah disimpan."
+            },
+            {
+              "question": "Apa yang rela kamu lepas supaya tetap sederhana?",
+              "answer": null
             }
           ]
         },
@@ -535,10 +539,6 @@
             {
               "question": "Apa yang kamu anggap sudah pasti di sini?",
               "answer": "Bahwa orang ingat isi kulkasnya. Biasanya tidak."
-            },
-            {
-              "question": "Apa yang rela kamu lepas supaya tetap sederhana?",
-              "answer": null
             }
           ]
         },

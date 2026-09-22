@@ -53,6 +53,9 @@ EDITABLE_STATES = {
     "INVALID_BINARY",
 }
 
+#: 1 つの言語・表示サイズに載せられる枚数の上限（App Store Connect の制限）
+MAX_SCREENSHOTS = 10
+
 #: アップロード後、Apple 側の取り込みが終わるのを待つ上限（秒）
 DELIVERY_TIMEOUT = 300
 
@@ -338,6 +341,11 @@ def main() -> int:
         images = screenshots_for(directory) if directory.is_dir() else []
         if not images:
             raise SystemExit(f"{directory} にスクリーンショットがありません")
+        if len(images) > MAX_SCREENSHOTS:
+            raise SystemExit(
+                f"{directory} に {len(images)} 枚あります。"
+                f"App Store Connect は 1 つの表示サイズにつき {MAX_SCREENSHOTS} 枚までです。"
+            )
 
         localization_id = available.get(target.store_locale)
         if localization_id is None:
