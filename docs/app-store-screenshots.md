@@ -15,9 +15,13 @@ Actions タブ → `Screenshots/App Store` → `Run workflow`。
 | `expected_size` | `1242x2688` | この寸法でなければ落とす。`none` で確認しない |
 | `app_version` | 空 | 反映先のバージョン。空なら編集できるものを自動で選ぶ |
 | `upload` | オン | 外すと撮るだけ。結果は artifact から取れる |
-| `skip_missing_locales` | オフ | App Store Connect にその言語が無いとき、止めずに飛ばす |
+| `missing_locales` | `create` | App Store Connect にその言語が無いときの扱い。`create` はその言語を追加してから反映、`skip` は飛ばす、`fail` は止める |
 
 まず `upload` を外して回し、artifact の中身を見てから本番で流すのが安全。
+
+`missing_locales` が `create` のとき、App Store Connect にまだ無い言語はこちらで追加する。
+スクリーンショットの置き場所は言語ごとにしかないため、先に言語が無いと反映できないため。
+ただし説明文やキーワードは空のまま作られるので、審査に出す前に App Store Connect で埋めること。
 
 ## 撮る流れ
 

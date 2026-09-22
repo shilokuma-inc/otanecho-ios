@@ -35,10 +35,14 @@ on:
         description: 'App Store Connect に反映する（外すと撮るだけ）'
         type: boolean
         default: true
-      skip_missing_locales:
-        description: 'App Store Connect にその言語が無ければ飛ばす（既定は止める）'
-        type: boolean
-        default: false
+      missing_locales:
+        description: 'App Store Connect にその言語が無いときの扱い'
+        type: choice
+        options:
+          - create
+          - skip
+          - fail
+        default: create
 
 jobs:
   screenshots:
@@ -188,7 +192,7 @@ jobs:
           APP_STORE_CONNECT_PRIVATE_KEY_PATH: private_keys/AuthKey.p8
           DISPLAY_TYPE: ${{ inputs.display_type }}
           APP_VERSION: ${{ inputs.app_version }}
-          SKIP_MISSING_LOCALES: ${{ inputs.skip_missing_locales }}
+          MISSING_LOCALES: ${{ inputs.missing_locales }}
         run: |
           set -euo pipefail
           # bundle id はビルドした成果物から読む（project.yml と二重に持たないため）
@@ -203,9 +207,7 @@ jobs:
           if [ -n "$APP_VERSION" ]; then
             options+=(--app-version "$APP_VERSION")
           fi
-          if [ "$SKIP_MISSING_LOCALES" = "true" ]; then
-            options+=(--skip-missing-locales)
-          fi
+          options+=(--missing-locales "$MISSING_LOCALES")
 
           # 空配列の展開は set -u だと未定義扱いになるので、空のときは何も渡さない書き方にする
           # tee に繋ぐと標準出力がまとめ書きになり、失敗したときのログが前後するので -u で止める
