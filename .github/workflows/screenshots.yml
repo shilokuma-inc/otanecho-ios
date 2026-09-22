@@ -47,6 +47,8 @@ jobs:
     timeout-minutes: 120
 
     env:
+      PROJECT: Otanecho.xcodeproj
+      SCHEME: Otanecho
       DERIVED_DATA: build/DerivedData
       RESULTS_DIR: build/results
       SCREENSHOTS_DIR: build/screenshots
@@ -65,6 +67,7 @@ jobs:
 
       - name: Generate Xcode project (XcodeGen)
         run: |
+          set -euo pipefail
           brew install xcodegen
           xcodegen generate
 
@@ -126,8 +129,8 @@ jobs:
         run: |
           set -euo pipefail
           xcodebuild build-for-testing \
-            -project Otanecho.xcodeproj \
-            -scheme Otanecho \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
             -configuration Debug \
             -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
             -derivedDataPath "$DERIVED_DATA" \
@@ -141,8 +144,8 @@ jobs:
           while IFS=$'\t' read -r language test_language test_region store_locale; do
             echo "::group::$language ($test_language / $test_region → $store_locale)"
             xcodebuild test-without-building \
-              -project Otanecho.xcodeproj \
-              -scheme Otanecho \
+              -project "$PROJECT" \
+              -scheme "$SCHEME" \
               -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
               -derivedDataPath "$DERIVED_DATA" \
               -only-testing:OtanechoUITests/ScreenshotUITests \
@@ -187,7 +190,7 @@ jobs:
           set -euo pipefail
           # bundle id はビルドした成果物から読む（project.yml と二重に持たないため）
           bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' \
-            "$DERIVED_DATA/Build/Products/Debug-iphonesimulator/Otanecho.app/Info.plist")
+            "$DERIVED_DATA/Build/Products/Debug-iphonesimulator/$SCHEME.app/Info.plist")
 
           # PyJWT は標準では入っていないので、この実行かぎりの venv に入れる
           python3 -m venv .venv
