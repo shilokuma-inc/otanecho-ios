@@ -5,6 +5,10 @@
     "languages:     プロジェクトが対応を宣言する言語。project.yml の options.knownRegions と一致していること。",
     "enforced:      翻訳の完全性を CI で強制する言語。languages の部分集合。",
     "               訳を投入した言語をここに追加していく（最終的に languages と一致する）。",
+    "appStore:      言語ごとの、スクリーンショット撮影と App Store Connect 反映に使う対応付け。",
+    "               testLanguage / testRegion は xcodebuild の -testLanguage / -testRegion に渡す値。",
+    "               storeLocale は App Store Connect のロケール（アプリの言語コードとは別物）。",
+    "               languages に言語を足したらここにも足す（足していないとスクリーンショットの CI が落ちて気づける）。",
     "検証は Tools/verify_localizations.py で行う。"
   ],
   "sourceLanguage": "en",
@@ -35,5 +39,19 @@
     "pt-BR",
     "ru",
     "id"
-  ]
+  ],
+  "appStore": {
+    "en": { "testLanguage": "en", "testRegion": "US", "storeLocale": "en-US" },
+    "ja": { "testLanguage": "ja", "testRegion": "JP", "storeLocale": "ja" },
+    "zh-Hans": { "testLanguage": "zh-Hans", "testRegion": "CN", "storeLocale": "zh-Hans" },
+    "zh-Hant": { "testLanguage": "zh-Hant", "testRegion": "TW", "storeLocale": "zh-Hant" },
+    "ko": { "testLanguage": "ko", "testRegion": "KR", "storeLocale": "ko" },
+    "es": { "testLanguage": "es", "testRegion": "ES", "storeLocale": "es-ES" },
+    "fr": { "testLanguage": "fr", "testRegion": "FR", "storeLocale": "fr-FR" },
+    "de": { "testLanguage": "de", "testRegion": "DE", "storeLocale": "de-DE" },
+    "it": { "testLanguage": "it", "testRegion": "IT", "storeLocale": "it" },
+    "pt-BR": { "testLanguage": "pt-BR", "testRegion": "BR", "storeLocale": "pt-BR" },
+    "ru": { "testLanguage": "ru", "testRegion": "RU", "storeLocale": "ru" },
+    "id": { "testLanguage": "id", "testRegion": "ID", "storeLocale": "id" }
+  }
 }

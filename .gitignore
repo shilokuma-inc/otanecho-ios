@@ -94,3 +94,8 @@ iOSInjectionProject/
 
 # Claude Code の worktree
 /.claude/worktrees/
+
+# App Store Connect の API Key と、スクリーンショット用スクリプトの実行環境
+# （Tools/upload_screenshots.py は .p8 と PyJWT を使う。docs/app-store-screenshots.md 参照）
+/private_keys/
+/.venv/
