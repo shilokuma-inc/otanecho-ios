@@ -221,7 +221,8 @@ jobs:
           {
             echo "## スクリーンショット"
             echo
-            echo "- 機種: $DEVICE（$DISPLAY_TYPE）"
+            # 全角の括弧が続くと bash 3.2 は変数名の一部と見なすので、必ず波括弧で閉じる
+            echo "- 機種: ${DEVICE}（${DISPLAY_TYPE}）"
             echo "- 反映: $([ "$UPLOAD" = "true" ] && echo "する" || echo "しない（撮るだけ）")"
             echo
             if [ -d "$SCREENSHOTS_DIR" ]; then
