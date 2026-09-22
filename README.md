@@ -7,6 +7,7 @@
 - すべてデバイス上で処理。非対応端末でもメモアプリとして完全に成立する。
 
 コンセプト・市場分析・ビジネスモデルは [docs/concept.md](docs/concept.md) を参照。
+App Store 用スクリーンショットの自動撮影・反映は [docs/app-store-screenshots.md](docs/app-store-screenshots.md) を参照。
 
 ## 環境
 
@@ -46,6 +47,8 @@ xcodebuild test -project Otanecho.xcodeproj -scheme Otanecho \
 | `OtanechoWidgets/` | コントロールセンター・ロック画面・ホーム画面ウィジェット |
 | `OtanechoShare/` | 共有拡張（他アプリから「お種帳に保存」） |
 | `project.yml` | XcodeGen 定義（ターゲット、Info.plist、entitlements） |
+| `Localization/` | 対応言語の単一定義とローカライズの方針 |
+| `Tools/` | ローカライズ検証と App Store 用スクリーンショットのスクリプト |
 
 ## Status
 
