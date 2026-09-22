@@ -29,6 +29,7 @@ struct OnboardingView: View {
         HStack {
             Spacer()
             Button("Skip") { onFinish() }
+                .accessibilityIdentifier("onboarding.skipButton")
                 .font(.body.weight(.medium))
                 .buttonStyle(.bordered)
                 .buttonBorderShape(.capsule)

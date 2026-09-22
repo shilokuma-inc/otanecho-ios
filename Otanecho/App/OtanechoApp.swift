@@ -3,7 +3,7 @@ import SwiftUI
 
 @main
 struct OtanechoApp: App {
-    private let container = PersistenceController.makeContainer()
+    private let container = Self.makeContainer()
     @State private var router = AppRouter()
     @State private var intelligence: any IdeaIntelligence = IntelligenceFactory.make()
     @Environment(\.scenePhase) private var scenePhase
@@ -14,6 +14,10 @@ struct OtanechoApp: App {
                 .environment(router)
                 .environment(\.ideaIntelligence, intelligence)
                 .task {
+                    #if DEBUG
+                    // スクリーンショット撮影中だけ、撮りたい画面を最初から開いておく
+                    if let link = ScreenshotSeeder.initialLink { router.handle(link) }
+                    #endif
                     // 初回応答を速めるため、オンデバイスモデルを事前に温める
                     (intelligence as? FoundationModelsIntelligence)?.prewarm()
                 }
@@ -27,5 +31,13 @@ struct OtanechoApp: App {
                 }
         }
         .modelContainer(container)
+    }
+
+    /// 通常は App Group の共有ストア。スクリーンショット撮影中だけデモデータ入りのメモリ内ストアを使う。
+    private static func makeContainer() -> ModelContainer {
+        #if DEBUG
+        if let container = ScreenshotSeeder.makeContainer() { return container }
+        #endif
+        return PersistenceController.makeContainer()
     }
 }

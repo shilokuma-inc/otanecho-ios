@@ -79,6 +79,7 @@ struct WeeklyReviewView: View {
             }
         }
         .listStyle(.insetGrouped)
+        .accessibilityIdentifier("weeklyReview.list")
     }
 
     private func recentSection(_ data: ReviewData) -> some View {

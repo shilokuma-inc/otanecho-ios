@@ -1,0 +1,249 @@
+name: Screenshots/App Store
+
+# App Store 用のスクリーンショットを、対応している全言語ぶん撮って App Store Connect に反映する。
+#
+# 撮影は UI テスト（OtanechoUITests/ScreenshotUITests）が担う。言語は 1 回ビルドしたものを
+# -testLanguage を変えながら繰り返し回して切り替える。ビルドし直さないぶん 12 言語でも現実的な時間に収まる。
+#
+# 反映先は「編集できる状態のバージョン」だけ。審査中・配信済みのバージョンには触らない。
+# upload を外せば撮るだけで、結果は artifact から取れる。
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: '撮影する言語（カンマ区切り）。空なら supported-languages.json の全言語'
+        required: false
+        default: ''
+      device:
+        description: '撮影に使うシミュレータの機種'
+        required: false
+        default: 'iPhone 11 Pro Max'
+      display_type:
+        description: 'App Store Connect の表示サイズ（6.5 inch は APP_IPHONE_65）'
+        required: false
+        default: 'APP_IPHONE_65'
+      expected_size:
+        description: '期待する寸法。機種と食い違っていたら落とす。none で確認しない'
+        required: false
+        default: '1242x2688'
+      app_version:
+        description: '反映先のバージョン。空なら編集できるバージョンを自動で選ぶ'
+        required: false
+        default: ''
+      upload:
+        description: 'App Store Connect に反映する（外すと撮るだけ）'
+        type: boolean
+        default: true
+      skip_missing_locales:
+        description: 'App Store Connect にその言語が無ければ飛ばす（既定は止める）'
+        type: boolean
+        default: false
+
+jobs:
+  screenshots:
+    name: capture
+    runs-on: macos-latest
+    timeout-minutes: 120
+
+    env:
+      DERIVED_DATA: build/DerivedData
+      RESULTS_DIR: build/results
+      SCREENSHOTS_DIR: build/screenshots
+
+    steps:
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ci_post_clone
+        run: |
+          defaults write com.apple.dt.Xcode IDESkipPackagePluginFingerprintValidatation -bool YES
+
+      - name: Generate Xcode project (XcodeGen)
+        run: |
+          brew install xcodegen
+          xcodegen generate
+
+      - name: Resolve languages
+        env:
+          LANGUAGES: ${{ inputs.languages }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RESULTS_DIR"
+          python3 Tools/supported_languages.py "$LANGUAGES" > "$RESULTS_DIR/languages.tsv"
+          echo "撮影する言語:"
+          cut -f1 "$RESULTS_DIR/languages.tsv" | tr '\n' ' '
+          echo
+
+      - name: Boot simulator
+        env:
+          DEVICE: ${{ inputs.device }}
+        run: |
+          set -euo pipefail
+          # ハードウェアキーボードが繋がっていると入力画面のソフトウェアキーボードが写らない
+          defaults write com.apple.iphonesimulator ConnectHardwareKeyboard -bool NO
+
+          device_type=$(xcrun simctl list devicetypes --json | python3 -c "
+          import json, sys
+          name = sys.argv[1]
+          matches = [t for t in json.load(sys.stdin)['devicetypes'] if t['name'] == name]
+          if not matches:
+              raise SystemExit(f'シミュレータの機種 {name} が見つかりません')
+          print(matches[0]['identifier'])
+          " "$DEVICE")
+
+          runtime=$(xcrun simctl list runtimes --json | python3 -c "
+          import json, sys
+          runtimes = [
+              r for r in json.load(sys.stdin)['runtimes']
+              if r['isAvailable'] and 'SimRuntime.iOS' in r['identifier']
+          ]
+          if not runtimes:
+              raise SystemExit('使える iOS のランタイムがありません')
+          latest = max(runtimes, key=lambda r: [int(part) for part in r['version'].split('.')])
+          print(latest['identifier'])
+          ")
+
+          udid=$(xcrun simctl create otanecho-screenshots "$device_type" "$runtime")
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
+
+          # App Store のスクリーンショットらしく、上端を整える
+          xcrun simctl status_bar "$udid" override \
+            --time "9:41" \
+            --batteryState charged --batteryLevel 100 \
+            --cellularMode active --cellularBars 4 \
+            --wifiMode active --wifiBars 3 \
+            --dataNetwork wifi
+
+          echo "SIMULATOR_UDID=$udid" >> "$GITHUB_ENV"
+
+      - name: Build for testing
+        run: |
+          set -euo pipefail
+          xcodebuild build-for-testing \
+            -project Otanecho.xcodeproj \
+            -scheme Otanecho \
+            -configuration Debug \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+            -derivedDataPath "$DERIVED_DATA" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Capture screenshots
+        env:
+          EXPECTED_SIZE: ${{ inputs.expected_size }}
+        run: |
+          set -euo pipefail
+          while IFS=$'\t' read -r language test_language test_region store_locale; do
+            echo "::group::$language ($test_language / $test_region → $store_locale)"
+            xcodebuild test-without-building \
+              -project Otanecho.xcodeproj \
+              -scheme Otanecho \
+              -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+              -derivedDataPath "$DERIVED_DATA" \
+              -only-testing:OtanechoUITests/ScreenshotUITests \
+              -testLanguage "$test_language" \
+              -testRegion "$test_region" \
+              -resultBundlePath "$RESULTS_DIR/$language.xcresult"
+            python3 Tools/extract_screenshots.py \
+              --xcresult "$RESULTS_DIR/$language.xcresult" \
+              --language "$language" \
+              --output-dir "$SCREENSHOTS_DIR" \
+              --expected-size "$EXPECTED_SIZE" \
+              --min-count 5
+            echo "::endgroup::"
+          done < "$RESULTS_DIR/languages.tsv"
+
+      - name: Upload screenshots as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ inputs.display_type }}
+          path: ${{ env.SCREENSHOTS_DIR }}
+          # 途中で失敗したときも撮れたぶんは残したいので、無くても警告どまりにする
+          if-no-files-found: warn
+
+      - name: Create Private Key
+        if: ${{ inputs.upload }}
+        run: |
+          set -euo pipefail
+          mkdir -p private_keys
+          echo -n '${{ secrets.APPLE_API_KEY_BASE64 }}' | base64 --decode > private_keys/AuthKey.p8
+
+      - name: Upload to App Store Connect
+        if: ${{ inputs.upload }}
+        env:
+          APP_STORE_CONNECT_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APPLE_API_ISSUER_ID }}
+          APP_STORE_CONNECT_PRIVATE_KEY_PATH: private_keys/AuthKey.p8
+          DISPLAY_TYPE: ${{ inputs.display_type }}
+          APP_VERSION: ${{ inputs.app_version }}
+          SKIP_MISSING_LOCALES: ${{ inputs.skip_missing_locales }}
+        run: |
+          set -euo pipefail
+          # bundle id はビルドした成果物から読む（project.yml と二重に持たないため）
+          bundle_id=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' \
+            "$DERIVED_DATA/Build/Products/Debug-iphonesimulator/Otanecho.app/Info.plist")
+
+          # PyJWT は標準では入っていないので、この実行かぎりの venv に入れる
+          python3 -m venv .venv
+          .venv/bin/pip install --quiet --disable-pip-version-check pyjwt cryptography
+
+          options=()
+          if [ -n "$APP_VERSION" ]; then
+            options+=(--app-version "$APP_VERSION")
+          fi
+          if [ "$SKIP_MISSING_LOCALES" = "true" ]; then
+            options+=(--skip-missing-locales)
+          fi
+
+          # 空配列の展開は set -u だと未定義扱いになるので、空のときは何も渡さない書き方にする
+          .venv/bin/python Tools/upload_screenshots.py \
+            --screenshots-dir "$SCREENSHOTS_DIR" \
+            --bundle-id "$bundle_id" \
+            --display-type "$DISPLAY_TYPE" \
+            --languages "$(cut -f1 "$RESULTS_DIR/languages.tsv" | paste -sd, -)" \
+            ${options[@]+"${options[@]}"} \
+            | tee "$RESULTS_DIR/upload.log"
+
+      - name: Summary
+        if: always()
+        env:
+          DEVICE: ${{ inputs.device }}
+          DISPLAY_TYPE: ${{ inputs.display_type }}
+          UPLOAD: ${{ inputs.upload }}
+        run: |
+          set -euo pipefail
+          {
+            echo "## スクリーンショット"
+            echo
+            echo "- 機種: $DEVICE（$DISPLAY_TYPE）"
+            echo "- 反映: $([ "$UPLOAD" = "true" ] && echo "する" || echo "しない（撮るだけ）")"
+            echo
+            if [ -d "$SCREENSHOTS_DIR" ]; then
+              echo "| 言語 | 枚数 |"
+              echo "|---|---|"
+              for directory in "$SCREENSHOTS_DIR"/*/; do
+                [ -d "$directory" ] || continue
+                echo "| $(basename "$directory") | $(find "$directory" -name '*.png' | wc -l | tr -d ' ') |"
+              done
+            fi
+            if [ -f "$RESULTS_DIR/upload.log" ]; then
+              echo
+              echo '```'
+              cat "$RESULTS_DIR/upload.log"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Clean up simulator
+        if: always()
+        run: |
+          if [ -n "${SIMULATOR_UDID:-}" ]; then
+            xcrun simctl shutdown "$SIMULATOR_UDID" || true
+            xcrun simctl delete "$SIMULATOR_UDID" || true
+          fi

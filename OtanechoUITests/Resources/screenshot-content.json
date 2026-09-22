@@ -1,0 +1,554 @@
+{
+  "_comment": [
+    "App Store 用スクリーンショットに写すデモ文言。言語ごとに 3 件の種と、入力画面に入れる本文を持つ。",
+    "対応言語は Localization/supported-languages.json の languages と一致させること。",
+    "種の順番・ID・書かれた時刻は言語に依らないので OtanechoUITests/ScreenshotContent.swift の layout が持つ。",
+    "1 件目: 深掘りに 3 回答えた「木」。詳細画面のスクリーンショットはこの種を開く。末尾の未回答の問い（answer が null）は、そこで「Unanswered」の見え方として写る。",
+    "2 件目: 1 回答えた「芽」。",
+    "3 件目: まだ深掘りしていない「種」。",
+    "これはアプリに翻訳として組み込まれるものではなく、スクリーンショットに写る作例。",
+    "String Catalog の検証対象にはならないので、文言を変えても verify_localizations.py は通る。"
+  ],
+  "languages": {
+    "en": {
+      "capture": "An app that turns the voice memo I record while walking into a short to-do list.",
+      "seeds": [
+        {
+          "title": "Podcast notes on the move",
+          "body": "A notes app for podcasts: jot down what strikes you while listening on the train, then revisit only the good parts.",
+          "tags": ["App", "Audio"],
+          "sprouts": [
+            {
+              "question": "Who would this idea help the most?",
+              "answer": "People who listen on the way to work and have forgotten the best part by the time they get home."
+            },
+            {
+              "question": "What is the smallest first step?",
+              "answer": "A button that saves only the timestamp and one line of text."
+            },
+            {
+              "question": "What would make someone open it a second time?",
+              "answer": "A weekly recap of the lines they kept."
+            },
+            {
+              "question": "What would you give up to keep it simple?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Dinner from leftovers",
+          "body": "A service that suggests Friday's dinner using only what is still in the fridge.",
+          "tags": ["Food", "Daily life"],
+          "sprouts": [
+            {
+              "question": "What are you taking for granted here?",
+              "answer": "That people remember what is in their fridge. Most of the time they don't."
+            }
+          ]
+        },
+        {
+          "title": "A map of tiny bookshelves",
+          "body": "Map the little free libraries around town so you can swap a book wherever you are.",
+          "tags": ["Map", "Books"],
+          "sprouts": []
+        }
+      ]
+    },
+    "ja": {
+      "capture": "歩きながら録った音声メモを、短いやることリストに変えてくれるアプリ。",
+      "seeds": [
+        {
+          "title": "ポッドキャストのメモ帳",
+          "body": "電車で聴きながら、気になったところだけ書き留めておけるメモアプリ。あとで良かったところだけ見返す。",
+          "tags": ["アプリ", "音声"],
+          "sprouts": [
+            {
+              "question": "この案で一番助かるのは誰ですか？",
+              "answer": "通勤中に聴いて、家に着く頃には一番良かった部分を忘れている人。"
+            },
+            {
+              "question": "最初の一歩を一番小さくすると何ですか？",
+              "answer": "再生位置と一行のメモだけを残すボタン。それだけ。"
+            },
+            {
+              "question": "二度目に開いてもらえるとしたら、理由は何ですか？",
+              "answer": "その週に書き留めた一行を、まとめて振り返れること。"
+            },
+            {
+              "question": "簡単さを保つために諦めるとしたら何ですか？",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "残り物から夕飯",
+          "body": "金曜の夜、冷蔵庫に残っているものだけで夕飯を提案してくれるサービス。",
+          "tags": ["食", "暮らし"],
+          "sprouts": [
+            {
+              "question": "ここで前提にしていることは何ですか？",
+              "answer": "冷蔵庫の中身を覚えている前提。たいてい覚えていない。"
+            }
+          ]
+        },
+        {
+          "title": "小さな本棚の地図",
+          "body": "町なかの小さな無人本棚を地図にして、旅先でも本を交換できるようにする。",
+          "tags": ["地図", "本"],
+          "sprouts": []
+        }
+      ]
+    },
+    "zh-Hans": {
+      "capture": "把边走边录的语音备忘，变成一份简短待办清单的应用。",
+      "seeds": [
+        {
+          "title": "播客随手笔记",
+          "body": "一个为播客准备的笔记应用。在地铁上边听边记下触动你的地方，之后只回看精华。",
+          "tags": ["应用", "音频"],
+          "sprouts": [
+            {
+              "question": "这个想法最能帮到谁？",
+              "answer": "通勤路上听播客，到家时却已经忘了最好那段的人。"
+            },
+            {
+              "question": "最小的第一步是什么？",
+              "answer": "一个按钮，只保存时间点和一行文字。"
+            },
+            {
+              "question": "什么会让人第二次打开它？",
+              "answer": "把这一周记下的句子汇成一份周报。"
+            },
+            {
+              "question": "为了保持简单，你愿意放弃什么？",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "用剩菜做晚饭",
+          "body": "周五晚上，只用冰箱里剩下的东西，帮你想好晚饭吃什么。",
+          "tags": ["饮食", "生活"],
+          "sprouts": [
+            {
+              "question": "你在这里默认了什么？",
+              "answer": "默认大家记得冰箱里有什么。其实多半记不得。"
+            }
+          ]
+        },
+        {
+          "title": "小书架地图",
+          "body": "把城里那些无人值守的小书架标在地图上，旅行时也能换书。",
+          "tags": ["地图", "书"],
+          "sprouts": []
+        }
+      ]
+    },
+    "zh-Hant": {
+      "capture": "把邊走邊錄的語音備忘，變成一份簡短待辦清單的 App。",
+      "seeds": [
+        {
+          "title": "播客隨手筆記",
+          "body": "一個為播客準備的筆記 App。在捷運上邊聽邊記下打動你的地方，之後只回看精華。",
+          "tags": ["App", "音訊"],
+          "sprouts": [
+            {
+              "question": "這個想法最能幫到誰？",
+              "answer": "通勤時聽播客，到家卻已經忘了最好那段的人。"
+            },
+            {
+              "question": "最小的第一步是什麼？",
+              "answer": "一個按鈕，只存下時間點和一行文字。"
+            },
+            {
+              "question": "什麼會讓人第二次打開它？",
+              "answer": "把這一週記下的句子整理成一份週報。"
+            },
+            {
+              "question": "為了保持簡單，你願意放棄什麼？",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "用剩菜做晚餐",
+          "body": "週五晚上，只用冰箱裡剩下的東西，幫你想好晚餐。",
+          "tags": ["飲食", "生活"],
+          "sprouts": [
+            {
+              "question": "你在這裡預設了什麼？",
+              "answer": "預設大家記得冰箱裡有什麼。其實多半記不得。"
+            }
+          ]
+        },
+        {
+          "title": "小書架地圖",
+          "body": "把城裡那些無人的小書架標在地圖上，旅行時也能換書。",
+          "tags": ["地圖", "書"],
+          "sprouts": []
+        }
+      ]
+    },
+    "ko": {
+      "capture": "걸으면서 녹음한 음성 메모를 짧은 할 일 목록으로 바꿔 주는 앱.",
+      "seeds": [
+        {
+          "title": "팟캐스트 메모장",
+          "body": "지하철에서 들으며 마음에 걸린 부분만 적어 두고, 나중에 좋았던 곳만 다시 보는 메모 앱.",
+          "tags": ["앱", "오디오"],
+          "sprouts": [
+            {
+              "question": "이 아이디어로 가장 도움을 받을 사람은 누구인가요?",
+              "answer": "출퇴근길에 듣고, 집에 도착할 즈음이면 제일 좋았던 대목을 잊어버리는 사람."
+            },
+            {
+              "question": "가장 작은 첫걸음은 무엇인가요?",
+              "answer": "재생 위치와 한 줄 메모만 남기는 버튼. 그것뿐."
+            },
+            {
+              "question": "두 번째로 열게 만드는 건 무엇일까요?",
+              "answer": "그 주에 적어 둔 문장을 한 번에 돌아보는 주간 정리."
+            },
+            {
+              "question": "단순함을 지키려면 무엇을 포기해야 할까요?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "남은 재료로 저녁",
+          "body": "금요일 밤, 냉장고에 남은 것만으로 저녁 메뉴를 제안해 주는 서비스.",
+          "tags": ["음식", "생활"],
+          "sprouts": [
+            {
+              "question": "여기서 당연하게 여기고 있는 건 무엇인가요?",
+              "answer": "냉장고에 뭐가 있는지 기억한다는 전제. 대개는 기억하지 못한다."
+            }
+          ]
+        },
+        {
+          "title": "작은 책장 지도",
+          "body": "동네 곳곳의 무인 책장을 지도에 모아, 여행지에서도 책을 바꿔 볼 수 있게.",
+          "tags": ["지도", "책"],
+          "sprouts": []
+        }
+      ]
+    },
+    "es": {
+      "capture": "Una app que convierte la nota de voz que grabo mientras camino en una lista corta de tareas.",
+      "seeds": [
+        {
+          "title": "Notas de pódcast al vuelo",
+          "body": "Una app de notas para pódcast: apunta lo que te llama la atención mientras escuchas en el metro y repasa solo lo bueno.",
+          "tags": ["App", "Audio"],
+          "sprouts": [
+            {
+              "question": "¿A quién le serviría más esta idea?",
+              "answer": "A quien escucha de camino al trabajo y, al llegar a casa, ya ha olvidado la mejor parte."
+            },
+            {
+              "question": "¿Cuál sería el primer paso más pequeño?",
+              "answer": "Un botón que guarde solo el minuto exacto y una línea de texto."
+            },
+            {
+              "question": "¿Qué haría que alguien la abriera una segunda vez?",
+              "answer": "Un resumen semanal con las frases que guardó."
+            },
+            {
+              "question": "¿A qué renunciarías para que siga siendo simple?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Cenar con las sobras",
+          "body": "Un servicio que propone la cena del viernes usando solo lo que queda en la nevera.",
+          "tags": ["Comida", "Día a día"],
+          "sprouts": [
+            {
+              "question": "¿Qué estás dando por supuesto aquí?",
+              "answer": "Que la gente recuerda lo que tiene en la nevera. Casi nunca es así."
+            }
+          ]
+        },
+        {
+          "title": "Mapa de librerías diminutas",
+          "body": "Poner en el mapa las casetas de intercambio de libros del barrio para cambiar uno estés donde estés.",
+          "tags": ["Mapa", "Libros"],
+          "sprouts": []
+        }
+      ]
+    },
+    "fr": {
+      "capture": "Une app qui transforme le mémo vocal enregistré en marchant en une courte liste de tâches.",
+      "seeds": [
+        {
+          "title": "Notes de podcast en marchant",
+          "body": "Une app de notes pour les podcasts : noter ce qui frappe pendant l'écoute dans le métro, puis ne revoir que le meilleur.",
+          "tags": ["App", "Audio"],
+          "sprouts": [
+            {
+              "question": "À qui cette idée servirait-elle le plus ?",
+              "answer": "À ceux qui écoutent en allant au travail et qui, rentrés chez eux, ont déjà oublié le meilleur passage."
+            },
+            {
+              "question": "Quel serait le plus petit premier pas ?",
+              "answer": "Un bouton qui enregistre seulement l'instant et une ligne de texte."
+            },
+            {
+              "question": "Qu'est-ce qui donnerait envie de l'ouvrir une deuxième fois ?",
+              "answer": "Un récapitulatif hebdomadaire des phrases gardées."
+            },
+            {
+              "question": "À quoi renoncerais-tu pour que ça reste simple ?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Dîner avec les restes",
+          "body": "Un service qui propose le dîner du vendredi avec ce qui reste dans le frigo, rien d'autre.",
+          "tags": ["Cuisine", "Quotidien"],
+          "sprouts": [
+            {
+              "question": "Qu'est-ce que tu tiens pour acquis ici ?",
+              "answer": "Que les gens savent ce qu'il y a dans leur frigo. C'est rarement le cas."
+            }
+          ]
+        },
+        {
+          "title": "Carte des boîtes à livres",
+          "body": "Cartographier les boîtes à livres du quartier pour pouvoir en échanger un partout.",
+          "tags": ["Carte", "Livres"],
+          "sprouts": []
+        }
+      ]
+    },
+    "de": {
+      "capture": "Eine App, die aus der Sprachnotiz vom Spaziergang eine kurze Aufgabenliste macht.",
+      "seeds": [
+        {
+          "title": "Podcast-Notizen unterwegs",
+          "body": "Eine Notiz-App für Podcasts: in der Bahn festhalten, was hängen bleibt, und später nur das Beste noch einmal ansehen.",
+          "tags": ["App", "Audio"],
+          "sprouts": [
+            {
+              "question": "Wem würde diese Idee am meisten helfen?",
+              "answer": "Menschen, die auf dem Weg zur Arbeit hören und zu Hause die beste Stelle schon vergessen haben."
+            },
+            {
+              "question": "Was wäre der kleinstmögliche erste Schritt?",
+              "answer": "Ein Knopf, der nur die Stelle und eine Zeile Text speichert."
+            },
+            {
+              "question": "Was würde jemanden dazu bringen, sie ein zweites Mal zu öffnen?",
+              "answer": "Ein Wochenrückblick mit den Sätzen, die man behalten wollte."
+            },
+            {
+              "question": "Worauf würdest du verzichten, damit es einfach bleibt?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Kochen mit Resten",
+          "body": "Ein Dienst, der am Freitagabend nur aus dem kocht, was noch im Kühlschrank liegt.",
+          "tags": ["Essen", "Alltag"],
+          "sprouts": [
+            {
+              "question": "Was setzt du hier stillschweigend voraus?",
+              "answer": "Dass Leute wissen, was im Kühlschrank ist. Meistens wissen sie es nicht."
+            }
+          ]
+        },
+        {
+          "title": "Karte kleiner Bücherschränke",
+          "body": "Die offenen Bücherschränke im Viertel kartieren, damit man überall ein Buch tauschen kann.",
+          "tags": ["Karte", "Bücher"],
+          "sprouts": []
+        }
+      ]
+    },
+    "it": {
+      "capture": "Un'app che trasforma il memo vocale registrato camminando in una breve lista di cose da fare.",
+      "seeds": [
+        {
+          "title": "Appunti di podcast in giro",
+          "body": "Un'app per gli appunti sui podcast: segna ciò che ti colpisce mentre ascolti in metro e rivedi solo il meglio.",
+          "tags": ["App", "Audio"],
+          "sprouts": [
+            {
+              "question": "A chi servirebbe di più questa idea?",
+              "answer": "A chi ascolta andando al lavoro e, arrivato a casa, ha già dimenticato il passaggio migliore."
+            },
+            {
+              "question": "Qual è il primo passo più piccolo?",
+              "answer": "Un pulsante che salva solo il minuto e una riga di testo."
+            },
+            {
+              "question": "Cosa spingerebbe qualcuno ad aprirla una seconda volta?",
+              "answer": "Un riepilogo settimanale delle frasi salvate."
+            },
+            {
+              "question": "A cosa rinunceresti per tenerla semplice?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Cena con gli avanzi",
+          "body": "Un servizio che propone la cena del venerdì usando solo quello che resta in frigo.",
+          "tags": ["Cibo", "Quotidiano"],
+          "sprouts": [
+            {
+              "question": "Cosa stai dando per scontato qui?",
+              "answer": "Che la gente ricordi cosa ha in frigo. Quasi mai è così."
+            }
+          ]
+        },
+        {
+          "title": "Mappa delle micro-biblioteche",
+          "body": "Mappare le casette di scambio libri del quartiere per poterne scambiare uno ovunque.",
+          "tags": ["Mappa", "Libri"],
+          "sprouts": []
+        }
+      ]
+    },
+    "pt-BR": {
+      "capture": "Um app que transforma o áudio gravado enquanto caminho em uma lista curta de tarefas.",
+      "seeds": [
+        {
+          "title": "Notas de podcast na rua",
+          "body": "Um app de notas para podcasts: anote o que chamar atenção no metrô e depois revise só o melhor.",
+          "tags": ["App", "Áudio"],
+          "sprouts": [
+            {
+              "question": "Quem mais se beneficiaria com essa ideia?",
+              "answer": "Quem escuta indo para o trabalho e, ao chegar em casa, já esqueceu a melhor parte."
+            },
+            {
+              "question": "Qual seria o menor primeiro passo?",
+              "answer": "Um botão que salva só o minuto e uma linha de texto."
+            },
+            {
+              "question": "O que faria alguém abrir de novo?",
+              "answer": "Um resumo semanal com as frases que a pessoa guardou."
+            },
+            {
+              "question": "Do que você abriria mão para manter simples?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Jantar com as sobras",
+          "body": "Um serviço que sugere o jantar de sexta usando só o que sobrou na geladeira.",
+          "tags": ["Comida", "Dia a dia"],
+          "sprouts": [
+            {
+              "question": "O que você está supondo aqui?",
+              "answer": "Que as pessoas lembram o que têm na geladeira. Quase nunca lembram."
+            }
+          ]
+        },
+        {
+          "title": "Mapa de estantes livres",
+          "body": "Mapear as pequenas estantes de troca de livros do bairro para trocar um em qualquer lugar.",
+          "tags": ["Mapa", "Livros"],
+          "sprouts": []
+        }
+      ]
+    },
+    "ru": {
+      "capture": "Приложение, которое превращает голосовую заметку с прогулки в короткий список дел.",
+      "seeds": [
+        {
+          "title": "Заметки к подкастам",
+          "body": "Приложение для заметок к подкастам: записать то, что зацепило в метро, а потом пересмотреть только лучшее.",
+          "tags": ["Приложение", "Аудио"],
+          "sprouts": [
+            {
+              "question": "Кому эта идея пригодится больше всего?",
+              "answer": "Тем, кто слушает по дороге на работу и к дому уже забывает самое интересное."
+            },
+            {
+              "question": "Какой самый маленький первый шаг?",
+              "answer": "Кнопка, которая сохраняет только момент и одну строку текста."
+            },
+            {
+              "question": "Что заставит открыть приложение во второй раз?",
+              "answer": "Недельная сводка из сохранённых фраз."
+            },
+            {
+              "question": "Чем пришлось бы пожертвовать, чтобы осталось просто?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Ужин из остатков",
+          "body": "Сервис, который в пятницу вечером предлагает ужин только из того, что осталось в холодильнике.",
+          "tags": ["Еда", "Быт"],
+          "sprouts": [
+            {
+              "question": "Что вы здесь принимаете как должное?",
+              "answer": "Что люди помнят, что лежит в холодильнике. Обычно не помнят."
+            }
+          ]
+        },
+        {
+          "title": "Карта маленьких книжных полок",
+          "body": "Нанести на карту уличные полки обмена книгами, чтобы менять книгу где угодно.",
+          "tags": ["Карта", "Книги"],
+          "sprouts": []
+        }
+      ]
+    },
+    "id": {
+      "capture": "Aplikasi yang mengubah memo suara saat berjalan menjadi daftar tugas singkat.",
+      "seeds": [
+        {
+          "title": "Catatan podcast sambil jalan",
+          "body": "Aplikasi catatan untuk podcast: tulis bagian yang mengena saat mendengarkan di kereta, lalu lihat lagi yang terbaik saja.",
+          "tags": ["Aplikasi", "Audio"],
+          "sprouts": [
+            {
+              "question": "Siapa yang paling terbantu oleh ide ini?",
+              "answer": "Orang yang mendengarkan dalam perjalanan kerja dan lupa bagian terbaiknya begitu sampai rumah."
+            },
+            {
+              "question": "Apa langkah pertama yang paling kecil?",
+              "answer": "Satu tombol yang menyimpan titik waktu dan satu baris teks saja."
+            },
+            {
+              "question": "Apa yang membuat orang membukanya untuk kedua kali?",
+              "answer": "Ringkasan mingguan dari kalimat yang sudah disimpan."
+            },
+            {
+              "question": "Apa yang rela kamu lepas supaya tetap sederhana?",
+              "answer": null
+            }
+          ]
+        },
+        {
+          "title": "Masak dari sisa isi kulkas",
+          "body": "Layanan yang menyarankan menu makan malam Jumat hanya dari sisa isi kulkas.",
+          "tags": ["Makanan", "Keseharian"],
+          "sprouts": [
+            {
+              "question": "Apa yang kamu anggap sudah pasti di sini?",
+              "answer": "Bahwa orang ingat isi kulkasnya. Biasanya tidak."
+            }
+          ]
+        },
+        {
+          "title": "Peta rak buku kecil",
+          "body": "Memetakan rak buku terbuka di sekitar kota agar bisa tukar buku di mana saja.",
+          "tags": ["Peta", "Buku"],
+          "sprouts": []
+        }
+      ]
+    }
+  }
+}

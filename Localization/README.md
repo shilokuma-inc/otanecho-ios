@@ -11,6 +11,7 @@
 | `sourceLanguage` | String Catalog のソース言語。`project.yml` の `options.developmentLanguage` と一致させる |
 | `languages` | プロジェクトが対応を宣言する言語。`project.yml` の `options.knownRegions` と一致させる |
 | `enforced` | 翻訳の完全性を CI で強制する言語。`languages` の部分集合 |
+| `appStore` | 言語ごとの、スクリーンショット撮影と App Store Connect 反映に使う対応付け。詳しくは [docs/app-store-screenshots.md](../docs/app-store-screenshots.md) |
 
 `enforced` は「訳が入り終わった言語」を並べる枠。新しい言語の訳を投入したらここへ追加する。
 これにより、訳の投入が段階的でも CI を常にグリーンに保てる（最終的に `languages` と一致する）。
