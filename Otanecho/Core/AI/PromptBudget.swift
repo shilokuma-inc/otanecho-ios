@@ -1,18 +1,58 @@
 import Foundation
 
-/// オンデバイスモデルのコンテキスト（約 4,096 トークン）に収めるための入力切り詰めヘルパー。
+/// オンデバイスモデルのコンテキストに収めるための入力切り詰めヘルパー。
 /// Foundation Models 本体には依存しないので、単体テストで検証できる。
+///
+/// コンテキスト長は OS と端末世代で変わる（iOS 26 で 4,096、iOS 27 の新しい端末で 8,192 など）。
+/// 実際の値は呼び出し側（`FoundationModelsIntelligence`）が取得して `limits(forContextSize:)` に渡す。
+/// ここが持つのは「コンテキスト長 → 各上限」の計算だけ。
 nonisolated enum PromptBudget {
-    /// 本文として渡す最大文字数
+    /// 各上限を決めたときに前提にしたコンテキスト長（トークン）。下の固定値はこの長さでの値。
+    static let referenceContextSize = 4_096
+
+    /// 本文として渡す最大文字数（4K のとき）
     static let bodyLimit = 1_200
-    /// 候補リストに載せる最大件数
+    /// 候補リストに載せる最大件数（4K のとき）
     static let candidateLimit = 30
     /// 候補 1 件あたりのプレビュー最大文字数
     static let previewLimit = 80
-    /// 過去の問答を渡す最大件数
+    /// 過去の問答を渡す最大件数（4K のとき）
     static let sproutLimit = 6
     /// 問い・答え 1 件あたりのプレビュー最大文字数
     static let sproutPreviewLimit = 120
+
+    /// 入力の件数と文字数の上限。
+    struct Limits: Sendable, Equatable {
+        /// 本文として渡す最大文字数
+        var body: Int
+        /// 候補リストに載せる最大件数
+        var candidates: Int
+        /// 過去の問答を渡す最大件数
+        var sprouts: Int
+
+        /// `referenceContextSize` のときの上限。
+        static let reference = Limits(body: bodyLimit, candidates: candidateLimit, sprouts: sproutLimit)
+    }
+
+    /// 上限を伸縮させる倍率の範囲。
+    /// 極端に大きいコンテキストでも、1 回の入力を読み込むのに時間がかかりすぎないように上限を設ける。
+    /// 下限は、想定外に小さい値が返ってきても深掘りが成り立つ最低限の量を残すため。
+    static let scaleRange: ClosedRange<Double> = 0.5...4
+
+    /// コンテキスト長から各上限を決める。
+    ///
+    /// 本文・候補数・過去の問答数はコンテキスト長に比例させる（4K で今の値）。
+    /// 1 件あたりのプレビュー長は一覧の読みやすさで決めているので伸縮させない。
+    static func limits(forContextSize contextSize: Int) -> Limits {
+        guard contextSize > 0 else { return .reference }
+        let scale = min(max(Double(contextSize) / Double(referenceContextSize), scaleRange.lowerBound), scaleRange.upperBound)
+        func scaled(_ base: Int) -> Int { max(1, Int((Double(base) * scale).rounded(.down))) }
+        return Limits(
+            body: scaled(bodyLimit),
+            candidates: scaled(candidateLimit),
+            sprouts: scaled(sproutLimit)
+        )
+    }
 
     // MARK: - 生成テキストの表示上限
 
@@ -55,8 +95,8 @@ nonisolated enum PromptBudget {
     }
 
     /// 本文を切り詰める。
-    static func body(_ text: String) -> String {
-        truncate(text, limit: bodyLimit)
+    static func body(_ text: String, limit: Int = bodyLimit) -> String {
+        truncate(text, limit: limit)
     }
 
     /// 候補を最大件数に絞る。
