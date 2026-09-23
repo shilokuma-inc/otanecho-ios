@@ -1,3 +1,4 @@
+import StoreKit
 import SwiftData
 import SwiftUI
 
@@ -8,6 +9,7 @@ struct DeepenView: View {
 
     @Environment(\.ideaIntelligence) private var intelligence
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.requestReview) private var requestReview
 
     @State private var phase: Phase = .idle
     /// 「別の問いをもらう」で加算して .task を再実行する
@@ -309,7 +311,18 @@ struct DeepenView: View {
             try? await Task.sleep(for: .seconds(2.5))
             guard !Task.isCancelled else { return }
             celebration = nil
+            // 祝いの表示を見届けてから頼む。重ねて出すと祝いが目に入らない
+            if stage == .tree {
+                requestReviewIfNeeded()
+            }
         }
+    }
+
+    private func requestReviewIfNeeded() {
+        let prompt = AppReviewPrompt.shared
+        guard prompt.shouldRequestAfterTree else { return }
+        prompt.markRequested()
+        requestReview()
     }
 }
 
