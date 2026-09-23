@@ -29,6 +29,8 @@ struct RootView: View {
                 CaptureView(prefill: prefill, source: source)
             case .weeklyReview:
                 WeeklyReviewView()
+            case .settings:
+                SettingsView()
             }
         }
         .fullScreenCover(isPresented: $router.isShowingTutorial) {

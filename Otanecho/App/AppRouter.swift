@@ -7,11 +7,13 @@ final class AppRouter {
     enum Sheet: Identifiable, Equatable {
         case capture(prefill: String?, source: CaptureSource)
         case weeklyReview
+        case settings
 
         var id: String {
             switch self {
             case .capture: "capture"
             case .weeklyReview: "weeklyReview"
+            case .settings: "settings"
             }
         }
     }
@@ -33,6 +35,10 @@ final class AppRouter {
 
     func showWeeklyReview() {
         sheet = .weeklyReview
+    }
+
+    func showSettings() {
+        sheet = .settings
     }
 
     /// チュートリアルを出す。初回起動かどうかの判定は OnboardingTracker が持つ。
