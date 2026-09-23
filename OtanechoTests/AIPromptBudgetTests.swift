@@ -40,6 +40,47 @@ struct AIPromptBudgetTests {
         #expect(PromptBudget.body("そのまま") == "そのまま")
     }
 
+    // MARK: - PromptBudget.limits
+
+    /// 4K のときは従来の固定値と同じ。既存の呼び出しの挙動を変えない。
+    @Test func limitsForTheReferenceContextMatchTheFixedValues() {
+        let limits = PromptBudget.limits(forContextSize: PromptBudget.referenceContextSize)
+
+        #expect(limits == .reference)
+        #expect(limits.body == 1_200)
+        #expect(limits.candidates == 30)
+        #expect(limits.sprouts == 6)
+    }
+
+    @Test func limitsScaleWithTheContextSize() {
+        let limits = PromptBudget.limits(forContextSize: 8_192)
+
+        #expect(limits.body == 2_400)
+        #expect(limits.candidates == 60)
+        #expect(limits.sprouts == 12)
+    }
+
+    @Test func limitsAreClampedAtBothEnds() {
+        let huge = PromptBudget.limits(forContextSize: 1_000_000)
+        #expect(huge.body == PromptBudget.bodyLimit * 4)
+        #expect(huge.candidates == PromptBudget.candidateLimit * 4)
+
+        let tiny = PromptBudget.limits(forContextSize: 512)
+        #expect(tiny.body == PromptBudget.bodyLimit / 2)
+        #expect(tiny.sprouts == PromptBudget.sproutLimit / 2)
+    }
+
+    /// 取得に失敗して 0 や負の値が来ても、4K 相当に戻して深掘りを止めない。
+    @Test func limitsFallBackToTheReferenceForInvalidSizes() {
+        #expect(PromptBudget.limits(forContextSize: 0) == .reference)
+        #expect(PromptBudget.limits(forContextSize: -1) == .reference)
+    }
+
+    @Test func bodyAcceptsACustomLimit() {
+        let long = String(repeating: "え", count: 3_000)
+        #expect(PromptBudget.body(long, limit: 2_400).count == 2_400)
+    }
+
     // MARK: - PromptBudget.preview
 
     @Test func previewCollapsesWhitespaceIntoSingleLine() {
