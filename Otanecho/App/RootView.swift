@@ -23,7 +23,7 @@ struct RootView: View {
                     SeedDetailView(seedID: seedID)
                 }
         }
-        .sheet(item: $router.sheet) { sheet in
+        .sheet(item: $router.sheet, onDismiss: router.sheetDidDismiss) { sheet in
             switch sheet {
             case .capture(let prefill, let source):
                 CaptureView(prefill: prefill, source: source)
