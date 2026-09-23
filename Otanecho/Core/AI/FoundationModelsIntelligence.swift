@@ -5,7 +5,7 @@ import os
 /// Apple Foundation Models（オンデバイス）による IdeaIntelligence の実装。
 ///
 /// - 各メソッドは呼び出しごとに新しい `LanguageModelSession` を作り、会話履歴を持ち越さない。
-/// - 入力は `PromptBudget` で必ず切り詰め、約 4,096 トークンのコンテキストに収める。
+/// - 入力は `PromptBudget` で必ず切り詰め、モデルのコンテキスト長（`SystemLanguageModel.contextSize`）に収める。
 /// - 候補の参照には 1 始まりの番号を使い、モデルに UUID を生成させない。
 /// - プロンプトと instructions は英語で固定し、**出力言語だけ**を端末の設定言語に合わせる（`OutputLanguage`）。
 nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable {
@@ -19,10 +19,19 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
     private let model: SystemLanguageModel
     /// 出力させる言語。テストや検証で差し替えられるように保持する。
     private let locale: Locale
+    /// 入力の上限を決めるコンテキスト長の上書き。nil ならモデルから実行時に取る。
+    private let contextSizeOverride: Int?
 
-    init(model: SystemLanguageModel = .default, locale: Locale = .current) {
+    init(model: SystemLanguageModel = .default, locale: Locale = .current, contextSize: Int? = nil) {
         self.model = model
         self.locale = locale
+        self.contextSizeOverride = contextSize
+    }
+
+    /// 入力の上限。コンテキスト長は OS と端末世代で変わるので、呼び出しのたびに取り直す。
+    /// `contextSize` は iOS 26.4 未満では常に 4,096 を返す（`@backDeployed`）。
+    private var limits: PromptBudget.Limits {
+        PromptBudget.limits(forContextSize: contextSizeOverride ?? model.contextSize)
     }
 
     // MARK: - Availability
@@ -56,10 +65,11 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
 
     func enrich(body: String, existingTags: [String]) async throws -> SeedEnrichment {
         try ensureAvailable()
-        let trimmedBody = PromptBudget.body(body)
+        let limits = self.limits
+        let trimmedBody = PromptBudget.body(body, limit: limits.body)
         guard !trimmedBody.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
-        let tags = PromptBudget.candidates(existingTags.map(TagNormalizer.clean).filter { !$0.isEmpty })
+        let tags = PromptBudget.candidates(existingTags.map(TagNormalizer.clean).filter { !$0.isEmpty }, limit: limits.candidates)
         var prompt = """
         Give the following note a title and tags.
 
@@ -88,7 +98,8 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
 
     func deepeningQuestions(for seed: SeedSnapshot) async throws -> [DeepeningQuestion] {
         try ensureAvailable()
-        let body = PromptBudget.body(seed.body)
+        let limits = self.limits
+        let body = PromptBudget.body(seed.body, limit: limits.body)
         guard !body.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
         var prompt = """
@@ -97,7 +108,7 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
         [Idea]
         \(body)
         """
-        let history = Array(seed.sprouts.suffix(PromptBudget.sproutLimit))
+        let history = Array(seed.sprouts.suffix(limits.sprouts))
         if !history.isEmpty {
             let lines = history.map { sprout -> String in
                 let question = PromptBudget.preview(sprout.question, limit: PromptBudget.sproutPreviewLimit)
@@ -137,10 +148,11 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
 
     func relatedSeeds(to seed: SeedSnapshot, candidates: [SeedSnapshot]) async throws -> [UUID] {
         try ensureAvailable()
-        let body = PromptBudget.body(seed.body)
+        let limits = self.limits
+        let body = PromptBudget.body(seed.body, limit: limits.body)
         guard !body.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
-        let pool = PromptBudget.candidates(candidates.filter { $0.id != seed.id })
+        let pool = PromptBudget.candidates(candidates.filter { $0.id != seed.id }, limit: limits.candidates)
         guard !pool.isEmpty else { return [] }
 
         let prompt = """
@@ -166,8 +178,9 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
 
     func weeklyDigest(recent: [SeedSnapshot], dormant: [SeedSnapshot]) async throws -> WeeklyDigest {
         try ensureAvailable()
-        let recentPool = PromptBudget.candidates(recent)
-        let dormantPool = PromptBudget.candidates(dormant)
+        let limits = self.limits
+        let recentPool = PromptBudget.candidates(recent, limit: limits.candidates)
+        let dormantPool = PromptBudget.candidates(dormant, limit: limits.candidates)
         let combined = recentPool + dormantPool
         guard !combined.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
