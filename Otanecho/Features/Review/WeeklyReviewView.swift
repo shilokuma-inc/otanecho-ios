@@ -1,3 +1,4 @@
+import StoreKit
 import SwiftData
 import SwiftUI
 
@@ -8,6 +9,7 @@ struct WeeklyReviewView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.ideaIntelligence) private var intelligence
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.requestReview) private var requestReview
 
     @State private var data: ReviewData?
     @State private var digest: DigestPhase = .idle
@@ -64,6 +66,10 @@ struct WeeklyReviewView: View {
         .task {
             let loaded = load()
             data = loaded
+            // 何も無い画面は「ふりかえった」うちに数えない
+            if loaded.totalCount > 0 {
+                AppReviewPrompt.shared.recordWeeklyReviewOpened()
+            }
             await runDigest(with: loaded)
         }
     }
@@ -77,9 +83,35 @@ struct WeeklyReviewView: View {
             if case .skipped = digest, !data.dormant.isEmpty {
                 dormantSection(data.dormant)
             }
+            if isDigestSettled {
+                endOfReview
+            }
         }
         .listStyle(.insetGrouped)
         .accessibilityIdentifier("weeklyReview.list")
+    }
+
+    /// ダイジェストの読み込みが終わり、一覧の末尾がもう動かないか。
+    private var isDigestSettled: Bool {
+        switch digest {
+        case .idle, .loading: false
+        case .ready, .skipped: true
+        }
+    }
+
+    /// 一覧の末尾。ここまでスクロールしたら、条件を満たすときだけレビュー依頼を出す（判断基準 5）。
+    private var endOfReview: some View {
+        Color.clear
+            .frame(height: 0)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            .accessibilityHidden(true)
+            .onAppear {
+                let prompt = AppReviewPrompt.shared
+                guard prompt.shouldRequestAfterWeeklyReview else { return }
+                prompt.markRequested()
+                requestReview()
+            }
     }
 
     private func recentSection(_ data: ReviewData) -> some View {
