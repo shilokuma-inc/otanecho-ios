@@ -29,6 +29,8 @@ struct SettingsView: View {
 private struct AboutSection: View {
     let info: AppInfo
 
+    @Environment(AppRouter.self) private var router
+
     var body: some View {
         Section("About") {
             LabeledContent("App") {
@@ -40,6 +42,11 @@ private struct AboutSection: View {
             LabeledContent("Build") {
                 Text(verbatim: info.build)
             }
+            Button("View the tutorial again") {
+                OnboardingTracker().reset()
+                router.replayTutorial()
+            }
+            .accessibilityIdentifier("settings.replayTutorial")
         }
     }
 }
@@ -77,4 +84,5 @@ struct AppInfo: Equatable {
 
 #Preview {
     SettingsView()
+        .environment(AppRouter())
 }

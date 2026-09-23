@@ -36,6 +36,44 @@ struct OnboardingTests {
         }
     }
 
+    /// 設定画面から見返すときは記録を落とし、初回と同じ扱いに戻す。
+    @Test func presentsAgainAfterReset() {
+        withTracker { tracker, _ in
+            tracker.markCompleted()
+
+            tracker.reset()
+
+            #expect(tracker.completedVersion == 0)
+            #expect(tracker.shouldPresentOnLaunch)
+        }
+    }
+
+    /// シートを開いたまま見返すと、シートが閉じ終わるまでチュートリアルを出さない。
+    @MainActor @Test func replayWaitsForTheSheetToBeDismissed() {
+        let router = AppRouter()
+        router.showSettings()
+
+        router.replayTutorial()
+
+        #expect(router.sheet == nil)
+        #expect(!router.isShowingTutorial)
+
+        router.sheetDidDismiss()
+
+        #expect(router.isShowingTutorial)
+    }
+
+    /// 見返す要求が無いときにシートが閉じても、チュートリアルは出さない。
+    @MainActor @Test func dismissingASheetDoesNotShowTheTutorialByItself() {
+        let router = AppRouter()
+        router.showWeeklyReview()
+        router.sheet = nil
+
+        router.sheetDidDismiss()
+
+        #expect(!router.isShowingTutorial)
+    }
+
     @Test func pagesAreUniqueAndStartWithCapture() {
         let pages = OnboardingPage.all
 
