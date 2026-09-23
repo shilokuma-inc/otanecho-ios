@@ -5,7 +5,7 @@ import Foundation
 /// 「見せ終わった版」を番号で持つ。初回起動かどうかはこの番号で判定し、
 /// あとから内容を大きく入れ替えたくなったら `currentVersion` を上げれば既存ユーザーにももう一度出せる。
 ///
-/// 手動で見返す導線（後続対応）は `AppRouter.showTutorial()` を呼ぶだけでよく、この記録には触らない。
+/// 設定画面から見返すときは `reset()` で記録を落としてから出す。途中で閉じても次回起動時にもう一度出る。
 /// 表示の判定と記録をここに閉じ込めてあるので、画面側は「出す / 出さない」を知らなくて済む。
 nonisolated struct OnboardingTracker: Sendable {
     /// いまのチュートリアルの版。内容を入れ替えて見せ直したくなったら上げる。
@@ -39,5 +39,10 @@ nonisolated struct OnboardingTracker: Sendable {
     /// 途中でやめた人に毎回出し直すのは、Skip を置いた意味が無くなるため。
     func markCompleted() {
         defaults.set(Self.currentVersion, forKey: Self.storageKey)
+    }
+
+    /// 見せ終わった記録を消す。設定画面から見返すときに使う。
+    func reset() {
+        defaults.removeObject(forKey: Self.storageKey)
     }
 }

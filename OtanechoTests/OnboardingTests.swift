@@ -36,6 +36,18 @@ struct OnboardingTests {
         }
     }
 
+    /// 設定画面から見返すときは記録を落とし、初回と同じ扱いに戻す。
+    @Test func presentsAgainAfterReset() {
+        withTracker { tracker, _ in
+            tracker.markCompleted()
+
+            tracker.reset()
+
+            #expect(tracker.completedVersion == 0)
+            #expect(tracker.shouldPresentOnLaunch)
+        }
+    }
+
     @Test func pagesAreUniqueAndStartWithCapture() {
         let pages = OnboardingPage.all
 
