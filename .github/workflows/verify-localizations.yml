@@ -25,3 +25,8 @@ jobs:
 
       - name: Verify translations
         run: python3 Tools/verify_localizations.py
+
+      - name: Verify App Store metadata
+        # App Store Connect にはつながず、欠損と文字数超過だけ見る。
+        # 上限を超えていると反映のときに弾かれるので、ここで先に落とす。
+        run: python3 Tools/upload_metadata.py --check

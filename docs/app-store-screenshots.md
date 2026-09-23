@@ -23,6 +23,9 @@ Actions タブ → `Screenshots/App Store` → `Run workflow`。
 スクリーンショットの置き場所は言語ごとにしかないため、先に言語が無いと反映できないため。
 ただし説明文やキーワードは空のまま作られるので、審査に出す前に App Store Connect で埋めること。
 
+説明文・キーワード・サポート URL は別のワークフローが受け持つ。
+[app-store-metadata.md](app-store-metadata.md) を参照。
+
 ## 撮る流れ
 
 ```
