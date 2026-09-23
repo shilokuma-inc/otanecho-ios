@@ -2699,6 +2699,76 @@
         }
       }
     },
+    "Does something similar already exist? How is this different?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "似たものはすでにある？それとは何が違う？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gibt es schon etwas Ähnliches? Was ist hier anders?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Ya existe algo parecido? ¿En qué se diferencia esto?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Existe-t-il déjà quelque chose de similaire ? En quoi est-ce différent ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah sudah ada yang mirip? Apa bedanya dengan ini?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esiste già qualcosa di simile? In cosa è diverso?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비슷한 것이 이미 있을까? 그것과 무엇이 다를까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Já existe algo parecido? No que isso é diferente?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Есть ли уже что-то похожее? Чем это отличается?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已经有类似的东西了吗？这和它有什么不同？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已經有類似的東西了嗎？這和它有什麼不同？"
+          }
+        }
+      }
+    },
     "Dormant seeds" : {
       "localizations" : {
         "ja" : {
@@ -3325,6 +3395,76 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "值得組合的想法"
+          }
+        }
+      }
+    },
+    "If the opposite turned out to be right, what would change?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "もし逆のほうが正しかったら、何が変わる？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was würde sich ändern, wenn sich das Gegenteil als richtig herausstellt?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si resultara que lo contrario es lo correcto, ¿qué cambiaría?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si c’était l’inverse qui s’avérait juste, qu’est-ce qui changerait ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalau ternyata yang sebaliknya benar, apa yang akan berubah?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se si scoprisse che è giusto il contrario, cosa cambierebbe?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "만약 반대가 옳다면 무엇이 달라질까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se o oposto se mostrasse certo, o que mudaria?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если окажется, что верно обратное, что изменится?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果事实恰恰相反，会有什么不同？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果事實恰恰相反，會有什麼不同？"
           }
         }
       }
@@ -4799,6 +4939,76 @@
         }
       }
     },
+    "On a device with Apple Intelligence, you'd also get questions tailored to this seed." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence 対応の端末なら、この種に沿った問いも受け取れます。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einem Gerät mit Apple Intelligence bekämst du außerdem Fragen, die auf diesen Samen zugeschnitten sind."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En un dispositivo con Apple Intelligence, también recibirías preguntas adaptadas a esta semilla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sur un appareil compatible avec Apple Intelligence, vous recevriez aussi des questions adaptées à cette graine."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di perangkat dengan Apple Intelligence, kamu juga akan mendapat pertanyaan yang disesuaikan dengan benih ini."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Su un dispositivo con Apple Intelligence riceveresti anche domande su misura per questo seme."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence를 지원하는 기기에서는 이 씨앗에 맞춘 질문도 받을 수 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Em um dispositivo com a Apple Intelligence, você também receberia perguntas feitas sob medida para esta semente."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На устройстве с Apple Intelligence вы также получали бы вопросы именно по этому семени."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在支持 Apple Intelligence 的设备上，还能收到针对这颗种子的问题。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在支援 Apple Intelligence 的裝置上，還能收到針對這顆種子的問題。"
+          }
+        }
+      }
+    },
     "Open Settings" : {
       "localizations" : {
         "ja" : {
@@ -5631,72 +5841,72 @@
         }
       }
     },
-    "Questions aren't available right now. Please try again later." : {
+    "Questions tailored to this seed aren't available right now." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "いまは問いを作れません。しばらくしてからお試しください。"
+            "value" : "この種に沿った問いは、いまは出せません。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fragen sind gerade nicht verfügbar. Versuche es später noch einmal."
+            "value" : "Auf diesen Samen zugeschnittene Fragen sind gerade nicht verfügbar."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ahora mismo no se pueden crear preguntas. Inténtalo de nuevo más tarde."
+            "value" : "Ahora mismo no hay preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de créer des questions pour le moment. Réessayez plus tard."
+            "value" : "Les questions adaptées à cette graine ne sont pas disponibles pour le moment."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pertanyaan belum tersedia saat ini. Coba lagi nanti."
+            "value" : "Pertanyaan yang disesuaikan dengan benih ini sedang tidak tersedia."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al momento non è possibile creare domande. Riprova più tardi."
+            "value" : "Al momento non sono disponibili domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "지금은 질문을 만들 수 없습니다. 잠시 후에 다시 시도해 주세요."
+            "value" : "지금은 이 씨앗에 맞춘 질문을 받을 수 없습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível criar perguntas agora. Tente de novo mais tarde."
+            "value" : "Perguntas feitas sob medida para esta semente não estão disponíveis agora."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сейчас вопросы недоступны. Попробуйте позже."
+            "value" : "Вопросы именно по этому семени сейчас недоступны."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "现在无法生成问题。请稍后再试。"
+            "value" : "目前无法提供针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "現在無法產生問題。請稍後再試。"
+            "value" : "目前無法提供針對這顆種子的問題。"
           }
         }
       }
@@ -7661,72 +7871,72 @@
         }
       }
     },
-    "The model is still getting ready. Please try again later." : {
+    "The model is still getting ready. Once it is, you'll also get questions tailored to this seed." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "モデルの準備中です。しばらくしてからお試しください。"
+            "value" : "モデルを準備しています。準備ができると、この種に沿った問いも受け取れます。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Modell wird noch vorbereitet. Versuche es später noch einmal."
+            "value" : "Das Modell wird noch vorbereitet. Sobald es bereit ist, bekommst du außerdem Fragen, die auf diesen Samen zugeschnitten sind."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El modelo todavía se está preparando. Inténtalo de nuevo más tarde."
+            "value" : "El modelo aún se está preparando. Cuando esté listo, también recibirás preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modèle se prépare encore. Réessayez plus tard."
+            "value" : "Le modèle est encore en préparation. Une fois prêt, vous recevrez aussi des questions adaptées à cette graine."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modelnya masih bersiap. Coba lagi nanti."
+            "value" : "Model masih disiapkan. Setelah siap, kamu juga akan mendapat pertanyaan yang disesuaikan dengan benih ini."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il modello è ancora in preparazione. Riprova più tardi."
+            "value" : "Il modello è ancora in preparazione. Quando sarà pronto, riceverai anche domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "모델을 준비하고 있습니다. 잠시 후에 다시 시도해 주세요."
+            "value" : "모델을 준비하고 있습니다. 준비가 끝나면 이 씨앗에 맞춘 질문도 받을 수 있습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O modelo ainda está sendo preparado. Tente de novo mais tarde."
+            "value" : "O modelo ainda está sendo preparado. Quando estiver pronto, você também receberá perguntas feitas sob medida para esta semente."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Модель ещё готовится. Попробуйте позже."
+            "value" : "Модель ещё готовится. Когда она будет готова, вы также будете получать вопросы именно по этому семени."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "模型仍在准备中。请稍后再试。"
+            "value" : "模型仍在准备中。准备好后，还能收到针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "模型仍在準備中。請稍後再試。"
+            "value" : "模型仍在準備中。準備好後，還能收到針對這顆種子的問題。"
           }
         }
       }
@@ -8152,76 +8362,6 @@
         }
       }
     },
-    "This feature needs a device that supports Apple Intelligence." : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "この機能には Apple Intelligence 対応の端末が必要です。"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diese Funktion benötigt ein Gerät, das Apple Intelligence unterstützt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esta función requiere un dispositivo compatible con Apple Intelligence."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cette fonctionnalité nécessite un appareil compatible avec Apple Intelligence."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fitur ini memerlukan perangkat yang mendukung Apple Intelligence."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questa funzione richiede un dispositivo che supporta Apple Intelligence."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 기능을 사용하려면 Apple Intelligence를 지원하는 기기가 필요합니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Este recurso requer um dispositivo compatível com a Apple Intelligence."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Для этой функции нужно устройство с поддержкой Apple Intelligence."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此功能需要支持 Apple Intelligence 的设备。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此功能需要支援 Apple Intelligence 的裝置。"
-          }
-        }
-      }
-    },
     "This seed may have been deleted or moved out of the archive." : {
       "localizations" : {
         "ja" : {
@@ -8642,72 +8782,72 @@
         }
       }
     },
-    "Turn on Apple Intelligence & Siri in Settings to receive questions for this seed." : {
+    "Turn on Apple Intelligence & Siri in Settings to also get questions tailored to this seed." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定 > Apple Intelligence と Siri でオンにすると、この種への問いを受け取れます。"
+            "value" : "設定 > Apple Intelligence と Siri でオンにすると、この種に沿った問いも受け取れます。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktiviere Apple Intelligence & Siri in den Einstellungen, um Fragen zu diesem Samen zu erhalten."
+            "value" : "Aktiviere Apple Intelligence & Siri in den Einstellungen, um außerdem Fragen zu erhalten, die auf diesen Samen zugeschnitten sind."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activa Apple Intelligence y Siri en Ajustes para recibir preguntas sobre esta semilla."
+            "value" : "Activa Apple Intelligence y Siri en Ajustes para recibir también preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activez Apple Intelligence et Siri dans Réglages pour recevoir des questions sur cette graine."
+            "value" : "Activez Apple Intelligence et Siri dans Réglages pour recevoir aussi des questions adaptées à cette graine."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktifkan Apple Intelligence & Siri di Pengaturan untuk menerima pertanyaan tentang benih ini."
+            "value" : "Aktifkan Apple Intelligence & Siri di Pengaturan untuk juga mendapat pertanyaan yang disesuaikan dengan benih ini."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva Apple Intelligence e Siri in Impostazioni per ricevere domande su questo seme."
+            "value" : "Attiva Apple Intelligence e Siri in Impostazioni per ricevere anche domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설정 > Apple Intelligence 및 Siri에서 켜면 이 씨앗에 대한 질문을 받을 수 있습니다."
+            "value" : "설정 > Apple Intelligence 및 Siri에서 켜면 이 씨앗에 맞춘 질문도 받을 수 있습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ative a Apple Intelligence e a Siri nos Ajustes para receber perguntas sobre esta semente."
+            "value" : "Ative a Apple Intelligence e a Siri nos Ajustes para receber também perguntas feitas sob medida para esta semente."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Включите Apple Intelligence и Siri в Настройках, чтобы получать вопросы по этому семени."
+            "value" : "Включите Apple Intelligence и Siri в Настройках, чтобы также получать вопросы именно по этому семени."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在“设置”>“Apple Intelligence 与 Siri”中开启后，就能收到针对这颗种子的问题。"
+            "value" : "在“设置”>“Apple Intelligence 与 Siri”中开启后，还能收到针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在「設定」>「Apple Intelligence 與 Siri」中開啟後，就能收到針對這顆種子的問題。"
+            "value" : "在「設定」>「Apple Intelligence 與 Siri」中開啟後，還能收到針對這顆種子的問題。"
           }
         }
       }
@@ -9273,6 +9413,146 @@
         }
       }
     },
+    "What are you assuming here that might not be true?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当然だと思っていることのうち、実は違うかもしれないものは？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wovon gehst du hier aus, das vielleicht gar nicht stimmt?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué estás dando por hecho aquí que quizá no sea cierto?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Que tenez-vous pour acquis ici qui pourrait ne pas être vrai ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang kamu anggap benar di sini, padahal mungkin tidak?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cosa stai dando per scontato che potrebbe non essere vero?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기서 당연하다고 여기는 것 중 사실이 아닐 수도 있는 것은?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O que você está supondo aqui que talvez não seja verdade?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что вы здесь принимаете как данность, хотя это может быть неправдой?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这里有哪些你默认成立、但可能并不正确的假设？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這裡有哪些你預設成立、但可能並不正確的假設？"
+          }
+        }
+      }
+    },
+    "What could you do this week to find out whether this is worth pursuing?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "続ける価値があるか確かめるために、今週できることは？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was könntest du diese Woche tun, um herauszufinden, ob sich das lohnt?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué podrías hacer esta semana para saber si vale la pena seguir con esto?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Que pourriez-vous faire cette semaine pour savoir si cela vaut la peine d’être poursuivi ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang bisa kamu lakukan minggu ini untuk tahu apakah ini layak dilanjutkan?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cosa potresti fare questa settimana per capire se vale la pena portarla avanti?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계속할 가치가 있는지 확인하려면 이번 주에 무엇을 할 수 있을까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O que você poderia fazer esta semana para descobrir se vale a pena seguir com isso?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что вы могли бы сделать на этой неделе, чтобы понять, стоит ли этим заниматься?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这周你可以做些什么，来判断这件事值不值得继续？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這週你可以做些什麼，來判斷這件事值不值得繼續？"
+          }
+        }
+      }
+    },
     "What would you like to jot down?" : {
       "localizations" : {
         "ja" : {
@@ -9343,6 +9623,76 @@
         }
       }
     },
+    "What would you need that you don't have yet?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "必要なのに、まだ手元にないものは？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was bräuchtest du, das du noch nicht hast?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué necesitarías que todavía no tienes?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De quoi auriez-vous besoin que vous n’avez pas encore ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang kamu butuhkan tapi belum kamu punya?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di cosa avresti bisogno che ancora non hai?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필요하지만 아직 갖추지 못한 것은?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do que você precisaria que ainda não tem?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что вам понадобится из того, чего у вас пока нет?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你还需要哪些目前没有的东西？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你還需要哪些目前沒有的東西？"
+          }
+        }
+      }
+    },
     "What you focused on" : {
       "localizations" : {
         "ja" : {
@@ -9409,6 +9759,146 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "本週的關注點"
+          }
+        }
+      }
+    },
+    "What's most likely to stop this from happening?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これを実現するうえで、いちばん障害になりそうなのは？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was würde das am ehesten verhindern?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué es lo que más probablemente impediría que esto ocurra?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qu’est-ce qui risque le plus d’empêcher cela de se réaliser ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa yang paling mungkin menghalangi ini terwujud?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cosa è più probabile che impedisca che succeda?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이것을 실현하는 데 가장 걸림돌이 될 만한 것은?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O que tem mais chance de impedir que isso aconteça?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что скорее всего помешает этому осуществиться?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最可能让这件事落空的是什么？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最可能讓這件事落空的是什麼？"
+          }
+        }
+      }
+    },
+    "What's the smallest thing you could try in the next 15 minutes?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この 15 分でできる、いちばん小さな一歩は？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Was ist das Kleinste, das du in den nächsten 15 Minuten ausprobieren könntest?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué es lo más pequeño que podrías probar en los próximos 15 minutos?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quelle est la plus petite chose que vous pourriez essayer dans les 15 prochaines minutes ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apa langkah terkecil yang bisa kamu coba dalam 15 menit ke depan?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qual è la cosa più piccola che potresti provare nei prossimi 15 minuti?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앞으로 15분 안에 해 볼 수 있는 가장 작은 일은?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qual é a menor coisa que você poderia tentar nos próximos 15 minutos?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Какой самый маленький шаг вы могли бы сделать в ближайшие 15 минут?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "接下来 15 分钟里，你能尝试的最小一步是什么？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "接下來 15 分鐘裡，你能嘗試的最小一步是什麼？"
           }
         }
       }
@@ -9549,6 +10039,216 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "把剛想到的直接寫下來"
+          }
+        }
+      }
+    },
+    "Where have you seen something like this work, or fail?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "似たことがうまくいった例、失敗した例をどこかで見た？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wo hast du so etwas schon funktionieren oder scheitern sehen?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Dónde has visto algo así funcionar, o fracasar?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Où avez-vous vu quelque chose de semblable réussir, ou échouer ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di mana kamu pernah melihat hal serupa berhasil, atau gagal?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dove hai visto qualcosa di simile funzionare, o fallire?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이와 비슷한 것이 잘되거나 실패한 사례를 어디서 봤을까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Onde você já viu algo assim dar certo, ou dar errado?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Где вы видели, как что-то подобное сработало или провалилось?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你在哪里见过类似的事情成功或失败？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "你在哪裡見過類似的事情成功或失敗？"
+          }
+        }
+      }
+    },
+    "Who has this problem today, and when does it come up for them?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これで困っているのは具体的に誰で、それはどんなとき？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wer hat dieses Problem heute, und wann tritt es bei ihnen auf?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Quién tiene este problema hoy y cuándo le surge?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Qui rencontre ce problème aujourd’hui, et à quel moment ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siapa yang mengalami masalah ini sekarang, dan kapan itu muncul?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chi ha questo problema oggi, e quando gli capita?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 이 문제로 곤란한 사람은 누구이고, 언제 그런 일이 생길까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quem tem esse problema hoje, e quando ele aparece?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У кого эта проблема есть сейчас и когда она возникает?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "现在是谁遇到了这个问题？通常在什么时候出现？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "現在是誰遇到了這個問題？通常在什麼時候出現？"
+          }
+        }
+      }
+    },
+    "Who, specifically, is this for?" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "これは具体的に誰のため？"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Für wen genau ist das?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Para quién es esto, en concreto?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "À qui cela s’adresse-t-il, précisément ?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ini sebenarnya untuk siapa, secara spesifik?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per chi è, esattamente?"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이건 구체적으로 누구를 위한 것일까?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para quem, exatamente, é isso?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для кого именно это?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这具体是为谁准备的？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "這具體是為誰準備的？"
           }
         }
       }
