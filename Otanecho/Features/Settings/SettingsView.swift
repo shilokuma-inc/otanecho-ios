@@ -10,6 +10,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             List {
+                IntelligenceSection()
                 AboutSection(info: .current)
             }
             .navigationTitle("Settings")
