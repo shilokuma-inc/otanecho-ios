@@ -4939,6 +4939,76 @@
         }
       }
     },
+    "On a device with Apple Intelligence, you'd also get questions tailored to this seed." : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence 対応の端末なら、この種に沿った問いも受け取れます。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auf einem Gerät mit Apple Intelligence bekämst du außerdem Fragen, die auf diesen Samen zugeschnitten sind."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En un dispositivo con Apple Intelligence, también recibirías preguntas adaptadas a esta semilla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sur un appareil compatible avec Apple Intelligence, vous recevriez aussi des questions adaptées à cette graine."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di perangkat dengan Apple Intelligence, kamu juga akan mendapat pertanyaan yang disesuaikan dengan benih ini."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Su un dispositivo con Apple Intelligence riceveresti anche domande su misura per questo seme."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence를 지원하는 기기에서는 이 씨앗에 맞춘 질문도 받을 수 있습니다."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Em um dispositivo com a Apple Intelligence, você também receberia perguntas feitas sob medida para esta semente."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На устройстве с Apple Intelligence вы также получали бы вопросы именно по этому семени."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在支持 Apple Intelligence 的设备上，还能收到针对这颗种子的问题。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在支援 Apple Intelligence 的裝置上，還能收到針對這顆種子的問題。"
+          }
+        }
+      }
+    },
     "Open Settings" : {
       "localizations" : {
         "ja" : {
@@ -5771,72 +5841,72 @@
         }
       }
     },
-    "Questions aren't available right now. Please try again later." : {
+    "Questions tailored to this seed aren't available right now." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "いまは問いを作れません。しばらくしてからお試しください。"
+            "value" : "この種に沿った問いは、いまは出せません。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fragen sind gerade nicht verfügbar. Versuche es später noch einmal."
+            "value" : "Auf diesen Samen zugeschnittene Fragen sind gerade nicht verfügbar."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ahora mismo no se pueden crear preguntas. Inténtalo de nuevo más tarde."
+            "value" : "Ahora mismo no hay preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de créer des questions pour le moment. Réessayez plus tard."
+            "value" : "Les questions adaptées à cette graine ne sont pas disponibles pour le moment."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pertanyaan belum tersedia saat ini. Coba lagi nanti."
+            "value" : "Pertanyaan yang disesuaikan dengan benih ini sedang tidak tersedia."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al momento non è possibile creare domande. Riprova più tardi."
+            "value" : "Al momento non sono disponibili domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "지금은 질문을 만들 수 없습니다. 잠시 후에 다시 시도해 주세요."
+            "value" : "지금은 이 씨앗에 맞춘 질문을 받을 수 없습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não é possível criar perguntas agora. Tente de novo mais tarde."
+            "value" : "Perguntas feitas sob medida para esta semente não estão disponíveis agora."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Сейчас вопросы недоступны. Попробуйте позже."
+            "value" : "Вопросы именно по этому семени сейчас недоступны."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "现在无法生成问题。请稍后再试。"
+            "value" : "目前无法提供针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "現在無法產生問題。請稍後再試。"
+            "value" : "目前無法提供針對這顆種子的問題。"
           }
         }
       }
@@ -7801,72 +7871,72 @@
         }
       }
     },
-    "The model is still getting ready. Please try again later." : {
+    "The model is still getting ready. Once it is, you'll also get questions tailored to this seed." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "モデルの準備中です。しばらくしてからお試しください。"
+            "value" : "モデルを準備しています。準備ができると、この種に沿った問いも受け取れます。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Das Modell wird noch vorbereitet. Versuche es später noch einmal."
+            "value" : "Das Modell wird noch vorbereitet. Sobald es bereit ist, bekommst du außerdem Fragen, die auf diesen Samen zugeschnitten sind."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El modelo todavía se está preparando. Inténtalo de nuevo más tarde."
+            "value" : "El modelo aún se está preparando. Cuando esté listo, también recibirás preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le modèle se prépare encore. Réessayez plus tard."
+            "value" : "Le modèle est encore en préparation. Une fois prêt, vous recevrez aussi des questions adaptées à cette graine."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Modelnya masih bersiap. Coba lagi nanti."
+            "value" : "Model masih disiapkan. Setelah siap, kamu juga akan mendapat pertanyaan yang disesuaikan dengan benih ini."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Il modello è ancora in preparazione. Riprova più tardi."
+            "value" : "Il modello è ancora in preparazione. Quando sarà pronto, riceverai anche domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "모델을 준비하고 있습니다. 잠시 후에 다시 시도해 주세요."
+            "value" : "모델을 준비하고 있습니다. 준비가 끝나면 이 씨앗에 맞춘 질문도 받을 수 있습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O modelo ainda está sendo preparado. Tente de novo mais tarde."
+            "value" : "O modelo ainda está sendo preparado. Quando estiver pronto, você também receberá perguntas feitas sob medida para esta semente."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Модель ещё готовится. Попробуйте позже."
+            "value" : "Модель ещё готовится. Когда она будет готова, вы также будете получать вопросы именно по этому семени."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "模型仍在准备中。请稍后再试。"
+            "value" : "模型仍在准备中。准备好后，还能收到针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "模型仍在準備中。請稍後再試。"
+            "value" : "模型仍在準備中。準備好後，還能收到針對這顆種子的問題。"
           }
         }
       }
@@ -8292,76 +8362,6 @@
         }
       }
     },
-    "This feature needs a device that supports Apple Intelligence." : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "この機能には Apple Intelligence 対応の端末が必要です。"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diese Funktion benötigt ein Gerät, das Apple Intelligence unterstützt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esta función requiere un dispositivo compatible con Apple Intelligence."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cette fonctionnalité nécessite un appareil compatible avec Apple Intelligence."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fitur ini memerlukan perangkat yang mendukung Apple Intelligence."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Questa funzione richiede un dispositivo che supporta Apple Intelligence."
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "이 기능을 사용하려면 Apple Intelligence를 지원하는 기기가 필요합니다."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Este recurso requer um dispositivo compatível com a Apple Intelligence."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Для этой функции нужно устройство с поддержкой Apple Intelligence."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此功能需要支持 Apple Intelligence 的设备。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "此功能需要支援 Apple Intelligence 的裝置。"
-          }
-        }
-      }
-    },
     "This seed may have been deleted or moved out of the archive." : {
       "localizations" : {
         "ja" : {
@@ -8782,72 +8782,72 @@
         }
       }
     },
-    "Turn on Apple Intelligence & Siri in Settings to receive questions for this seed." : {
+    "Turn on Apple Intelligence & Siri in Settings to also get questions tailored to this seed." : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "設定 > Apple Intelligence と Siri でオンにすると、この種への問いを受け取れます。"
+            "value" : "設定 > Apple Intelligence と Siri でオンにすると、この種に沿った問いも受け取れます。"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktiviere Apple Intelligence & Siri in den Einstellungen, um Fragen zu diesem Samen zu erhalten."
+            "value" : "Aktiviere Apple Intelligence & Siri in den Einstellungen, um außerdem Fragen zu erhalten, die auf diesen Samen zugeschnitten sind."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activa Apple Intelligence y Siri en Ajustes para recibir preguntas sobre esta semilla."
+            "value" : "Activa Apple Intelligence y Siri en Ajustes para recibir también preguntas adaptadas a esta semilla."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Activez Apple Intelligence et Siri dans Réglages pour recevoir des questions sur cette graine."
+            "value" : "Activez Apple Intelligence et Siri dans Réglages pour recevoir aussi des questions adaptées à cette graine."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aktifkan Apple Intelligence & Siri di Pengaturan untuk menerima pertanyaan tentang benih ini."
+            "value" : "Aktifkan Apple Intelligence & Siri di Pengaturan untuk juga mendapat pertanyaan yang disesuaikan dengan benih ini."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Attiva Apple Intelligence e Siri in Impostazioni per ricevere domande su questo seme."
+            "value" : "Attiva Apple Intelligence e Siri in Impostazioni per ricevere anche domande su misura per questo seme."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "설정 > Apple Intelligence 및 Siri에서 켜면 이 씨앗에 대한 질문을 받을 수 있습니다."
+            "value" : "설정 > Apple Intelligence 및 Siri에서 켜면 이 씨앗에 맞춘 질문도 받을 수 있습니다."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ative a Apple Intelligence e a Siri nos Ajustes para receber perguntas sobre esta semente."
+            "value" : "Ative a Apple Intelligence e a Siri nos Ajustes para receber também perguntas feitas sob medida para esta semente."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Включите Apple Intelligence и Siri в Настройках, чтобы получать вопросы по этому семени."
+            "value" : "Включите Apple Intelligence и Siri в Настройках, чтобы также получать вопросы именно по этому семени."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在“设置”>“Apple Intelligence 与 Siri”中开启后，就能收到针对这颗种子的问题。"
+            "value" : "在“设置”>“Apple Intelligence 与 Siri”中开启后，还能收到针对这颗种子的问题。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在「設定」>「Apple Intelligence 與 Siri」中開啟後，就能收到針對這顆種子的問題。"
+            "value" : "在「設定」>「Apple Intelligence 與 Siri」中開啟後，還能收到針對這顆種子的問題。"
           }
         }
       }
