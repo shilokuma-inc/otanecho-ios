@@ -1,0 +1,9 @@
+{
+  "_comment": [
+    "言語によらず同じ値を使う App Store のメタデータ。",
+    "supportUrl は Apple の審査で実際に開かれるので、必ず到達できる URL にすること。",
+    "いまは公開リポジトリの Issues を指している。専用のサポートページを用意したら差し替える",
+    "（組織の慣例では https://shilokuma-inc.github.io/iOS-Release-Sample/ 配下）。"
+  ],
+  "supportUrl": "https://github.com/shilokuma-inc/otanecho-ios/issues"
+}
