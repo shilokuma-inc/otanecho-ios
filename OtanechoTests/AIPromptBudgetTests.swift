@@ -269,4 +269,44 @@ struct AIPromptBudgetTests {
             sprouts: []
         )
     }
+
+    // MARK: - split
+
+    /// 2 つのプールに別々に上限を掛けると合計が 2 倍になるため、分け合う。
+    @Test func splitNeverExceedsTheSharedLimit() {
+        let first = Array(1...100)
+        let second = Array(101...200)
+
+        let (a, b) = PromptBudget.split(first, second, limit: 30)
+
+        #expect(a.count + b.count == 30)
+    }
+
+    /// 片方が少なければ、余った分はもう片方が使える。
+    @Test func splitGivesLeftoverCapacityToTheOtherPool() {
+        let (a, b) = PromptBudget.split(Array(1...3), Array(101...200), limit: 30)
+
+        #expect(a.count == 3)
+        #expect(b.count == 27)
+
+        let (c, d) = PromptBudget.split(Array(1...100), Array(101...103), limit: 30)
+
+        #expect(c.count == 27)
+        #expect(d.count == 3)
+    }
+
+    /// どちらも多いときは、半分ずつに近い配分になる。
+    @Test func splitSharesEvenlyWhenBothPoolsAreLarge() {
+        let (a, b) = PromptBudget.split(Array(1...100), Array(101...200), limit: 30)
+
+        #expect(a.count == 15)
+        #expect(b.count == 15)
+    }
+
+    @Test func splitReturnsNothingForANonPositiveLimit() {
+        let (a, b) = PromptBudget.split(Array(1...10), Array(11...20), limit: 0)
+
+        #expect(a.isEmpty)
+        #expect(b.isEmpty)
+    }
 }

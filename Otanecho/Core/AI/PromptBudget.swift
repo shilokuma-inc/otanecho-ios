@@ -104,6 +104,20 @@ nonisolated enum PromptBudget {
         Array(items.prefix(limit))
     }
 
+    /// 2 つのプールで 1 つの上限を分け合う。合計が `limit` を超えない。
+    ///
+    /// それぞれに `candidates(_:limit:)` を掛けると合計が上限の 2 倍になり、
+    /// コンテキスト長から決めた予算を超えてしまう。
+    /// まず `second` に半分までを確保し、残りを `first` に渡したうえで、
+    /// `first` が使い切らなかった分を `second` に戻す。
+    /// 片方が少ないときは、もう片方が余りを使えるようにするため。
+    static func split<T>(_ first: [T], _ second: [T], limit: Int) -> (first: [T], second: [T]) {
+        let reservedForSecond = min(second.count, max(0, limit) / 2)
+        let firstPool = candidates(first, limit: max(0, limit - reservedForSecond))
+        let secondPool = candidates(second, limit: max(0, limit - firstPool.count))
+        return (firstPool, secondPool)
+    }
+
     /// 種を 1 始まりの番号付きリストにする。番号はモデルに UUID を触らせないための代替キー。
     /// 例: `1. タイトル — 本文プレビュー`
     static func numberedList(_ seeds: [SeedSnapshot], startingAt start: Int = 1) -> String {
