@@ -179,8 +179,9 @@ nonisolated final class FoundationModelsIntelligence: IdeaIntelligence, Sendable
     func weeklyDigest(recent: [SeedSnapshot], dormant: [SeedSnapshot]) async throws -> WeeklyDigest {
         try ensureAvailable()
         let limits = self.limits
-        let recentPool = PromptBudget.candidates(recent, limit: limits.candidates)
-        let dormantPool = PromptBudget.candidates(dormant, limit: limits.candidates)
+        // 上限は 2 つのプールで分け合う。別々に掛けると合計が 2 倍になり、
+        // コンテキスト長から決めた予算を超える。
+        let (recentPool, dormantPool) = PromptBudget.split(recent, dormant, limit: limits.candidates)
         let combined = recentPool + dormantPool
         guard !combined.isEmpty else { throw IdeaIntelligenceError.emptyInput }
 
