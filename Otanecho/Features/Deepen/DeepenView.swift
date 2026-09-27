@@ -271,16 +271,20 @@ struct DeepenView: View {
 
     /// AI が使えないときに、テンプレートから問いを出す。
     /// この種で既に出した問い（回答済み・未回答とも）は除く。未回答のものは「前の問い」に並んでいるため。
+    ///
+    /// `templateID` を持たない古い `Sprout` は文で照合する。保存時の言語でしか一致しないが、
+    /// この変更より前から使っている人に同じ問いを出し直さないための経過措置。
     private func showTemplateQuestions(_ availability: IntelligenceAvailability) {
-        let used = Set(seed.sprouts.map(\.question))
-        let questions = TemplateQuestions.pick(excluding: used).map {
-            DeepeningQuestion(question: $0.localizedText, intent: $0.intent.rawValue)
+        let usedIDs = Set(seed.sprouts.compactMap(\.templateID))
+        let legacyTexts = Set(seed.sprouts.filter { $0.templateID == nil }.map(\.question))
+        let questions = TemplateQuestions.pick(excludingIDs: usedIDs, legacyTexts: legacyTexts).map {
+            DeepeningQuestion(question: $0.localizedText, intent: $0.intent.rawValue, templateID: $0.id)
         }
         withAnimation(.snappy) { phase = .template(questions, availability) }
     }
 
     private func answerNewQuestion(_ question: DeepeningQuestion, with answer: String) {
-        let sprout = Sprout(question: question.question, intent: question.intent)
+        let sprout = Sprout(question: question.question, intent: question.intent, templateID: question.templateID)
         sprout.answer = answer
         sprout.answeredAt = .now
         modelContext.insert(sprout)

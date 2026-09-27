@@ -13,6 +13,8 @@ nonisolated struct DeepeningQuestion: Sendable, Equatable, Identifiable {
     var question: String
     /// 問いの狙い（前提を疑う / 対象を具体化する / 最小の一歩を決める など）
     var intent: String
+    /// テンプレート由来ならその識別子。AI が生成した問いは nil。
+    var templateID: String?
 }
 
 /// 週次レビューのダイジェスト。
