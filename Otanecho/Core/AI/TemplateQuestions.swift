@@ -78,14 +78,22 @@ nonisolated enum TemplateQuestions {
     /// 狙いが重複しないように問いを選ぶ。
     ///
     /// 5 つの狙いから `questionsPerRound` 個を選び、それぞれの狙いの問いから 1 本ずつ出す。
-    /// `usedQuestions`（その種で既に出した問いの文）に含まれる問いは出さない。
     /// 残りの問いがある狙いが足りなければ、出せる分だけ返す。
+    ///
+    /// - Parameters:
+    ///   - usedIDs: その種で既に出した問いの `Sprout.templateID`。
+    ///     言語を切り替えても一致するので、こちらを正とする。
+    ///   - legacyTexts: `templateID` を持たない古い `Sprout` の問いの文。
+    ///     保存時の言語でしか一致しないが、既存ユーザーに同じ問いを出し直さないための経過措置。
     static func pick<Generator: RandomNumberGenerator>(
-        excluding usedQuestions: Set<String>,
+        excludingIDs usedIDs: Set<String>,
+        legacyTexts: Set<String> = [],
         using generator: inout Generator
     ) -> [TemplateQuestion] {
-        let used = Set(usedQuestions.map(normalized))
-        let remaining = all.filter { !used.contains(normalized($0.localizedText)) }
+        let used = Set(legacyTexts.map(normalized))
+        let remaining = all.filter {
+            !usedIDs.contains($0.id) && !used.contains(normalized($0.localizedText))
+        }
         let byIntent = Dictionary(grouping: remaining, by: \.intent)
 
         // 並びを安定させてから混ぜる（Dictionary の順序に依存させない）
@@ -96,9 +104,9 @@ nonisolated enum TemplateQuestions {
         return intents.compactMap { byIntent[$0]?.randomElement(using: &generator) }
     }
 
-    static func pick(excluding usedQuestions: Set<String>) -> [TemplateQuestion] {
+    static func pick(excludingIDs usedIDs: Set<String>, legacyTexts: Set<String> = []) -> [TemplateQuestion] {
         var generator = SystemRandomNumberGenerator()
-        return pick(excluding: usedQuestions, using: &generator)
+        return pick(excludingIDs: usedIDs, legacyTexts: legacyTexts, using: &generator)
     }
 
     private static func normalized(_ text: String) -> String {
