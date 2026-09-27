@@ -1,13 +1,15 @@
+import StoreKit
 import SwiftData
 import SwiftUI
 
 /// 種を深掘りして芽を出す画面。AI が 3 つの問いを投げ、答えると Sprout として種に残る。
-/// AI が使えない環境でも、既存の未回答の問いには答えられる。
+/// AI が使えない環境ではテンプレートの問い（`TemplateQuestions`）を出すので、どの端末でも種 → 芽 → 木 と育つ。
 struct DeepenView: View {
     let seed: Seed
 
     @Environment(\.ideaIntelligence) private var intelligence
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.requestReview) private var requestReview
 
     @State private var phase: Phase = .idle
     /// 「別の問いをもらう」で加算して .task を再実行する
@@ -28,7 +30,8 @@ struct DeepenView: View {
         case loading
         case loaded([DeepeningQuestion])
         case failed
-        case unavailable(IntelligenceAvailability)
+        /// AI が使えないので、テンプレートの問いを出している。
+        case template([DeepeningQuestion], IntelligenceAvailability)
 
         var isLoading: Bool {
             if case .loading = self { return true }
@@ -122,23 +125,11 @@ struct DeepenView: View {
         case .idle, .loading:
             loadingView
         case .loaded(let questions):
-            VStack(alignment: .leading, spacing: 12) {
-                sectionTitle("Questions")
-                ForEach(questions) { question in
-                    QuestionCard(
-                        question: question.question,
-                        intent: Self.intentText(question.intent),
-                        isExpanded: expandedID == question.id,
-                        onToggle: { toggle(question.id) },
-                        onSubmit: { answer in answerNewQuestion(question, with: answer) }
-                    )
-                }
-                if questions.isEmpty {
-                    Text("You've answered all of these questions.")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                }
-                regenerateButton
+            questionList(questions)
+        case .template(let questions, let availability):
+            VStack(alignment: .leading, spacing: 16) {
+                questionList(questions)
+                IntelligenceUnavailableView(availability: availability)
             }
         case .failed:
             VStack(alignment: .leading, spacing: 12) {
@@ -152,8 +143,27 @@ struct DeepenView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(.fill.tertiary, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
-        case .unavailable(let availability):
-            IntelligenceUnavailableView(availability: availability)
+        }
+    }
+
+    private func questionList(_ questions: [DeepeningQuestion]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            sectionTitle("Questions")
+            ForEach(questions) { question in
+                QuestionCard(
+                    question: question.question,
+                    intent: Self.intentText(question.intent),
+                    isExpanded: expandedID == question.id,
+                    onToggle: { toggle(question.id) },
+                    onSubmit: { answer in answerNewQuestion(question, with: answer) }
+                )
+            }
+            if questions.isEmpty {
+                Text("You've answered all of these questions.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+            regenerateButton
         }
     }
 
@@ -242,7 +252,7 @@ struct DeepenView: View {
     private func loadQuestions() async {
         let availability = intelligence.availability
         guard availability.isAvailable else {
-            phase = .unavailable(availability)
+            showTemplateQuestions(availability)
             return
         }
         phase = .loading
@@ -253,21 +263,40 @@ struct DeepenView: View {
         } catch is CancellationError {
             return
         } catch let IdeaIntelligenceError.unavailable(reason) {
-            phase = .unavailable(reason)
+            showTemplateQuestions(reason)
         } catch {
             phase = .failed
         }
     }
 
+    /// AI が使えないときに、テンプレートから問いを出す。
+    /// この種で既に出した問い（回答済み・未回答とも）は除く。未回答のものは「前の問い」に並んでいるため。
+    ///
+    /// `templateID` を持たない古い `Sprout` は文で照合する。保存時の言語でしか一致しないが、
+    /// この変更より前から使っている人に同じ問いを出し直さないための経過措置。
+    private func showTemplateQuestions(_ availability: IntelligenceAvailability) {
+        let usedIDs = Set(seed.sprouts.compactMap(\.templateID))
+        let legacyTexts = Set(seed.sprouts.filter { $0.templateID == nil }.map(\.question))
+        let questions = TemplateQuestions.pick(excludingIDs: usedIDs, legacyTexts: legacyTexts).map {
+            DeepeningQuestion(question: $0.localizedText, intent: $0.intent.rawValue, templateID: $0.id)
+        }
+        withAnimation(.snappy) { phase = .template(questions, availability) }
+    }
+
     private func answerNewQuestion(_ question: DeepeningQuestion, with answer: String) {
-        let sprout = Sprout(question: question.question, intent: question.intent)
+        let sprout = Sprout(question: question.question, intent: question.intent, templateID: question.templateID)
         sprout.answer = answer
         sprout.answeredAt = .now
         modelContext.insert(sprout)
         seed.sprouts.append(sprout)
-        if case .loaded(let questions) = phase {
-            withAnimation(.snappy) {
+        withAnimation(.snappy) {
+            switch phase {
+            case .loaded(let questions):
                 phase = .loaded(questions.filter { $0.id != question.id })
+            case .template(let questions, let availability):
+                phase = .template(questions.filter { $0.id != question.id }, availability)
+            case .idle, .loading, .failed:
+                break
             }
         }
         finishAnswer()
@@ -309,7 +338,18 @@ struct DeepenView: View {
             try? await Task.sleep(for: .seconds(2.5))
             guard !Task.isCancelled else { return }
             celebration = nil
+            // 祝いの表示を見届けてから頼む。重ねて出すと祝いが目に入らない
+            if stage == .tree {
+                requestReviewIfNeeded()
+            }
         }
+    }
+
+    private func requestReviewIfNeeded() {
+        let prompt = AppReviewPrompt.shared
+        guard prompt.shouldRequestAfterTree else { return }
+        prompt.markRequested()
+        requestReview()
     }
 }
 

@@ -22,6 +22,12 @@ struct TimelineView: View {
                         router.showWeeklyReview()
                     }
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Settings", systemImage: "gearshape") {
+                        router.showSettings()
+                    }
+                    .accessibilityIdentifier("timeline.settingsButton")
+                }
             }
             .overlay(alignment: .bottomTrailing) {
                 captureButton
