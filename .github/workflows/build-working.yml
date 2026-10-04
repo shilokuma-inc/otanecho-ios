@@ -2,6 +2,10 @@ name: Build
 
 on:
   push:
+    # ドキュメントだけの変更では、macOS ランナーの枠を使わないよう Build を実行しない
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
     branches:
       - '**'
       - '!main'
