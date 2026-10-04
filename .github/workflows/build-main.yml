@@ -36,18 +36,7 @@ jobs:
           brew install xcodegen
           xcodegen generate
 
-      # 依存の取得（SwiftLint・swift-syntax などの clone）に毎回 1 分以上かかるため、SourcePackages ごと保存する。
-      # Package.resolved は .xcodeproj ごと生成物で git 管理外なので、依存を宣言している project.yml をキーにする
-      - name: Cache Swift packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ runner.temp }}/DerivedData/SourcePackages
-          # restore-keys は付けない。依存が変わったときに古い依存入りのキャッシュを復元し、そのまま保存し直して肥大化するため
-          key: spm-${{ runner.os }}-${{ hashFiles('project.yml') }}
-
       - name: Resolve package dependencies
-        env:
-          DERIVED_DATA: ${{ runner.temp }}/DerivedData
         run: .github/scripts/resolve_package_dependencies.sh
 
       - name: Build
@@ -56,5 +45,4 @@ jobs:
           xcodebuild build-for-testing \
             -project "$PROJECT" \
             -scheme "$SCHEME" \
-            -destination "generic/platform=iOS Simulator" \
-            -derivedDataPath "$RUNNER_TEMP/DerivedData"
+            -destination "generic/platform=iOS Simulator"

@@ -79,7 +79,7 @@ push で発火する GitHub Actions は以下のとおり。
 | `release/**` | Upload |
 | `main` | Build / Archive |
 
-Build は同じブランチへの連続 push で古い実行をキャンセルする。SPM の依存は `project.yml` をキーにキャッシュしている。
+Build は同じブランチへの連続 push で古い実行をキャンセルする。
 
 PR のマージ先は原則 `develop`。
 
