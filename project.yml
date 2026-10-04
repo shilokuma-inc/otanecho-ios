@@ -29,8 +29,10 @@ settings:
     SWIFT_EMIT_LOC_STRINGS: YES
 
 packages:
-  SwiftLint:
-    url: https://github.com/realm/SwiftLint
+  # SwiftLint 本体（swift-syntax などのソース依存を含む）ではなく、バイナリだけを配布する SwiftLintPlugins から取る。
+  # 依存の解決で swift-syntax などを clone しなくて済み、CI の時間とキャッシュのサイズが大きく減る
+  SwiftLintPlugins:
+    url: https://github.com/SimplyDanny/SwiftLintPlugins
     from: "0.61.0"
 
 targets:
@@ -47,7 +49,7 @@ targets:
         embed: true
     buildToolPlugins:
       - plugin: SwiftLintBuildToolPlugin
-        package: SwiftLint
+        package: SwiftLintPlugins
     info:
       path: Otanecho/Resources/Info.plist
       properties:

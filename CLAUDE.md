@@ -74,10 +74,12 @@ push で発火する GitHub Actions は以下のとおり。
 
 | push 先 | 発火するワークフロー |
 | --- | --- |
-| フィーチャーブランチ / `epic/**` | Build / Archive |
-| `develop` | Build / Archive / Upload（App Store Connect へアップロード） |
+| フィーチャーブランチ / `epic/**` | Build |
+| `develop` | Build / Upload（Archive を含む。App Store Connect へアップロード） |
 | `release/**` | Upload |
 | `main` | Build / Archive |
+
+Build は同じブランチへの連続 push で古い実行をキャンセルする。
 
 PR のマージ先は原則 `develop`。
 

@@ -7,6 +7,11 @@ on:
       - '!main'
       - '!develop'
 
+# 同じブランチへの連続 push では古い実行をキャンセルする
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: working
