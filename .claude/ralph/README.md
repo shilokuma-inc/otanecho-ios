@@ -73,7 +73,7 @@ cd ../myapp-ralph-ctl && git push -u origin epic/monetization
 **統合ブランチを挟む。** `develop` へ直接マージさせると push のたびに Upload 系
 ワークフローが発火し、1タスクごとにビルドが App Store Connect へ積まれる。
 **`epic/[機能名]`**（テーマ単位）に集約し、人間が最後に1本の PR でレビューして取り込む。
-`epic/**` はフィーチャーブランチと同じく Build / Archive が走るので、CI の検証力は保たれる。
+`epic/**` はフィーチャーブランチと同じく Build が走るので、CI の検証力は保たれる（Archive は `develop` へ取り込んだ後の Upload で確かめる）。
 1ループ = 1 epic。epic を分ければ、ループ自体を複数走らせて並列化できる。
 
 **`gh pr checks --watch` を使わない。** 最大10分ブロックしてループが止まる。
