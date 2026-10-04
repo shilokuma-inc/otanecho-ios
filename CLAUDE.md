@@ -79,7 +79,7 @@ push で発火する GitHub Actions は以下のとおり。
 | `release/**` | Upload |
 | `main` | Build / Archive |
 
-Build は同じブランチへの連続 push で古い実行をキャンセルする。
+Build は同じブランチへの連続 push で古い実行をキャンセルする。ドキュメントだけの変更（`**/*.md`、`docs/**`）では Build を実行しない（Upload / Archive は実行する）。
 
 PR のマージ先は原則 `develop`。
 
