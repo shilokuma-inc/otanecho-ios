@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Resolve bundle id
         # ビルドしないので project.yml から読む。ここに書き写すと二重管理になる。
