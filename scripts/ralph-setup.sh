@@ -15,7 +15,7 @@ if [[ -z "$INTEGRATION" ]]; then
   exit 1
 fi
 if [[ "$INTEGRATION" != epic/* ]]; then
-  echo "統合ブランチは epic/[機能名] の形式にしてください（指定: $INTEGRATION）" >&2
+  echo "統合ブランチは epic/[機能名] の形式にしてください（指定: ${INTEGRATION}）" >&2
   exit 1
 fi
 BASE="${2:-develop}"
