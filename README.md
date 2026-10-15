@@ -84,8 +84,8 @@ xcodebuild test -project Otanecho.xcodeproj -scheme Otanecho \
         </td>
         <td style="border:2px double #000080;text-align:center;"></td>
         <td style="border:2px double #000080;text-align:center;">
-          <a href="https://github.com/shilokuma-inc/otanecho-ios/actions/workflows/upload-develop.yml">
-            <img src="https://github.com/shilokuma-inc/otanecho-ios/actions/workflows/upload-develop.yml/badge.svg" alt="Upload">
+          <a href="https://github.com/shilokuma-inc/otanecho-ios/actions/workflows/upload.yml?query=branch%3Adevelop">
+            <img src="https://github.com/shilokuma-inc/otanecho-ios/actions/workflows/upload.yml/badge.svg?branch=develop" alt="Upload">
           </a>
         </td>
       </tr>
