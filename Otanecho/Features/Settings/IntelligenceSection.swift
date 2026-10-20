@@ -11,6 +11,9 @@ struct IntelligenceSection: View {
     @State private var availability: IntelligenceAvailability = .unknown
     @State private var isShowingSupportedDevices = false
 
+    // `List` の中の `Section` に付けた修飾子は中の行それぞれに配られる。
+    // `.sheet` を `Section` に付けると同じ Binding のシートが行の数だけ登録され、開いた直後に設定画面ごと閉じてしまうため、
+    // 修飾子は `Section` ではなく、1 つしかない行に付ける。
     var body: some View {
         Section {
             LabeledContent("Status") {
@@ -18,6 +21,11 @@ struct IntelligenceSection: View {
                     .foregroundStyle(availability.isAvailable ? .green : .secondary)
             }
             .accessibilityIdentifier("settings.intelligenceStatus")
+            .task { refresh() }
+            // 設定アプリで有効化して戻ってきたときに状態を取り直す
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active { refresh() }
+            }
 
             if availability == .appleIntelligenceNotEnabled,
                let url = URL(string: UIApplication.openSettingsURLString) {
@@ -25,18 +33,13 @@ struct IntelligenceSection: View {
             }
 
             Button("Devices that support AI") { isShowingSupportedDevices = true }
+                .sheet(isPresented: $isShowingSupportedDevices) {
+                    SupportedDevicesView()
+                }
         } header: {
             Text(verbatim: "Apple Intelligence")
         } footer: {
             Text("Apple Intelligence also has to be turned on in Settings, and it's offered in a limited set of languages and regions.")
-        }
-        .sheet(isPresented: $isShowingSupportedDevices) {
-            SupportedDevicesView()
-        }
-        .task { refresh() }
-        // 設定アプリで有効化して戻ってきたときに状態を取り直す
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { refresh() }
         }
     }
 
