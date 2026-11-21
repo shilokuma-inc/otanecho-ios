@@ -6,7 +6,7 @@ name: Verify/localizations
 
 on:
   pull_request:
-  # main への push では Build だけを実行する。main へ入る変更は PR の時点でここを通っている
+  # main への push では Build だけを実行する。main 宛ての PR でも pull_request でここが走る
   push:
     branches:
       - develop
