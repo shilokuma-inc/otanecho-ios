@@ -47,7 +47,7 @@
 python3 Tools/verify_localizations.py
 ```
 
-PR と `develop` / `main` への push で CI が同じものを回す（`.github/workflows/verify-localizations.yml`）。
+PR と `develop` への push で CI が同じものを回す（`.github/workflows/verify-localizations.yml`）。
 JSON を読むだけなので macOS ランナーもビルドもいらない。
 
 見ているのは次の 8 つ。

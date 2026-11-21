@@ -77,9 +77,10 @@ push で発火する GitHub Actions は以下のとおり。
 | フィーチャーブランチ / `epic/**` | Build |
 | `develop` | Build / Upload（Archive を含む。App Store Connect へアップロード） |
 | `release/**` | Upload |
-| `main` | Build / Archive |
+| `main` | Build |
 
-Build は同じブランチへの連続 push で古い実行をキャンセルする。ドキュメントだけの変更（`**/*.md`、`docs/**`）では Build を実行しない（Upload / Archive は実行する）。
+Build は同じブランチへの連続 push で古い実行をキャンセルする。ドキュメントだけの変更（`**/*.md`、`docs/**`）では Build を実行しない（`develop` / `release/**` の Upload は実行する）。
+main の Archive（`archive-main.yml`）は push では発火しないので、必要なときに手動で実行する。
 
 PR のマージ先は原則 `develop`。
 
