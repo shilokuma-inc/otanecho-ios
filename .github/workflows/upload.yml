@@ -4,6 +4,7 @@ name: Upload
 # epic ブランチなどの作業ブランチを TestFlight で確認したいときは、手動実行（workflow_dispatch）でそのブランチを選ぶ
 # （AskHub の「マージ待ち」からもこのワークフローを起動する。ファイル名 upload.yml は AskHub との取り決め）。
 # 作業ブランチの push ごとに上げると App Store Connect の 1 日あたりのアップロード上限に当たるため、自動では上げない。
+# 手動実行で upload を外すと、アップロードせずに、書き出した IPA の entitlements の確かめまでを流す。
 
 on:
   push:
@@ -11,13 +12,18 @@ on:
       - develop
       - 'release/**'
   workflow_dispatch:
+    inputs:
+      upload:
+        description: App Store Connect へアップロードする（外すと、書き出した IPA の確かめまでで止める）
+        type: boolean
+        default: true
 
 permissions:
   contents: read
 
 jobs:
   build:
-    name: Upload (${{ github.ref_name }})
+    name: ${{ (github.event_name != 'workflow_dispatch' || inputs.upload) && 'Upload' || 'Archive' }} (${{ github.ref_name }})
     runs-on: macos-latest
 
     env:
@@ -99,6 +105,7 @@ jobs:
         run: python3 .github/scripts/embed_archive_entitlements.py check build.xcarchive app.ipa
 
       - name: Upload IPA file to App Store Connect
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.upload }}
         run: |
           set -euo pipefail
           # 書き出される ipa の名前はプロダクト名で、このプロジェクトではスキーム名と一致する
