@@ -52,6 +52,13 @@ jobs:
                              CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
                              CODE_SIGNING_ALLOWED=NO
 
+      - name: Embed entitlements
+        # 署名なしの Archive には entitlements（App Groups）が入らず、Export も profile からは足さない。
+        # アプリと App Extension（ウィジェット・共有拡張）を、$(…) を展開した entitlements でアドホック署名し、Export に引き継がせる
+        run: |
+          python3 .github/scripts/embed_archive_entitlements.py embed build.xcarchive \
+            --project "$PROJECT" --sdk iphoneos --configuration Release
+
       - name: Create ExportOptions.plist
         run: |
           set -euo pipefail
@@ -74,3 +81,7 @@ jobs:
                      -authenticationKeyPath "$(pwd)/private_keys/AuthKey_${{ secrets.APPLE_API_ISSUER_ID }}.p8" \
                      -authenticationKeyID ${{ secrets.APPLE_API_KEY_ID }} \
                      -authenticationKeyIssuerID ${{ secrets.APPLE_API_ISSUER_ID }}
+
+      - name: Verify entitlements of the exported IPA
+        # 書き出した IPA の全部のバンドル（アプリ・ウィジェット・共有拡張）に、Archive に入れた entitlements が残っているかを確かめる
+        run: python3 .github/scripts/embed_archive_entitlements.py check build.xcarchive app.ipa
