@@ -22,6 +22,9 @@
 - ターゲット: `Otanecho` / `OtanechoWidgets` / `OtanechoShare` / `OtanechoTests` / `OtanechoUITests`
 - テストは Swift Testing（`@Test` / `#expect`）
 - SwiftLint はビルドツールプラグインとして動く
+- 配信ビルド（`upload.yml`・`archive-main.yml`）は署名なしで Archive し、`.github/scripts/embed_archive_entitlements.py` で
+  アプリと App Extension に entitlements（App Groups）を入れてから書き出す。書き出した IPA の全部のバンドルに残ったかは、
+  アップロードの前に同じ道具の `check` が確かめる。埋め込みのフレームワーク（動的な Swift Package など）を足すと、この道具が止まるので直す
 
 ### Simulator の指定
 
@@ -81,6 +84,7 @@ push で発火する GitHub Actions は以下のとおり。
 
 Build は同じブランチへの連続 push で古い実行をキャンセルする。ドキュメントだけの変更（`**/*.md`、`docs/**`）では Build を実行しない（`develop` / `release/**` の Upload は実行する）。
 main の Archive（`archive-main.yml`）は push では発火しないので、必要なときに手動で実行する。
+Upload を手動実行するときに `upload` を外すと、App Store Connect へ上げずに、書き出した IPA の確かめまでで止まる。
 
 PR のマージ先は原則 `develop`。
 
