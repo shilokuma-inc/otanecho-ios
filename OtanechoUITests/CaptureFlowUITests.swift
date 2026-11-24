@@ -6,6 +6,8 @@ final class CaptureFlowUITests: XCTestCase {
     @MainActor
     func testCaptureToDeepenFlow() throws {
         let app = XCUIApplication()
+        // オンボーディングを済ませた扱いにする（初めて入れた Simulator では、チュートリアルが入力画面を覆う）
+        app.launchArguments = ["-onboarding.completedVersion", "1"]
         app.launch()
 
         // openurl 由来のシステムダイアログが残っていたら閉じる
